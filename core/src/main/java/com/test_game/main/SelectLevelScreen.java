@@ -1,3 +1,4 @@
+// SelectLevelScreen.java
 package com.test_game.main;
 
 import com.badlogic.gdx.Gdx;
@@ -11,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
-public class HomeScreen extends ScreenAdapter {
+public class SelectLevelScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private Texture backgroundTexture;
@@ -22,34 +23,45 @@ public class HomeScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-        backgroundTexture = new Texture(Gdx.files.internal("homescreen.jpg"));
+        backgroundTexture = new Texture(Gdx.files.internal("selectlevel.jpg")); // Load your image here
+
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
 
-        TextButton newGameButton = new TextButton("New Game", skin);
-        TextButton loadGameButton = new TextButton("Load Saved Game", skin);
-        TextButton exitButton = new TextButton("Exit", skin);
+        TextButton level1Button = new TextButton("Level 1", skin);
+        TextButton level2Button = new TextButton("Level 2", skin);
+        TextButton level3Button = new TextButton("Level 3", skin);
+        TextButton backButton = new TextButton("Back", skin);
 
-        table.add(newGameButton).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
-        table.add(loadGameButton).fillX().uniformX();
+        // Set button sizes
+        level1Button.setSize(200, 50);
+        level2Button.setSize(200, 50);
+        level3Button.setSize(200, 50);
+        backButton.setSize(100, 25);
+
+        table.add(level1Button).size(level1Button.getWidth(), level1Button.getHeight()).fillX().uniformX();
+        table.row().pad(20, 0, 20, 0);
+        table.add(level2Button).size(level2Button.getWidth(), level2Button.getHeight()).fillX().uniformX();
         table.row();
-        table.add(exitButton).fillX().uniformX();
+        table.add(level3Button).size(level3Button.getWidth(), level3Button.getHeight()).fillX().uniformX();
+        table.row().pad(20, 0, 20, 0);
+        table.add(backButton).size(backButton.getWidth(), backButton.getHeight()).fillX().uniformX();
 
-        newGameButton.addListener(new ClickListener() {
+        level1Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new SelectLevelScreen());
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new GameplayScreen());
             }
         });
 
-        exitButton.addListener(new ClickListener() {
+        backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new com.test_game.main.HomeScreen());
             }
         });
+
     }
 
     @Override
