@@ -12,6 +12,8 @@ public class Core extends ApplicationAdapter {
     private SpriteBatch batch;
     private Texture image;
 
+    //trial commit
+
     @Override
     public void create() {
         batch = new SpriteBatch();
