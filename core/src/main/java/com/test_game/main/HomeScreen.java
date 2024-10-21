@@ -2,6 +2,7 @@ package com.test_game.main;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 public class HomeScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
+    private Texture backgroundTexture;
 
     @Override
     public void show() {
@@ -20,7 +22,7 @@ public class HomeScreen extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
 
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-
+        backgroundTexture = new Texture(Gdx.files.internal("homescreen.jpg"));
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
@@ -45,6 +47,9 @@ public class HomeScreen extends ScreenAdapter {
 
     @Override
     public void render(float delta) {
+        stage.getBatch().begin();
+        stage.getBatch().draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+        stage.getBatch().end();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
@@ -58,5 +63,6 @@ public class HomeScreen extends ScreenAdapter {
     public void hide() {
         stage.dispose();
         skin.dispose();
+        backgroundTexture.dispose();
     }
 }
