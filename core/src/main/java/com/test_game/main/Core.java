@@ -26,7 +26,9 @@ public class Core extends Game {
 
     @Override
     public void render() {
-        super.render(); // Render the current screen
+
+        super.render();
+        // Render the current screen
     }
 
     @Override

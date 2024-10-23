@@ -1,4 +1,4 @@
-package com.test_game.main;
+/*package com.test_game.main;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -46,3 +46,4 @@ public class PlayScreen extends ScreenAdapter {
         texture.dispose();
     }
 }
+*/
