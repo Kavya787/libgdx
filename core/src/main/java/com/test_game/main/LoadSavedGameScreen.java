@@ -1,6 +1,7 @@
+// LoadSavedGameScreen.java
+
 package com.test_game.main;
 
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
@@ -12,17 +13,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 
-public class HomeScreen extends ScreenAdapter {
+public class LoadSavedGameScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private Texture backgroundTexture;
-    private Game game;
+    private Core core;
 
-    public HomeScreen(Core core) {
+    public LoadSavedGameScreen(Core core) {
+        this.core = core;
     }
-    public HomeScreen() {
-    }
-
 
     @Override
     public void show() {
@@ -35,36 +34,20 @@ public class HomeScreen extends ScreenAdapter {
         table.setFillParent(true);
         stage.addActor(table);
 
-        TextButton newGameButton = new TextButton("New Game", skin);
-        TextButton loadGameButton = new TextButton("Load Saved Game", skin);
-        TextButton exitButton = new TextButton("Exit", skin);
-
-        table.add(newGameButton).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
-        table.add(loadGameButton).fillX().uniformX();
-        table.row();
-        table.add(exitButton).fillX().uniformX();
-
-        newGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new SelectLevelScreen());
-            }
-        });
-
-        loadGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LoadSavedGameScreen((Core) Gdx.app.getApplicationListener()));
-            }
-        });
-
-        exitButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
-            }
-        });
+        for (int i = 1; i <= 5; i++) {
+            TextButton slotButton = new TextButton("Slot " + i, skin);
+            final int slotNumber = i;
+            slotButton.addListener(new ClickListener() {
+                @Override
+                public void clicked(InputEvent event, float x, float y) {
+                    if (slotNumber == 1) {
+                        core.setScreen(new GameplayScreen(core));
+                    }
+                }
+            });
+            table.add(slotButton).fillX().uniformX();
+            table.row().pad(10, 0, 10, 0);
+        }
     }
 
     @Override
@@ -88,4 +71,3 @@ public class HomeScreen extends ScreenAdapter {
         backgroundTexture.dispose();
     }
 }
-

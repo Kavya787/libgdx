@@ -4,6 +4,8 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.ApplicationListener;
+
 
 public class Core extends Game {
     public SpriteBatch batch;
@@ -21,7 +23,7 @@ public class Core extends Game {
         playMusic(); // Start playing the music when the game starts
 
         // Set the initial screen (e.g., HomeScreen)
-        setScreen(new GameplayScreen());
+        setScreen(new HomeScreen(this));
     }
 
     @Override

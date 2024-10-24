@@ -5,6 +5,7 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.ScreenAdapter;
 
 public class GameplayScreen extends ScreenAdapter {
     private Stage stage;
@@ -29,6 +30,12 @@ public class GameplayScreen extends ScreenAdapter {
     // Catapult and Bird
     private Catapult catapult;
     private Bird bird;
+
+    public GameplayScreen(Core core) {
+    }
+
+    public GameplayScreen() {
+    }
 
     @Override
     public void show() {
