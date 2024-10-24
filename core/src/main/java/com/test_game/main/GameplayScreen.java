@@ -3,9 +3,19 @@ package com.test_game.main;
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.ApplicationListener;
+
 
 public class GameplayScreen extends ScreenAdapter {
     private Stage stage;
@@ -108,7 +118,22 @@ public class GameplayScreen extends ScreenAdapter {
         // Add the catapult and bird to the stage
         stage.addActor(catapult);
         stage.addActor(bird);
+
+        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+        TextButton pauseButton = new TextButton("Pause", skin);
+        pauseButton.setPosition(Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50);
+        pauseButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new PauseMenuScreen());
+            }
+        });
+        stage.addActor(pauseButton);
     }
+
+
+
+
 
     @Override
     public void render(float delta) {
