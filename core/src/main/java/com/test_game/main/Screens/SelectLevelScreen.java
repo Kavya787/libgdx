@@ -1,5 +1,5 @@
 // SelectLevelScreen.java
-package com.test_game.main;
+package com.test_game.main.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -11,6 +11,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.test_game.main.Core;
 
 public class SelectLevelScreen extends ScreenAdapter {
     private Stage stage;
@@ -58,7 +59,7 @@ public class SelectLevelScreen extends ScreenAdapter {
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new com.test_game.main.HomeScreen());
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
             }
         });
 

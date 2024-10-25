@@ -1,4 +1,4 @@
-package com.test_game.main;
+package com.test_game.main.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -6,23 +6,22 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.test_game.main.Core;
 
-public class LoadScreenMenu extends ScreenAdapter {
+public class LoseScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private SpriteBatch batch;
     private Texture backgroundTexture;
-    private Core core; // Reference to the main game core to switch screens
 
-
-    public LoadScreenMenu() {
-
+    public LoseScreen() {
         batch = new SpriteBatch();
     }
 
@@ -36,44 +35,29 @@ public class LoadScreenMenu extends ScreenAdapter {
         table.setFillParent(true);
         stage.addActor(table);
 
-        // Create buttons for Slot 1, Slot 2, and Back
-        TextButton slot1Button = new TextButton("Slot 1", skin);
-        TextButton slot2Button = new TextButton("Slot 2", skin);
-        TextButton backButton = new TextButton("Back", skin);
+        // Create a label to display the winning message
+        Label winLabel = new Label("YOU LOSE!", skin);
+        winLabel.setFontScale(2); // Adjust the size of the text
 
-        table.add(slot1Button).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
-        table.add(slot2Button).fillX().uniformX();
-        table.row();
-        table.add(backButton).fillX().uniformX();
+        // Create a "Go to Home" button
+        TextButton goHomeButton = new TextButton("Go to Home", skin);
 
-        // Listeners for buttons
-        slot1Button.addListener(new ClickListener() {
+        // Add components to the table
+        table.add(winLabel).expandX().center(); // Center the winning message
+        table.row().pad(10, 0, 10, 0); // Add some padding
+        table.add(goHomeButton).fillX().uniformX();
+
+        // Listener for the "Go to Home" button
+        goHomeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Slot 1 loaded");
-                // Implement load logic for Slot 1 here
-            }
-        });
-
-        slot2Button.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Slot 2 loaded");
-                // Implement load logic for Slot 2 here
-            }
-        });
-
-        backButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                // Go back to MainMenuScreen
+                // Redirect to HomeScreen
                 ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
             }
         });
 
         // Load background texture
-        backgroundTexture = new Texture(Gdx.files.internal("homescreen.jpg")); // Adjust the background image path
+        backgroundTexture = new Texture(Gdx.files.internal("playScreenbg.jpg")); // Adjust the background image path
     }
 
     @Override

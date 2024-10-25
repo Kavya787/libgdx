@@ -1,4 +1,4 @@
-package com.test_game.main;
+package com.test_game.main.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -12,16 +12,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.test_game.main.Core;
 
-public class SaveScreen extends ScreenAdapter {
+public class LoadScreenMenu extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private SpriteBatch batch;
     private Texture backgroundTexture;
-    private GameplayScreen gameplayScreen;
-    public SaveScreen(GameplayScreen gameplayScreen) {
+    private Core core; // Reference to the main game core to switch screens
+
+
+    public LoadScreenMenu() {
+
         batch = new SpriteBatch();
-        this.gameplayScreen = gameplayScreen;
     }
 
     @Override
@@ -39,29 +42,26 @@ public class SaveScreen extends ScreenAdapter {
         TextButton slot2Button = new TextButton("Slot 2", skin);
         TextButton backButton = new TextButton("Back", skin);
 
-        // Add buttons to the table layout
         table.add(slot1Button).fillX().uniformX();
         table.row().pad(10, 0, 10, 0);
         table.add(slot2Button).fillX().uniformX();
-        table.row().pad(10, 0, 10, 0);
+        table.row();
         table.add(backButton).fillX().uniformX();
 
         // Listeners for buttons
         slot1Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Slot 1 saved");
-                // Implement save logic for Slot 1 here
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
+                System.out.println("Slot 1 loaded");
+                // Implement load logic for Slot 1 here
             }
         });
 
         slot2Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                System.out.println("Slot 2 saved");
-                // Implement save logic for Slot 2 here
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
+                System.out.println("Slot 2 loaded");
+                // Implement load logic for Slot 2 here
             }
         });
 
@@ -69,7 +69,7 @@ public class SaveScreen extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {
                 // Go back to MainMenuScreen
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new PauseMenuScreen(gameplayScreen));
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
             }
         });
 

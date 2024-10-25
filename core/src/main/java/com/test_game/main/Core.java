@@ -4,6 +4,7 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.test_game.main.Screens.HomeScreen;
 
 public class Core extends Game {
     public SpriteBatch batch;
@@ -40,13 +41,13 @@ public class Core extends Game {
     // Music control methods
     public void playMusic() {
         if (!bgMusic.isPlaying()) {
-            bgMusic.play(); // Play the music if it's not already playing
+            bgMusic.play();
         }
     }
 
     public void pauseMusic() {
         if (bgMusic.isPlaying()) {
-            bgMusic.pause(); // Pause the music if it's currently playing
+            bgMusic.pause();
         }
     }
 

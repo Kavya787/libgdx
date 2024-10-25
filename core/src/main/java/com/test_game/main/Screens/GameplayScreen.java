@@ -1,4 +1,4 @@
-package com.test_game.main;
+package com.test_game.main.Screens;
 
 import com.badlogic.gdx.*;
 import com.badlogic.gdx.graphics.GL20;
@@ -9,11 +9,20 @@ import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.ApplicationListener;
+import com.test_game.main.Catapult;
+import com.test_game.main.Core;
+import com.test_game.main.birds.Bird;
+import com.test_game.main.birds.BlackBird;
+import com.test_game.main.birds.RedBird;
+import com.test_game.main.birds.YellowBird;
+import com.test_game.main.blocks.Block;
+import com.test_game.main.blocks.GlassBlock;
+import com.test_game.main.blocks.SteelBlock;
+import com.test_game.main.blocks.WoodBlock;
+import com.test_game.main.pigs.Pig;
+import com.test_game.main.pigs.*;
 
 public class GameplayScreen extends ScreenAdapter {
     private Stage stage;
@@ -37,10 +46,12 @@ public class GameplayScreen extends ScreenAdapter {
     private Block block1;
     private Block block2;
     private Block block3;
-
+    private Block woodBlock;
     // Catapult and Bird
     private Catapult catapult;
     private Bird bird;
+    private Bird bird2;
+    private Bird bird3;
 
     @Override
     public void show() {
@@ -72,40 +83,29 @@ public class GameplayScreen extends ScreenAdapter {
         float groundHeight = groundTexture.getHeight()-32   ;
 
         // Create blocks
-        block1 = new Block(blockTexture);
-        block2 = new Block(blockTexture);
-        block3 = new Block(blockTexture);
+        block1 = new SteelBlock(425, groundHeight);
+        block2 = new GlassBlock(475, groundHeight);
+        block3 =new SteelBlock(525, groundHeight);
 
-        // Resize blocks using resizeTexture method (optional)
-        block1.resizeTexture(1.0f, 3.0f);
-        block2.resizeTexture(1.0f, 3.0f);
-        block3.resizeTexture(1.0f, 3.0f);
-
-        // Set position for blocks (just above the ground)
-        block1.setPosition(425, groundHeight);
-        block2.setPosition(475, groundHeight);
-        block3.setPosition(525, groundHeight);
-
-        // Add blocks to the stage first (so they appear below the pigs)
+        small_pig = new SmallPig(block1.getX()-8, block1.getY() + block1.getHeight()-5);
+        medium_pig = new MediumPig(block2.getX()-2, block2.getY() + block2.getHeight()+18);
+        king_pig = new LargePig(block3.getX()+2, block3.getY() + block3.getHeight()-10);
+        woodBlock=new WoodBlock(350,115);
         stage.addActor(block1);
         stage.addActor(block2);
         stage.addActor(block3);
+        stage.addActor(woodBlock);
         stage.addActor(pauseButton);
 
         // Create pigs using the textures
-        small_pig = new Pig(smallPigTexture);
-        medium_pig = new Pig(mediumPigTexture);
-        king_pig = new Pig(kingPigTexture);
-
-        // Resize pigs using resizeTexture method
-        small_pig.resizeTexture(0.1f, 0.1f);
-        medium_pig.resizeTexture(0.1f, 0.1f);
-        king_pig.resizeTexture(0.1f, 0.1f);
+//        small_pig = new SmallPig(block1.getX(), block1.getY() + block1.getHeight());
+//        medium_pig = new MediumPig(block2.getX(), block2.getY() + block2.getHeight());
+//        king_pig = new LargePig(block3.getX(), block3.getY() + block3.getHeight());
 
         // Position pigs on top of the blocks
-        small_pig.setPosition(block1.getX(), block1.getY() + block1.getHeight());
-        medium_pig.setPosition(block2.getX(), block2.getY() + block2.getHeight());
-        king_pig.setPosition(block3.getX(), block3.getY() + block3.getHeight());
+//        small_pig.setPosition(block1.getX(), block1.getY() + block1.getHeight());
+//        medium_pig.setPosition(block2.getX(), block2.getY() + block2.getHeight());
+//        king_pig.setPosition(block3.getX(), block3.getY() + block3.getHeight());
 
         // Add pigs to the stage (above the blocks)
         stage.addActor(small_pig);
@@ -114,11 +114,12 @@ public class GameplayScreen extends ScreenAdapter {
 
         // Create the catapult and bird
         catapult = new Catapult(catapultTexture);
-        bird = new Bird(birdTexture);
-
+        bird = new RedBird();
+        bird2 = new YellowBird();
+        bird3 = new BlackBird();
         // Resize the catapult and bird if needed
         catapult.resizeTexture(0.2f, 0.2f); // Optional scaling
-        bird.resizeTexture(0.2f, 0.2f);     // Resize bird to half its original size
+//        bird.resizeTexture(0.2f, 0.2f);     // Resize bird to half its original size
 
         // Set position for the catapult (just above the ground)
         catapult.setPosition(100, groundHeight);
@@ -126,10 +127,16 @@ public class GameplayScreen extends ScreenAdapter {
         // Set the bird on top of the catapult
         bird.setPosition(catapult.getX() + (catapult.getWidth() / 2) - (bird.getWidth() / 2),
             catapult.getY() + catapult.getHeight());
+        bird2.setPosition(100,groundHeight);
+        bird2.resizeTexture(0.12f, 0.12f);
 
+        bird3.setPosition(60,groundHeight);
+        bird3.resizeTexture(0.12f, 0.12f);
         // Add the catapult and bird to the stage
         stage.addActor(catapult);
         stage.addActor(bird);
+        stage.addActor(bird2);
+        stage.addActor(bird3);
     }
 
     @Override

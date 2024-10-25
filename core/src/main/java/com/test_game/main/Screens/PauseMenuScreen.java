@@ -1,94 +1,84 @@
-package com.test_game.main;
-
-import com.badlogic.gdx.Game;
+package com.test_game.main.Screens;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.test_game.main.Core;
 
-public class HomeScreen extends ScreenAdapter {
+public class PauseMenuScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
+    private Core core;
+    private SpriteBatch batch;
     private Texture backgroundTexture;
-    private Game game;
+    private GameplayScreen gameplayScreen;
 
-    public HomeScreen(Core core) {
+    public PauseMenuScreen(GameplayScreen gameplayScreen) {
+        batch = new SpriteBatch();
+        this.gameplayScreen = gameplayScreen;
     }
-    public HomeScreen() {
-    }
-
-
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
         Gdx.input.setInputProcessor(stage);
-
         skin = new Skin(Gdx.files.internal("uiskin.json"));
-        backgroundTexture = new Texture(Gdx.files.internal("homescreen.jpg"));
         Table table = new Table();
         table.setFillParent(true);
         stage.addActor(table);
-
-        TextButton newGameButton = new TextButton("New Game", skin);
-        TextButton loadGameButton = new TextButton("Load Saved Game", skin);
+        TextButton resumeButton = new TextButton("Resume", skin);
+        TextButton saveGameButton = new TextButton("Save Game", skin);
         TextButton exitButton = new TextButton("Exit", skin);
-
-        table.add(newGameButton).fillX().uniformX();
+        table.add(resumeButton).fillX().uniformX();
         table.row().pad(10, 0, 10, 0);
-        table.add(loadGameButton).fillX().uniformX();
+        table.add(saveGameButton).fillX().uniformX();
         table.row();
+
         table.add(exitButton).fillX().uniformX();
-
-        newGameButton.addListener(new ClickListener() {
+        resumeButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new SelectLevelScreen());
+                ((Core) Gdx.app.getApplicationListener()).setScreen(gameplayScreen);
             }
         });
-        loadGameButton.addListener(new ClickListener() {
+        saveGameButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LoadScreenMenu());
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new SaveScreen(gameplayScreen));
             }
         });
-
-
-
-
-
         exitButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                Gdx.app.exit();
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
             }
         });
+        backgroundTexture = new Texture(Gdx.files.internal("playScreenbg.jpg")); // Ba
     }
-
     @Override
     public void render(float delta) {
-        stage.getBatch().begin();
-        stage.getBatch().draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
-        stage.getBatch().end();
+        Gdx.gl.glClearColor(1, 1, 1, 1);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        batch.begin();
+        batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // Draw the background
+
+        batch.end();
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
     }
-
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
-
     @Override
     public void hide() {
         stage.dispose();
-        skin.dispose();
-        backgroundTexture.dispose();
     }
 }
-

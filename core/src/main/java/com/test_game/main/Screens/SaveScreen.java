@@ -1,4 +1,4 @@
-package com.test_game.main;
+package com.test_game.main.Screens;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
@@ -6,22 +6,23 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.scenes.scene2d.Stage;
-import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.test_game.main.Core;
 
-public class LoseScreen extends ScreenAdapter {
+public class SaveScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private SpriteBatch batch;
     private Texture backgroundTexture;
-
-    public LoseScreen() {
+    private GameplayScreen gameplayScreen;
+    public SaveScreen(GameplayScreen gameplayScreen) {
         batch = new SpriteBatch();
+        this.gameplayScreen = gameplayScreen;
     }
 
     @Override
@@ -34,29 +35,47 @@ public class LoseScreen extends ScreenAdapter {
         table.setFillParent(true);
         stage.addActor(table);
 
-        // Create a label to display the winning message
-        Label winLabel = new Label("YOU LOSE!", skin);
-        winLabel.setFontScale(2); // Adjust the size of the text
+        // Create buttons for Slot 1, Slot 2, and Back
+        TextButton slot1Button = new TextButton("Slot 1", skin);
+        TextButton slot2Button = new TextButton("Slot 2", skin);
+        TextButton backButton = new TextButton("Back", skin);
 
-        // Create a "Go to Home" button
-        TextButton goHomeButton = new TextButton("Go to Home", skin);
+        // Add buttons to the table layout
+        table.add(slot1Button).fillX().uniformX();
+        table.row().pad(10, 0, 10, 0);
+        table.add(slot2Button).fillX().uniformX();
+        table.row().pad(10, 0, 10, 0);
+        table.add(backButton).fillX().uniformX();
 
-        // Add components to the table
-        table.add(winLabel).expandX().center(); // Center the winning message
-        table.row().pad(10, 0, 10, 0); // Add some padding
-        table.add(goHomeButton).fillX().uniformX();
-
-        // Listener for the "Go to Home" button
-        goHomeButton.addListener(new ClickListener() {
+        // Listeners for buttons
+        slot1Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // Redirect to HomeScreen
+                System.out.println("Slot 1 saved");
+                // Implement save logic for Slot 1 here
                 ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
             }
         });
 
+        slot2Button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                System.out.println("Slot 2 saved");
+                // Implement save logic for Slot 2 here
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new HomeScreen());
+            }
+        });
+
+        backButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                // Go back to MainMenuScreen
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new PauseMenuScreen(gameplayScreen));
+            }
+        });
+
         // Load background texture
-        backgroundTexture = new Texture(Gdx.files.internal("playScreenbg.jpg")); // Adjust the background image path
+        backgroundTexture = new Texture(Gdx.files.internal("homescreen.jpg")); // Adjust the background image path
     }
 
     @Override

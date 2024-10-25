@@ -1,18 +1,19 @@
-
-package com.test_game.main;
+package com.test_game.main.pigs;
 
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 
-public class Bird extends Actor {
+public class Pig extends Actor {
     private Texture texture;
     private float textureScaleX = 1.0f;  // Horizontal scaling factor
     private float textureScaleY = 1.0f;  // Vertical scaling factor
-
-    public Bird(Texture texture) {
+    private float textureX = 0.0f;        // X position of the texture
+    private float textureY = 0.0f;
+    public Pig(Texture texture) {
         this.texture = texture;
         setSize(texture.getWidth(), texture.getHeight());
+
     }
 
     @Override
