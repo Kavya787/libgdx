@@ -21,7 +21,7 @@ public class Core extends Game {
         playMusic(); // Start playing the music when the game starts
 
         // Set the initial screen (e.g., HomeScreen)
-        setScreen(new GameplayScreen());
+        setScreen(new HomeScreen());
     }
 
     @Override

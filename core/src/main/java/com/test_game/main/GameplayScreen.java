@@ -5,21 +5,33 @@ import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
+import com.badlogic.gdx.scenes.scene2d.ui.Skin;
+import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
+import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.scenes.scene2d.InputEvent;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.audio.Music;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.ApplicationListener;
 
 public class GameplayScreen extends ScreenAdapter {
     private Stage stage;
+    private SpriteBatch batch;
 
     private Pig small_pig;
     private Pig medium_pig;
     private Pig king_pig;
 
-    // Textures for each pig, block, catapult, and bird
+    // Textures for each pig, block, catapult, bird, ground, and background
     private Texture smallPigTexture;
     private Texture mediumPigTexture;
     private Texture kingPigTexture;
     private Texture blockTexture;
     private Texture catapultTexture;
     private Texture birdTexture;
+    private Texture backgroundTexture;  // Background image
+    private Texture groundTexture;      // Ground image
 
     // Blocks
     private Block block1;
@@ -33,15 +45,31 @@ public class GameplayScreen extends ScreenAdapter {
     @Override
     public void show() {
         stage = new Stage(new ScreenViewport());
+        batch = new SpriteBatch();
         Gdx.input.setInputProcessor(stage);
 
-        // Load textures for pigs, blocks, catapult, and bird
+        // Load textures for pigs, blocks, catapult, bird, ground, and background
         smallPigTexture = new Texture(Gdx.files.internal("small_pig.png"));
         mediumPigTexture = new Texture(Gdx.files.internal("medium_pig.png"));
         kingPigTexture = new Texture(Gdx.files.internal("king_pig.png"));
-        blockTexture = new Texture(Gdx.files.internal("building.png")); // Assuming you have a texture for blocks
-        catapultTexture = new Texture(Gdx.files.internal("catapult.png")); // Texture for the catapult
-        birdTexture = new Texture(Gdx.files.internal("red_bird.png"));         // Texture for the bird
+        blockTexture = new Texture(Gdx.files.internal("building.png"));
+        catapultTexture = new Texture(Gdx.files.internal("catapult.png"));
+        birdTexture = new Texture(Gdx.files.internal("red_bird.png"));
+        backgroundTexture = new Texture(Gdx.files.internal("playScreenbg.jpg")); // Background image
+        groundTexture = new Texture(Gdx.files.internal("ground.png"));   // Ground image
+
+        Skin skin = new Skin(Gdx.files.internal("uiskin.json"));
+        TextButton pauseButton = new TextButton("Pause", skin);
+        pauseButton.setPosition(Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50);
+        pauseButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new PauseMenuScreen(GameplayScreen.this));
+            }
+        });
+
+        // Calculate the ground height
+        float groundHeight = groundTexture.getHeight()-32   ;
 
         // Create blocks
         block1 = new Block(blockTexture);
@@ -53,15 +81,16 @@ public class GameplayScreen extends ScreenAdapter {
         block2.resizeTexture(1.0f, 3.0f);
         block3.resizeTexture(1.0f, 3.0f);
 
-        // Set position for blocks
-        block1.setPosition(425, 50);
-        block2.setPosition(475, 50);
-        block3.setPosition(525, 50);
+        // Set position for blocks (just above the ground)
+        block1.setPosition(425, groundHeight);
+        block2.setPosition(475, groundHeight);
+        block3.setPosition(525, groundHeight);
 
         // Add blocks to the stage first (so they appear below the pigs)
         stage.addActor(block1);
         stage.addActor(block2);
         stage.addActor(block3);
+        stage.addActor(pauseButton);
 
         // Create pigs using the textures
         small_pig = new Pig(smallPigTexture);
@@ -91,8 +120,8 @@ public class GameplayScreen extends ScreenAdapter {
         catapult.resizeTexture(0.2f, 0.2f); // Optional scaling
         bird.resizeTexture(0.2f, 0.2f);     // Resize bird to half its original size
 
-        // Set position for the catapult
-        catapult.setPosition(100, 50); // Position the catapult on the ground
+        // Set position for the catapult (just above the ground)
+        catapult.setPosition(100, groundHeight);
 
         // Set the bird on top of the catapult
         bird.setPosition(catapult.getX() + (catapult.getWidth() / 2) - (bird.getWidth() / 2),
@@ -107,6 +136,12 @@ public class GameplayScreen extends ScreenAdapter {
     public void render(float delta) {
         Gdx.gl.glClearColor(1, 1, 1, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        handleKeyboardInput();
+        // Start the batch and draw the background, then the ground
+        batch.begin();
+        batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight()); // Draw the background
+        batch.draw(groundTexture, 0, 0, Gdx.graphics.getWidth(), groundTexture.getHeight());   // Draw the ground
+        batch.end();
 
         stage.act(Math.min(Gdx.graphics.getDeltaTime(), 1 / 30f));
         stage.draw();
@@ -116,7 +151,13 @@ public class GameplayScreen extends ScreenAdapter {
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
     }
-
+    private void handleKeyboardInput() {
+        if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
+            ((Core) Gdx.app.getApplicationListener()).setScreen(new WinScreen());
+        }else if (Gdx.input.isKeyJustPressed(Input.Keys.P)) {
+            ((Core) Gdx.app.getApplicationListener()).setScreen(new LoseScreen());
+        }
+    }
     @Override
     public void hide() {
         stage.dispose();
@@ -124,7 +165,9 @@ public class GameplayScreen extends ScreenAdapter {
         mediumPigTexture.dispose();
         kingPigTexture.dispose();
         blockTexture.dispose();
-        catapultTexture.dispose();  // Dispose catapult texture
-        birdTexture.dispose();      // Dispose bird texture
+        catapultTexture.dispose();   // Dispose catapult texture
+        birdTexture.dispose();       // Dispose bird texture
+        backgroundTexture.dispose(); // Dispose background texture
+        groundTexture.dispose();     // Dispose ground texture
     }
 }
