@@ -60,12 +60,7 @@ public class HomeScreen extends ScreenAdapter {
 
 
 
-        loadGameButton.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LoadSavedGameScreen((Core) Gdx.app.getApplicationListener()));
-            }
-        });
+
 
         exitButton.addListener(new ClickListener() {
             @Override
