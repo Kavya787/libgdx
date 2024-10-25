@@ -1,5 +1,6 @@
 package com.test_game.main;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.Texture;
@@ -15,6 +16,13 @@ public class HomeScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private Texture backgroundTexture;
+    private Game game;
+
+    public HomeScreen(Core core) {
+    }
+    public HomeScreen() {
+    }
+
 
     @Override
     public void show() {
@@ -51,6 +59,13 @@ public class HomeScreen extends ScreenAdapter {
         });
 
 
+
+        loadGameButton.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new LoadSavedGameScreen((Core) Gdx.app.getApplicationListener()));
+            }
+        });
 
         exitButton.addListener(new ClickListener() {
             @Override
