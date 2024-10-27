@@ -1,6 +1,7 @@
 
 package com.test_game.main;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
@@ -10,8 +11,8 @@ public class Catapult extends Actor {
     private float textureScaleX = 1.0f;  // Horizontal scaling factor
     private float textureScaleY = 1.0f;  // Vertical scaling factor
 
-    public Catapult(Texture texture) {
-        this.texture = texture;
+    public Catapult() {
+        this.texture = new Texture(Gdx.files.internal("catapult.png"));;
         setSize(texture.getWidth(), texture.getHeight());
     }
 

@@ -12,6 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.test_game.main.Core;
+import com.test_game.main.levels.*;
 
 public class SelectLevelScreen extends ScreenAdapter {
     private Stage stage;
@@ -52,10 +53,21 @@ public class SelectLevelScreen extends ScreenAdapter {
         level1Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new GameplayScreen());
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelOne());
             }
         });
-
+        level2Button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelTwo());
+            }
+        });
+        level3Button.addListener(new ClickListener() {
+            @Override
+            public void clicked(InputEvent event, float x, float y) {
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelThree());
+            }
+        });
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

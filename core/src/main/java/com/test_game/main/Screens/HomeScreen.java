@@ -12,13 +12,14 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.test_game.main.Core;
+import com.test_game.main.Player;
 
 public class HomeScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private Texture backgroundTexture;
     private Game game;
-
+    Player player;
     public HomeScreen(Core core) {
     }
     public HomeScreen() {

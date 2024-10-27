@@ -10,11 +10,11 @@ public class Core extends Game {
     public SpriteBatch batch;
     private Music bgMusic;
     private boolean isMusicOn;
-
+    Player player ;
     @Override
     public void create() {
         batch = new SpriteBatch();
-
+        player=new Player();
         // Initialize background music
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("background_music.mp3"));
         bgMusic.setLooping(true); // Make the music loop
@@ -24,7 +24,9 @@ public class Core extends Game {
         // Set the initial screen (e.g., HomeScreen)
         setScreen(new HomeScreen());
     }
-
+    public Player getPlayer(){
+        return player;
+    }
     @Override
     public void render() {
 
