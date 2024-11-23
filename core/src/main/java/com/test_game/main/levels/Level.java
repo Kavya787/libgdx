@@ -28,19 +28,19 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Level extends ScreenAdapter {
-     Stage stage;
-     SpriteBatch batch;
+    Stage stage;
+    SpriteBatch batch;
 
     // Lists for Pigs, Birds, and Blocks
-     List<Pig> pigs;
-     List<Block> blocks;
-     List<Bird> birds;
+    List<Pig> pigs;
+    List<Block> blocks;
+    List<Bird> birds;
 
-     Texture birdTexture;
-     Texture backgroundTexture;
-     Texture groundTexture;
+    Texture birdTexture;
+    Texture backgroundTexture;
+    Texture groundTexture;
 
-     Catapult catapult;
+    Catapult catapult;
 
     @Override
     public void show() {
@@ -66,6 +66,10 @@ public class Level extends ScreenAdapter {
     @Override
     public void resize(int width, int height) {
         stage.getViewport().update(width, height, true);
+        batch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
+        // Update pause button position
+        TextButton pauseButton = (TextButton) stage.getActors().first();
+        pauseButton.setPosition(width - 100, height - 50);
     }
 
     private void handleKeyboardInput() {
