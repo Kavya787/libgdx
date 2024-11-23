@@ -56,18 +56,18 @@ public class SelectLevelScreen extends ScreenAdapter {
                 ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelOne());
             }
         });
-        level2Button.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelTwo());
-            }
-        });
-        level3Button.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelThree());
-            }
-        });
+//        level2Button.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelTwo());
+//            }
+//        });
+//        level3Button.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelThree());
+//            }
+//        });
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

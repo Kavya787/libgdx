@@ -11,16 +11,16 @@ public class Player implements Serializable {
 
     private int score;
     private LevelOne levelOne;
-    private LevelTwo levelTwo;
-    private LevelThree levelThree;
+   // private LevelTwo levelTwo;
+  //  private LevelThree levelThree;
 
     public Player() {
         this.score = 0;
 
         // Initialize each level
         this.levelOne = new LevelOne();
-        this.levelTwo = new LevelTwo();
-        this.levelThree = new LevelThree();
+       // this.levelTwo = new LevelTwo();
+        //this.levelThree = new LevelThree();
     }
 
 
@@ -36,8 +36,8 @@ public class Player implements Serializable {
     public Level getLevel(int levelNumber) {
         switch (levelNumber) {
             case 1: return levelOne;
-            case 2: return levelTwo;
-            case 3: return levelThree;
+            //case 2: return levelTwo;
+           // case 3: return levelThree;
             default: throw new IllegalArgumentException("Invalid level number");
         }
     }

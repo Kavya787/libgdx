@@ -2,12 +2,12 @@ package com.test_game.main.pigs;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.physics.box2d.World;
 import com.test_game.main.birds.Bird;
 
 public class LargePig extends Pig {
-    public LargePig(float x ,float y) {
-        super(new Texture(Gdx.files.internal("king_pig.png")));
-        resizeTexture(0.19f, 0.19f);
-        setPosition(x,y);
+    public LargePig(World world, Texture texture, float x, float y) {
+        super(world, texture, x, y);
+        takeDamage(20);
     }
 }
