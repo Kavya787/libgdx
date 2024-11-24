@@ -7,6 +7,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.math.Vector2;
 import com.test_game.main.Catapult;
@@ -25,6 +26,7 @@ public abstract class Level extends ScreenAdapter {
     protected World world;
     protected Box2DDebugRenderer debugRenderer;
     protected static final float PPM = 100f;
+    protected OrthographicCamera camera;  // Added camera field
 
     protected List<Pig> pigs;
     protected List<Block> blocks;
@@ -36,12 +38,16 @@ public abstract class Level extends ScreenAdapter {
     protected Ground ground;
 
     public Level() {
+        // Initialize camera
+        camera = new OrthographicCamera();
+        camera.setToOrtho(false, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
+
         // Initialize Box2D world with gravity
         world = new World(new Vector2(0, -9.81f), true);
         debugRenderer = new Box2DDebugRenderer();
 
         // Initialize basic components
-        stage = new Stage(new ScreenViewport());
+        stage = new Stage(new ScreenViewport(camera));  // Pass camera to viewport
         batch = new SpriteBatch();
 
         // Initialize collections
@@ -63,8 +69,8 @@ public abstract class Level extends ScreenAdapter {
     }
 
     protected void loadTextures() {
-        backgroundTexture = new Texture("background.png"); // Update path as needed
-        groundTexture = new Texture("ground.png"); // Update path as needed
+        backgroundTexture = new Texture("background.png");
+        groundTexture = new Texture("ground.png");
     }
 
     protected void initializeGround() {
@@ -72,8 +78,6 @@ public abstract class Level extends ScreenAdapter {
         ground = new Ground(groundTexture, world, 0, 0, Gdx.graphics.getWidth(), groundHeight);
         stage.addActor(ground);
     }
-
-
 
     protected void setupCollisionListener() {
         world.setContactListener(new ContactListener() {
@@ -116,6 +120,9 @@ public abstract class Level extends ScreenAdapter {
         Gdx.gl.glClearColor(0, 0, 0, 1);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
 
+        // Update camera
+        camera.update();
+
         // Update physics world
         world.step(1/60f, 6, 2);
 
@@ -124,20 +131,28 @@ public abstract class Level extends ScreenAdapter {
 
         // Draw background and ground
         batch.begin();
+        batch.setProjectionMatrix(camera.combined);  // Set projection matrix
         batch.draw(backgroundTexture, 0, 0, Gdx.graphics.getWidth(), Gdx.graphics.getHeight());
         batch.end();
 
-        // Update and draw stage (includes ground and other actors)
+        // Update and draw stage
         stage.act(Math.min(delta, 1/30f));
         stage.draw();
 
         // Debug render physics bodies
-        debugRenderer.render(world, stage.getCamera().combined.scl(PPM));
+        debugRenderer.render(world, camera.combined.scl(PPM));
     }
 
     @Override
     public void resize(int width, int height) {
+        // Update camera viewport
+        camera.setToOrtho(false, width, height);
+        camera.update();
+
+        // Update stage viewport
         stage.getViewport().update(width, height, true);
+
+        // Update batch projection matrix
         batch.getProjectionMatrix().setToOrtho2D(0, 0, width, height);
 
         // Update ground width

@@ -5,15 +5,20 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class Bird extends Actor {
     private static final float PPM = 100f; // Pixels per meter
 
+
     protected Texture texture;
     protected float textureScaleX = 1.0f;
     protected float textureScaleY = 1.0f;
+    protected float hitboxScaleX = 1.0f;  // New: separate scale for hitbox
+    protected float hitboxScaleY = 1.0f;  // New: separate scale for hitbox
     protected float textureX = 0.0f;
     protected float textureY = 0.0f;
+
 
     // Physics properties
     protected World world;
@@ -34,12 +39,9 @@ public class Bird extends Actor {
 
         // Set size for the actor
         setSize(texture.getWidth(), texture.getHeight());
-        resizeTexture(0.2f, 0.2f);
-
-        // Create physics body
+        setDefaultSize(); // Set default sizes
         createPhysicsBody(x, y);
     }
-
     protected void createPhysicsBody(float x, float y) {
         // Create body definition
         BodyDef bodyDef = new BodyDef();
@@ -100,7 +102,7 @@ public class Bird extends Actor {
                 getX(), getY(),
                 getWidth() / 2, getHeight() / 2,
                 getWidth(), getHeight(),
-                1, 1,
+                textureScaleX, textureScaleY,
                 getRotation(),
                 0, 0,
                 texture.getWidth(), texture.getHeight(),
@@ -108,12 +110,85 @@ public class Bird extends Actor {
         }
     }
 
-    public void launch(float velocityX, float velocityY) {
+    public void launch(float forceX, float forceY) {
         if (!isLaunched) {
-            body.setActive(true);
-            body.setLinearVelocity(velocityX, velocityY);
+            // Apply force to the physics body
+            body.setType(BodyDef.BodyType.DynamicBody); // Make the bird dynamic
+            body.applyLinearImpulse(
+                new Vector2(forceX, forceY),
+                body.getWorldCenter(),
+                true
+            );
             isLaunched = true;
         }
+    }
+
+    public void setVisualSize(float width, float height) {
+        setSize(width, height);
+        this.textureScaleX = width / texture.getWidth();
+        this.textureScaleY = height / texture.getHeight();
+        updatePhysicsBody();
+    }
+
+
+
+    public void setHitboxScale(float scaleX, float scaleY) {
+        this.hitboxScaleX = scaleX;
+        this.hitboxScaleY = scaleY;
+        updatePhysicsBody();
+    }
+
+    // New method to set absolute position
+    public void setAbsolutePosition(float x, float y) {
+        this.initialX = x;
+        this.initialY = y;
+        setPosition(x, y);
+        if (body != null) {
+            body.setTransform(
+                (x + getWidth()/2) / PPM,
+                (y + getHeight()/2) / PPM,
+                body.getAngle()
+            );
+        }
+    }
+
+    // New method to update physics body
+    private void updatePhysicsBody() {
+        if (body != null) {
+            // Store the current position
+            Vector2 position = body.getPosition().cpy();
+            float angle = body.getAngle();
+
+            // Remove old fixtures
+            Array<Fixture> fixtures = body.getFixtureList();
+            while (fixtures.size > 0) {
+                body.destroyFixture(fixtures.get(0));
+            }
+
+            // Create new circle fixture with updated size
+            CircleShape circle = new CircleShape();
+            circle.setRadius((getWidth() * hitboxScaleX / 2) / PPM);
+
+            FixtureDef fixtureDef = new FixtureDef();
+            fixtureDef.shape = circle;
+            fixtureDef.density = 1.0f;
+            fixtureDef.friction = 0.4f;
+            fixtureDef.restitution = 0.2f;
+
+            body.createFixture(fixtureDef);
+            circle.dispose();
+
+            // Restore position and angle
+            body.setTransform(position, angle);
+        }
+    }
+
+    // New method to set default size
+    public void setDefaultSize() {
+        // Set visual size to 50% of original texture size
+        setVisualSize(texture.getWidth() * 0.5f, texture.getHeight() * 0.5f);
+        // Set hitbox to 80% of visual size
+        setHitboxScale(0.8f, 0.8f);
     }
 
     public void reset() {
@@ -160,9 +235,7 @@ public class Bird extends Actor {
         this.damage = damage;
     }
 
-    public boolean isLaunched() {
-        return isLaunched;
-    }
+
 
     public boolean isDestroyed() {
         return isDestroyed;
@@ -175,6 +248,12 @@ public class Bird extends Actor {
     public void useAbility() {
         hasUsedAbility = true;
     }
+
+
+    public boolean isLaunched() {
+        return isLaunched;
+    }
+
 
     public void dispose() {
         if (body != null) {

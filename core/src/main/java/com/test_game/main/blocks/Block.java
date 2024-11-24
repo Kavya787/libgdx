@@ -5,8 +5,13 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
+
 
 public class Block extends Actor {
+
+    private static final float PPM = 100f;
+
     protected Texture texture;
     protected Body body;
     protected World world;
@@ -15,10 +20,18 @@ public class Block extends Actor {
     protected float density;
     protected float friction;
     protected float restitution;
+    protected float textureScaleX = 1.0f;
+    protected float textureScaleY = 1.0f;
+    protected float hitboxScaleX = 1.0f;
+    protected float hitboxScaleY = 1.0f;
+    protected float initialX, initialY;
+
 
     public Block(World world, Texture texture, float x, float y) {
         this.world = world;
         this.texture = texture;
+        this.initialX = x;
+        this.initialY = y;
         setSize(texture.getWidth(), texture.getHeight());
 
         // Default physics properties
@@ -27,38 +40,93 @@ public class Block extends Actor {
         this.restitution = 0.1f;
         this.health = 100f;
 
+        setDefaultSize();
         createBody(x, y);
     }
 
     protected void createBody(float x, float y) {
-        // Define the body
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(x / 100f, y / 100f); // Convert to physics units
+        bodyDef.position.set(x / PPM, y / PPM);
 
-        // Create the body
         body = world.createBody(bodyDef);
 
-        // Create a box shape
         PolygonShape box = new PolygonShape();
         box.setAsBox(
-            (getWidth() / 2) / 100f,  // half-width, convert to physics units
-            (getHeight() / 2) / 100f   // half-height, convert to physics units
+            (getWidth() * hitboxScaleX / 2) / PPM,
+            (getHeight() * hitboxScaleY / 2) / PPM
         );
 
-        // Create fixture
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = box;
         fixtureDef.density = density;
         fixtureDef.friction = friction;
         fixtureDef.restitution = restitution;
 
-        // Add fixture to body
         body.createFixture(fixtureDef);
         body.setUserData(this);
 
-        // Dispose of the shape
         box.dispose();
+    }
+
+    public void setVisualSize(float width, float height) {
+        setSize(width, height);
+        this.textureScaleX = width / texture.getWidth();
+        this.textureScaleY = height / texture.getHeight();
+        updatePhysicsBody();
+    }
+
+    public void setHitboxScale(float scaleX, float scaleY) {
+        this.hitboxScaleX = scaleX;
+        this.hitboxScaleY = scaleY;
+        updatePhysicsBody();
+    }
+
+    public void setDefaultSize() {
+        setVisualSize(texture.getWidth() * 0.5f, texture.getHeight() * 0.5f);
+        setHitboxScale(0.8f, 0.8f);
+    }
+
+    private void updatePhysicsBody() {
+        if (body != null) {
+            Vector2 position = body.getPosition().cpy();
+            float angle = body.getAngle();
+
+            Array<Fixture> fixtures = body.getFixtureList();
+            while (fixtures.size > 0) {
+                body.destroyFixture(fixtures.get(0));
+            }
+
+            PolygonShape box = new PolygonShape();
+            box.setAsBox(
+                (getWidth() * hitboxScaleX / 2) / PPM,
+                (getHeight() * hitboxScaleY / 2) / PPM
+            );
+
+            FixtureDef fixtureDef = new FixtureDef();
+            fixtureDef.shape = box;
+            fixtureDef.density = density;
+            fixtureDef.friction = friction;
+            fixtureDef.restitution = restitution;
+
+            body.createFixture(fixtureDef);
+            box.dispose();
+
+            body.setTransform(position, angle);
+        }
+    }
+
+    public void setAbsolutePosition(float x, float y) {
+        this.initialX = x;
+        this.initialY = y;
+        setPosition(x, y);
+        if (body != null) {
+            body.setTransform(
+                (x + getWidth()/2) / PPM,
+                (y + getHeight()/2) / PPM,
+                body.getAngle()
+            );
+        }
     }
 
     @Override
@@ -81,9 +149,9 @@ public class Block extends Actor {
             batch.draw(
                 texture,
                 getX(), getY(),
-                getWidth() / 2, getHeight() / 2,  // Origin for rotation
+                getWidth() / 2, getHeight() / 2,
                 getWidth(), getHeight(),
-                1, 1,  // Scale
+                textureScaleX, textureScaleY,
                 getRotation(),
                 0, 0,
                 texture.getWidth(), texture.getHeight(),
@@ -91,7 +159,6 @@ public class Block extends Actor {
             );
         }
     }
-
     public void takeDamage(float damage) {
         health -= damage;
         if (health <= 0 && !isDestroyed) {

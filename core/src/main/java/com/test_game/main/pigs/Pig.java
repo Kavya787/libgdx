@@ -5,51 +5,110 @@ import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.*;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
 public class Pig extends Actor {
+    private static final float PPM = 100f;
+
     private Texture texture;
     private float textureScaleX = 1.0f;
     private float textureScaleY = 1.0f;
+    private float hitboxScaleX = 1.0f;
+    private float hitboxScaleY = 1.0f;
     private Body body;
     private World world;
     private boolean isDestroyed = false;
     private float health = 100f;
+    private float initialX, initialY;
 
     public Pig(World world, Texture texture, float x, float y) {
         this.world = world;
         this.texture = texture;
+        this.initialX = x;
+        this.initialY = y;
         setSize(texture.getWidth(), texture.getHeight());
 
-        // Create physics body
+        setDefaultSize();
         createBody(x, y);
     }
 
     private void createBody(float x, float y) {
-        // Define the body
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        bodyDef.position.set(x / 100f, y / 100f); // Convert to physics units
+        bodyDef.position.set(x / PPM, y / PPM);
 
-        // Create the body
         body = world.createBody(bodyDef);
 
-        // Create a circle shape for the pig
         CircleShape circle = new CircleShape();
-        circle.setRadius((getWidth() / 2) / 100f); // Convert to physics units
+        circle.setRadius((getWidth() * hitboxScaleX / 2) / PPM);
 
-        // Create fixture
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = circle;
         fixtureDef.density = 1.0f;
         fixtureDef.friction = 0.3f;
         fixtureDef.restitution = 0.2f;
 
-        // Add fixture to body
         body.createFixture(fixtureDef);
         body.setUserData(this);
 
-        // Dispose of the shape
         circle.dispose();
+    }
+
+    public void setVisualSize(float width, float height) {
+        setSize(width, height);
+        this.textureScaleX = width / texture.getWidth();
+        this.textureScaleY = height / texture.getHeight();
+        updatePhysicsBody();
+    }
+
+    public void setHitboxScale(float scaleX, float scaleY) {
+        this.hitboxScaleX = scaleX;
+        this.hitboxScaleY = scaleY;
+        updatePhysicsBody();
+    }
+
+    public void setDefaultSize() {
+        setVisualSize(texture.getWidth() * 0.5f, texture.getHeight() * 0.5f);
+        setHitboxScale(0.8f, 0.8f);
+    }
+
+    private void updatePhysicsBody() {
+        if (body != null) {
+            Vector2 position = body.getPosition().cpy();
+            float angle = body.getAngle();
+
+            Array<Fixture> fixtures = body.getFixtureList();
+            while (fixtures.size > 0) {
+                body.destroyFixture(fixtures.get(0));
+            }
+
+            CircleShape circle = new CircleShape();
+            circle.setRadius((getWidth() * hitboxScaleX / 2) / PPM);
+
+            FixtureDef fixtureDef = new FixtureDef();
+            fixtureDef.shape = circle;
+            fixtureDef.density = 1.0f;
+            fixtureDef.friction = 0.3f;
+            fixtureDef.restitution = 0.2f;
+
+            body.createFixture(fixtureDef);
+            circle.dispose();
+
+            body.setTransform(position, angle);
+        }
+    }
+
+    public void setAbsolutePosition(float x, float y) {
+        this.initialX = x;
+        this.initialY = y;
+        setPosition(x, y);
+        if (body != null) {
+            body.setTransform(
+                (x + getWidth()/2) / PPM,
+                (y + getHeight()/2) / PPM,
+                body.getAngle()
+            );
+        }
     }
 
     @Override

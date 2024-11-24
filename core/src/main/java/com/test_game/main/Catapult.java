@@ -14,6 +14,8 @@ public class Catapult extends Actor {
     private Texture texture;
     private float textureScaleX = 1.0f;
     private float textureScaleY = 1.0f;
+    private float hitboxScaleX = 1.0f;
+    private float hitboxScaleY = 1.0f;
 
     private World world;
     private Body body;
@@ -22,8 +24,7 @@ public class Catapult extends Actor {
     public Catapult(World world, Texture texture, float x, float y) {
         this.world = world;
         this.texture = texture;
-        this.initialX = x;
-        this.initialY = y;
+        setPosition(x, y);
 
         setSize(texture.getWidth(), texture.getHeight());
         createPhysicsBody(x, y);
@@ -32,7 +33,7 @@ public class Catapult extends Actor {
     private void createPhysicsBody(float x, float y) {
         // Create body definition
         BodyDef bodyDef = new BodyDef();
-        bodyDef.type = BodyDef.BodyType.StaticBody;  // Catapult doesn't move
+        bodyDef.type = BodyDef.BodyType.StaticBody;
         bodyDef.position.set(x / PPM, y / PPM);
 
         // Create the body
@@ -41,14 +42,19 @@ public class Catapult extends Actor {
 
         // Create a rectangle shape for the catapult
         PolygonShape shape = new PolygonShape();
-        shape.setAsBox((getWidth() / 2) / PPM, (getHeight() / 2) / PPM);
+        shape.setAsBox(
+            (getWidth() * hitboxScaleX / 2) / PPM,
+            (getHeight() * hitboxScaleY / 2) / PPM
+        );
 
-        // Create fixture
+        // Create fixture - modified to not interact with birds
         FixtureDef fixtureDef = new FixtureDef();
         fixtureDef.shape = shape;
-        fixtureDef.density = 1.0f;
-        fixtureDef.friction = 0.4f;
-        fixtureDef.restitution = 0.2f;
+        fixtureDef.isSensor = true; // Makes it non-solid
+
+        // Set collision filtering
+        fixtureDef.filter.categoryBits = 0x0002; // Catapult category
+        fixtureDef.filter.maskBits = 0x0000;     // Collides with nothing
 
         body.createFixture(fixtureDef);
         shape.dispose();
@@ -60,8 +66,8 @@ public class Catapult extends Actor {
         if (body != null) {
             Vector2 position = body.getPosition();
             setPosition(
-                position.x * PPM - getWidth() / 2,
-                position.y * PPM - getHeight() / 2
+                position.x * PPM - getWidth()/2,
+                position.y * PPM - getHeight()/2
             );
             setRotation((float) Math.toDegrees(body.getAngle()));
         }
@@ -70,41 +76,70 @@ public class Catapult extends Actor {
     @Override
     public void draw(Batch batch, float parentAlpha) {
         batch.draw(texture,
-            getX(), getY(),
-            getWidth() / 2, getHeight() / 2,
-            getWidth(), getHeight(),
-            1, 1,
-            getRotation(),
-            0, 0,
-            texture.getWidth(), texture.getHeight(),
-            false, false);
+            getX(), getY(),                    // Position
+            getWidth()/2, getHeight()/2,       // Origin center
+            getWidth(), getHeight(),           // Size
+            textureScaleX, textureScaleY,      // Scale
+            getRotation(),                     // Rotation
+            0, 0,                              // Source rectangle position
+            texture.getWidth(), texture.getHeight(),  // Source rectangle size
+            false, false);                     // Flip
     }
 
-    public void resizeTexture(float scaleX, float scaleY) {
-        this.textureScaleX = scaleX;
-        this.textureScaleY = scaleY;
-        setSize(texture.getWidth() * textureScaleX, texture.getHeight() * textureScaleY);
+    public void setVisualSize(float width, float height) {
+        setSize(width, height);
+        this.textureScaleX = width / texture.getWidth();
+        this.textureScaleY = height / texture.getHeight();
+        updatePhysicsBody();
+    }
 
-        // Update physics body size if it exists
+    public void setHitboxScale(float scaleX, float scaleY) {
+        this.hitboxScaleX = scaleX;
+        this.hitboxScaleY = scaleY;
+        updatePhysicsBody();
+    }
+
+    public void setAbsolutePosition(float x, float y) {
+        this.initialX = x;
+        this.initialY = y;
+        setPosition(x, y);
         if (body != null) {
-            // Remove old fixtures
+            body.setTransform(
+                (x + getWidth()/2) / PPM,
+                (y + getHeight()/2) / PPM,
+                body.getAngle()
+            );
+        }
+    }
+
+    private void updatePhysicsBody() {
+        if (body != null) {
+            Vector2 position = body.getPosition().cpy();
+            float angle = body.getAngle();
+
             Array<Fixture> fixtures = body.getFixtureList();
-            for (Fixture fixture : fixtures) {
-                body.destroyFixture(fixture);
+            while (fixtures.size > 0) {
+                body.destroyFixture(fixtures.get(0));
             }
 
-            // Create new fixture with updated size
             PolygonShape shape = new PolygonShape();
-            shape.setAsBox((getWidth() / 2) / PPM, (getHeight() / 2) / PPM);
+            shape.setAsBox(
+                (getWidth() * hitboxScaleX / 2) / PPM,
+                (getHeight() * hitboxScaleY / 2) / PPM
+            );
 
             FixtureDef fixtureDef = new FixtureDef();
             fixtureDef.shape = shape;
-            fixtureDef.density = 1.0f;
-            fixtureDef.friction = 0.4f;
-            fixtureDef.restitution = 0.2f;
+            fixtureDef.isSensor = true; // Makes it non-solid
+
+            // Set collision filtering
+            fixtureDef.filter.categoryBits = 0x0002; // Catapult category
+            fixtureDef.filter.maskBits = 0x0000;     // Collides with nothing
 
             body.createFixture(fixtureDef);
             shape.dispose();
+
+            body.setTransform(position, angle);
         }
     }
 
