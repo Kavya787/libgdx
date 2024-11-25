@@ -12,7 +12,7 @@ public class Block extends Actor {
 
     private static final float PPM = 100f;
 
-    protected Texture texture;
+    public Texture texture;
     protected Body body;
     protected World world;
     protected boolean isDestroyed = false;

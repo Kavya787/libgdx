@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
+import com.badlogic.gdx.utils.Timer;
 import com.test_game.main.Catapult;
 import com.test_game.main.Core;
 import com.test_game.main.Screens.LoseScreen;
@@ -65,6 +66,22 @@ public class LevelOne extends Level implements InputProcessor {
     private static final float BLACK_BIRD_VISUAL_SCALE = 0.4f;
     private static final float BLACK_BIRD_HITBOX_SCALE = 0.6f;
 
+    private static final float WOOD_BLOCK_VISUAL_SCALE = 0.6f;
+    private static final float WOOD_BLOCK_HITBOX_SCALE = 0.5f;
+    private static final float GLASS_BLOCK_VISUAL_SCALE = 0.6f;
+    private static final float GLASS_BLOCK_HITBOX_SCALE = 0.6f;
+    private static final float STEEL_BLOCK_VISUAL_SCALE = 0.6f;
+    private static final float STEEL_BLOCK_HITBOX_SCALE = 0.5f;
+
+    // Add these constants for pig sizing
+    private static final float SMALL_PIG_VISUAL_SCALE = 0.6f;
+    private static final float SMALL_PIG_HITBOX_SCALE = 0.2f;
+    private static final float MEDIUM_PIG_VISUAL_SCALE = 0.75f;
+    private static final float MEDIUM_PIG_HITBOX_SCALE = 0.35f;
+    private static final float LARGE_PIG_VISUAL_SCALE = 0.9f;
+    private static final float LARGE_PIG_HITBOX_SCALE = 0.4f;
+
+
     public LevelOne() {
         super();
         loadResources();
@@ -82,7 +99,13 @@ public class LevelOne extends Level implements InputProcessor {
         yellowBirdTexture = new Texture(Gdx.files.internal("yellow_bird.png"));
         blackBirdTexture = new Texture(Gdx.files.internal("black_bird.png"));
         catapultTexture = new Texture(Gdx.files.internal("catapult.png"));
+        SteelBlockTexture = new Texture(Gdx.files.internal("steel_block.png"));
+        GlassBlockTexture = new Texture(Gdx.files.internal("glass_log.png"));
+        WoodBlockTexture = new Texture(Gdx.files.internal("wood_square.png"));
         skin = new Skin(Gdx.files.internal("uiskin.json"));
+        SmallPigTexture = new Texture(Gdx.files.internal("small_pig.png"));
+        MediumPigTexture = new Texture(Gdx.files.internal("medium_pig.png"));
+        LargePigTexture = new Texture(Gdx.files.internal("king_pig.png"));
     }
 
     @Override
@@ -113,6 +136,165 @@ public class LevelOne extends Level implements InputProcessor {
         float groundHeight = ground.getHeight();
         initializeBirds(groundHeight);
         initializeCatapult(groundHeight);
+        createStructures(groundHeight);
+        spawnPigs(groundHeight);
+
+
+    }
+
+
+    private void spawnPigs(float groundHeight) {
+        // Same structure X as in createStructures method
+        float structureX = Gdx.graphics.getWidth() * 0.7f;
+        float baseY = groundHeight;
+
+        // Determine block heights and spacing
+        float woodBlockHeight = WoodBlockTexture.getHeight() * WOOD_BLOCK_VISUAL_SCALE;
+        float glassBlockHeight = GlassBlockTexture.getHeight() * GLASS_BLOCK_VISUAL_SCALE;
+        float steelBlockHeight = SteelBlockTexture.getHeight() * STEEL_BLOCK_VISUAL_SCALE;
+
+        // Pig placement coordinates
+        // Base layer (on top of wood blocks)
+        float basePigY = baseY + woodBlockHeight;
+
+        // Middle layer (on top of glass blocks)
+        float middlePigY = baseY + woodBlockHeight + glassBlockHeight;
+
+        // Top layer (on top of steel block)
+        float topPigY = baseY + woodBlockHeight + glassBlockHeight + steelBlockHeight;
+
+        // Spawn pigs with precise vertical positioning
+        spawnBasePigs(structureX, basePigY);
+        spawnMiddlePigs(structureX, middlePigY);
+        spawnTopPig(structureX, topPigY);
+    }
+
+    private void spawnBasePigs(float startX, float baseY) {
+        // Add two small pigs on the base layer
+        float pigSpacing = 60f;
+
+        SmallPig smallPig1 = new SmallPig(world, SmallPigTexture, startX - 90 , ground.getHeight()+15);
+        configurePig(smallPig1, SMALL_PIG_VISUAL_SCALE, SMALL_PIG_HITBOX_SCALE);
+        stabilizePig(smallPig1);  // Add this line
+        pigs.add(smallPig1);
+        stage.addActor(smallPig1);
+
+        SmallPig smallPig2 = new SmallPig(world, SmallPigTexture, startX + pigSpacing + 200, ground.getHeight()+15);
+        configurePig(smallPig2, SMALL_PIG_VISUAL_SCALE, SMALL_PIG_HITBOX_SCALE);
+        stabilizePig(smallPig2);  // Add this line
+
+        pigs.add(smallPig2);
+        stage.addActor(smallPig2);
+    }
+
+    private void spawnMiddlePigs(float startX, float baseY) {
+        // Add a medium pig in the middle layer
+        MediumPig mediumPig = new MediumPig(world, MediumPigTexture, startX, baseY -30);
+        configurePig(mediumPig, MEDIUM_PIG_VISUAL_SCALE, MEDIUM_PIG_HITBOX_SCALE);
+        stabilizePig(mediumPig);  // Add this line
+
+        pigs.add(mediumPig);
+        stage.addActor(mediumPig);
+    }
+
+    private void spawnTopPig(float startX, float baseY) {
+        // Add a large pig on top
+        LargePig largePig = new LargePig(world, LargePigTexture, startX + 90, baseY -67);
+        configurePig(largePig, LARGE_PIG_VISUAL_SCALE, LARGE_PIG_HITBOX_SCALE);
+        stabilizePig(largePig);  // Add this line
+        pigs.add(largePig);
+        stage.addActor(largePig);
+    }
+
+    private void configurePig(Pig pig, float visualScale, float hitboxScale) {
+        float visualWidth = pig.getWidth() * visualScale;
+        float visualHeight = pig.getHeight() * visualScale;
+        pig.setVisualSize(visualWidth, visualHeight);
+        pig.setHitboxScale(hitboxScale, hitboxScale);
+    }
+    private void createStructures(float groundHeight) {
+        // Create a simple structure on the right side of the screen
+        float structureX = Gdx.graphics.getWidth() * 0.7f; // 70% of screen width
+        float baseY = groundHeight + 5f;
+
+        // Create base layer
+        createWoodBase(structureX, baseY);
+
+        // Create middle layer - adjusted to be centered
+        createGlassLayer(structureX , baseY + 50);
+
+        // Create top layer
+        createSteelTop(structureX, baseY + 100);
+    }
+
+    private void createWoodBase(float startX, float startY) {
+        // Create three wood blocks as base
+        float blockSpacing = WoodBlockTexture.getWidth() * WOOD_BLOCK_VISUAL_SCALE;
+        float totalWidth = blockSpacing * 3; // Total width of the base
+
+        for (int i = 0; i < 3; i++) {
+            WoodBlock woodBlock = new WoodBlock(world, WoodBlockTexture,
+                startX + (i * blockSpacing), startY);
+            configureBlock(woodBlock, WOOD_BLOCK_VISUAL_SCALE, WOOD_BLOCK_HITBOX_SCALE);
+            blocks.add(woodBlock);
+            stage.addActor(woodBlock);
+        }
+    }
+
+    private void createGlassLayer(float startX, float startY) {
+        // Calculate widths for centering
+        float woodBlockWidth = WoodBlockTexture.getWidth() * WOOD_BLOCK_VISUAL_SCALE;
+        float glassBlockWidth = GlassBlockTexture.getWidth() * GLASS_BLOCK_VISUAL_SCALE;
+        float glassHitboxWidth = GlassBlockTexture.getWidth() * GLASS_BLOCK_HITBOX_SCALE;
+
+        // Calculate the total width of wood base (3 blocks)
+        float woodBaseWidth = woodBlockWidth * 3;
+
+        // Calculate the total width of glass layer (2 blocks)
+        float glassLayerWidth = glassBlockWidth + glassHitboxWidth; // Total width is one visual width plus one hitbox width
+
+        // Calculate the offset needed to center the glass layer
+        float centeringOffset = (woodBaseWidth - glassLayerWidth) / 2;
+
+        // Position first glass block
+        GlassBlock glassBlock1 = new GlassBlock(world, GlassBlockTexture,
+            startX + centeringOffset + 70, startY);
+        configureBlock(glassBlock1, GLASS_BLOCK_VISUAL_SCALE, GLASS_BLOCK_HITBOX_SCALE);
+        blocks.add(glassBlock1);
+        stage.addActor(glassBlock1);
+
+        // Position second glass block directly adjacent to the first
+        GlassBlock glassBlock2 = new GlassBlock(world, GlassBlockTexture,
+            startX + centeringOffset + glassHitboxWidth, startY);
+        configureBlock(glassBlock2, GLASS_BLOCK_VISUAL_SCALE, GLASS_BLOCK_HITBOX_SCALE);
+        blocks.add(glassBlock2);
+        stage.addActor(glassBlock2);
+    }
+
+    private void createSteelTop(float startX, float startY) {
+        // Calculate widths for centering
+        float woodBlockWidth = WoodBlockTexture.getWidth() * WOOD_BLOCK_VISUAL_SCALE;
+        float steelBlockWidth = SteelBlockTexture.getWidth() * STEEL_BLOCK_VISUAL_SCALE;
+
+        // Calculate the total width of wood base (3 blocks)
+        float woodBaseWidth = woodBlockWidth * 3;
+
+        // Calculate the offset needed to center the steel block
+        float centeringOffset = (woodBaseWidth - steelBlockWidth) / 2;
+
+        // Create one steel block on top
+        SteelBlock steelBlock = new SteelBlock(world, SteelBlockTexture,
+            startX + centeringOffset, startY);
+        configureBlock(steelBlock, STEEL_BLOCK_VISUAL_SCALE, STEEL_BLOCK_HITBOX_SCALE);
+        blocks.add(steelBlock);
+        stage.addActor(steelBlock);
+    }
+
+    private void configureBlock(Block block, float visualScale, float hitboxScale) {
+        float visualWidth = block.texture.getWidth() * visualScale;
+        float visualHeight = block.texture.getHeight() * visualScale;
+        block.setVisualSize(visualWidth, visualHeight);
+        block.setHitboxScale(hitboxScale, hitboxScale);
     }
 
     private void initializeCatapult(float groundHeight) {
@@ -124,6 +306,29 @@ public class LevelOne extends Level implements InputProcessor {
         );
         catapult.setHitboxScale(CATAPULT_HITBOX_SCALE, CATAPULT_HITBOX_SCALE);
         stage.addActor(catapult);
+    }
+    private void stabilizePig(Pig pig) {
+        if (pig.getBody() != null) {
+            // Set gravity scale to 0 to prevent immediate falling
+            pig.getBody().setGravityScale(0);
+
+            // Stop any existing movement
+            pig.getBody().setLinearVelocity(0, 0);
+            pig.getBody().setAngularVelocity(0);
+
+            // Make the body inactive to prevent physics interactions initially
+            pig.getBody().setActive(false);
+
+            // Optional: Add a slight delay to reactivate physics
+            // This ensures the pig is placed correctly before physics takes over
+            Timer.schedule(new Timer.Task() {
+                @Override
+                public void run() {
+                    pig.getBody().setGravityScale(1);
+                    pig.getBody().setActive(true);
+                }
+            }, 100000f);  // 0.1 second delay
+        }
     }
 
     private void initializeBirds(float groundHeight) {
@@ -350,5 +555,12 @@ public class LevelOne extends Level implements InputProcessor {
         yellowBirdTexture.dispose();
         blackBirdTexture.dispose();
         skin.dispose();
+        SmallPigTexture.dispose();
+        MediumPigTexture.dispose();
+        LargePigTexture.dispose();
+        SteelBlockTexture.dispose();
+        GlassBlockTexture.dispose();
+        WoodBlockTexture.dispose();
+
     }
 }

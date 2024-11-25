@@ -188,7 +188,6 @@ public class Pig extends Actor {
         return isDestroyed;
     }
 
-
     public void dispose() {
         if (body != null) {
             world.destroyBody(body);
@@ -197,5 +196,9 @@ public class Pig extends Actor {
         if (texture != null) {
             texture.dispose();
         }
+    }
+
+    public Body getBody() {
+        return body;
     }
 }
