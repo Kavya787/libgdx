@@ -18,7 +18,7 @@ public class Pig extends Actor {
     private Body body;
     private World world;
     private boolean isDestroyed = false;
-    private float health = 100f;
+    float health;
     private float initialX, initialY;
 
     public Pig(World world, Texture texture, float x, float y) {
@@ -26,6 +26,7 @@ public class Pig extends Actor {
         this.texture = texture;
         this.initialX = x;
         this.initialY = y;
+        this.health = 100f;
         setSize(texture.getWidth(), texture.getHeight());
 
         setDefaultSize();
@@ -197,7 +198,13 @@ public class Pig extends Actor {
             texture.dispose();
         }
     }
+    public void setHealth(float health) {
+        this.health = health;
+    }
 
+    public float getHealth() {
+        return health;
+    }
     public Body getBody() {
         return body;
     }

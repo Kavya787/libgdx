@@ -159,11 +159,17 @@ public class Block extends Actor {
             );
         }
     }
-    public void takeDamage(float damage) {
-        health -= damage;
-        if (health <= 0 && !isDestroyed) {
-            destroy();
+    public void takeDamage(int damage) {
+        if (!isDestroyed) {
+            health -= damage;
+            if (health <= 0) {
+                destroy();
+            }
         }
+    }
+
+    public boolean canTakeDamage() {
+        return !isDestroyed;
     }
 
     public void destroy() {

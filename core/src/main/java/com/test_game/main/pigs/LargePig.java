@@ -8,6 +8,8 @@ import com.test_game.main.birds.Bird;
 public class LargePig extends Pig {
     public LargePig(World world, Texture texture, float x, float y) {
         super(world, texture, x, y);
-        takeDamage(20);
+        setHealth(50f);  // Less health, easier to destroy
     }
+
+
 }

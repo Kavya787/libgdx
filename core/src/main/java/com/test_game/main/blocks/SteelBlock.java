@@ -9,5 +9,8 @@ public class SteelBlock extends Block {
         super(world, texture, x, y);
         setPosition(x,y);
 
+        // Set lower health for glass block - more fragile than standard blocks
+        setHealth(40f);  // Reduced from default 100f to represent fragility
+
     }
 }

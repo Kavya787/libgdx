@@ -93,8 +93,8 @@ public abstract class Level extends ScreenAdapter {
                 float impactForce = Math.abs(contact.getWorldManifold().getNormal().dot(
                     contact.getWorldManifold().getPoints()[0]));
 
-                // Delegate detailed collision handling to subclasses
-                handleCollision(userDataA, userDataB, impactForce);
+                // Delegate detailed collision handling
+                handleCollision(userDataA, userDataB);
             }
 
             @Override
@@ -114,8 +114,9 @@ public abstract class Level extends ScreenAdapter {
         });
     }
 
+
     // Updated abstract method to include impact force
-    protected abstract void handleCollision(Object objectA, Object objectB, float impactForce);
+    protected abstract void handleCollision(Object objectA, Object objectB);
 
 
     protected void handleKeyboardInput() {
@@ -155,6 +156,8 @@ public abstract class Level extends ScreenAdapter {
         // Update and draw stage
         stage.act(Math.min(delta, 1/30f));
         stage.draw();
+
+
 
         // Debug render physics bodies
         debugRenderer.render(world, camera.combined.scl(PPM));

@@ -222,6 +222,24 @@ public class Bird extends Actor {
             getY() < -getHeight() || getY() > com.badlogic.gdx.Gdx.graphics.getHeight() + getHeight();
     }
 
+    public void destroy() {
+        if (!isDestroyed) {
+            // Remove physics body
+            if (body != null) {
+                world.destroyBody(body);
+                body = null;
+            }
+
+            // Mark as destroyed
+            isDestroyed = true;
+
+            // Remove from stage
+            remove();
+        }
+    }
+
+
+
     // Getters and setters
     public Body getBody() {
         return body;
@@ -260,5 +278,10 @@ public class Bird extends Actor {
             world.destroyBody(body);
             body = null;
         }
+        if (texture != null) {
+            texture.dispose();
+        }
     }
+
+
 }

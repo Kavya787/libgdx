@@ -29,6 +29,9 @@ import com.test_game.main.pigs.MediumPig;
 import com.test_game.main.pigs.Pig;
 import com.test_game.main.pigs.SmallPig;
 
+import java.util.ArrayList;
+
+
 public class LevelOne extends Level implements InputProcessor {
     private Skin skin;
     private Texture redBirdTexture;
@@ -53,6 +56,10 @@ public class LevelOne extends Level implements InputProcessor {
     private Vector2 originalPosition = new Vector2();
     private Bird selectedBird = null;
     private boolean isBirdPlacedOnCatapult = false;
+    private ArrayList<Block> blocksToDestroy;
+    private ArrayList<Pig> pigsToDestroy;
+    private ArrayList<Bird> birdsToDestroy;
+
 
     // Constants for catapult positioning and sizing
     private static final float CATAPULT_VISUAL_SCALE = 0.5f;
@@ -92,6 +99,10 @@ public class LevelOne extends Level implements InputProcessor {
         multiplexer.addProcessor(stage);
         multiplexer.addProcessor(this);
         Gdx.input.setInputProcessor(multiplexer);
+        blocksToDestroy = new ArrayList<>();
+        pigsToDestroy = new ArrayList<>();
+        birdsToDestroy = new ArrayList<>();  // Initialize the new list
+
     }
 
     private void loadResources() {
@@ -114,13 +125,99 @@ public class LevelOne extends Level implements InputProcessor {
         groundTexture = new Texture(Gdx.files.internal("ground.png"));
     }
 
-    @Override
-    protected void handleCollision(Object objectA, Object objectB, float impactForce) {
+    // Modify the handleCollision method to track birds for destruction
+    protected void handleCollision(Object objectA, Object objectB) {
+        // Existing Bird and Block collision handling
+        if (objectA instanceof Bird && objectB instanceof Block) {
+            handleBirdBlockCollision((Bird) objectA, (Block) objectB);
 
+            // Add the bird to destruction list if it's not already destroyed
+            Bird bird = (Bird) objectA;
+            if (!bird.isDestroyed() && !birdsToDestroy.contains(bird)) {
+                birdsToDestroy.add(bird);
+            }
+        }
+        else if (objectA instanceof Block && objectB instanceof Bird) {
+            handleBirdBlockCollision((Bird) objectB, (Block) objectA);
+
+            // Add the bird to destruction list if it's not already destroyed
+            Bird bird = (Bird) objectB;
+            if (!bird.isDestroyed() && !birdsToDestroy.contains(bird)) {
+                birdsToDestroy.add(bird);
+            }
+        }
+
+        // Bird and Pig collision handling
+        if (objectA instanceof Bird && objectB instanceof Pig) {
+            handleBirdPigCollision((Bird) objectA, (Pig) objectB);
+
+            // Add the bird to destruction list if it's not already destroyed
+            Bird bird = (Bird) objectA;
+            if (!bird.isDestroyed() && !birdsToDestroy.contains(bird)) {
+                birdsToDestroy.add(bird);
+            }
+        }
+        else if (objectA instanceof Pig && objectB instanceof Bird) {
+            handleBirdPigCollision((Bird) objectB, (Pig) objectA);
+
+            // Add the bird to destruction list if it's not already destroyed
+            Bird bird = (Bird) objectB;
+            if (!bird.isDestroyed() && !birdsToDestroy.contains(bird)) {
+                birdsToDestroy.add(bird);
+            }
+        }
+    }
+
+    private void handleBirdPigCollision(Bird bird, Pig pig) {
+        // Only process if neither object is destroyed
+        if (!bird.isDestroyed() && !pig.isDestroyed()) {
+            // Reduce pig health
+            pig.setHealth(pig.getHealth() - bird.getDamage());
+
+            // If health is depleted, mark for destruction
+            if (pig.getHealth() <= 0 && !pig.isDestroyed()) {
+                pigsToDestroy.add(pig);
+            }
+        }
+    }
+
+    private void handleBirdBlockCollision(Bird bird, Block block) {
+        // Only process if neither object is destroyed
+        if (!bird.isDestroyed() && !block.isDestroyed()) {
+            // Reduce block health
+            block.setHealth(block.getHealth() - bird.getDamage());
+
+            // If health is depleted, mark for destruction
+            if (block.getHealth() <= 0 && !block.isDestroyed()) {
+                blocksToDestroy.add(block);
+            }
+        }
+    }
+
+    public void update(float delta) {
+        // Update physics
+        world.step(delta, 6, 2);
+
+        // After physics step, handle destroyed objects
+        for (Block block : blocksToDestroy) {
+            block.destroy();
+        }
+        blocksToDestroy.clear();
+
+        for (Pig pig : pigsToDestroy) {
+            pig.destroy();
+        }
+        pigsToDestroy.clear();
+
+        // Handle bird destruction
+        for (Bird bird : birdsToDestroy) {
+            bird.destroy();
+        }
+        birdsToDestroy.clear();
     }
 
 
-    private void setupUI() {
+        private void setupUI() {
         TextButton pauseButton = new TextButton("Pause", skin);
         pauseButton.setName("pause");
         pauseButton.setPosition(Gdx.graphics.getWidth() - 100, Gdx.graphics.getHeight() - 50);
@@ -554,7 +651,11 @@ public class LevelOne extends Level implements InputProcessor {
     @Override
     public void render(float delta) {
         super.render(delta);
+        update(delta);
+
     }
+
+
 
     @Override
     public void dispose() {
