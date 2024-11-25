@@ -83,23 +83,40 @@ public abstract class Level extends ScreenAdapter {
         world.setContactListener(new ContactListener() {
             @Override
             public void beginContact(Contact contact) {
-                Object userDataA = contact.getFixtureA().getBody().getUserData();
-                Object userDataB = contact.getFixtureB().getBody().getUserData();
-                handleCollision(userDataA, userDataB);
+                Fixture fixtureA = contact.getFixtureA();
+                Fixture fixtureB = contact.getFixtureB();
+
+                Object userDataA = fixtureA.getBody().getUserData();
+                Object userDataB = fixtureB.getBody().getUserData();
+
+                // Calculate impact force
+                float impactForce = Math.abs(contact.getWorldManifold().getNormal().dot(
+                    contact.getWorldManifold().getPoints()[0]));
+
+                // Delegate detailed collision handling to subclasses
+                handleCollision(userDataA, userDataB, impactForce);
             }
 
             @Override
-            public void endContact(Contact contact) {}
+            public void endContact(Contact contact) {
+                // Optional: Handle end of contact if needed
+            }
 
             @Override
-            public void preSolve(Contact contact, Manifold oldManifold) {}
+            public void preSolve(Contact contact, Manifold oldManifold) {
+                // Optional: Pre-solve collision filtering
+            }
 
             @Override
-            public void postSolve(Contact contact, ContactImpulse impulse) {}
+            public void postSolve(Contact contact, ContactImpulse impulse) {
+                // Optional: Post-solve detailed impulse analysis
+            }
         });
     }
 
-    protected abstract void handleCollision(Object objectA, Object objectB);
+    // Updated abstract method to include impact force
+    protected abstract void handleCollision(Object objectA, Object objectB, float impactForce);
+
 
     protected void handleKeyboardInput() {
         if (Gdx.input.isKeyJustPressed(Input.Keys.O)) {
@@ -166,6 +183,8 @@ public abstract class Level extends ScreenAdapter {
             }
         }
     }
+
+
 
     @Override
     public void hide() {

@@ -115,9 +115,10 @@ public class LevelOne extends Level implements InputProcessor {
     }
 
     @Override
-    protected void handleCollision(Object objectA, Object objectB) {
+    protected void handleCollision(Object objectA, Object objectB, float impactForce) {
 
     }
+
 
     private void setupUI() {
         TextButton pauseButton = new TextButton("Pause", skin);
