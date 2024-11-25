@@ -188,6 +188,7 @@ public class Pig extends Actor {
         return isDestroyed;
     }
 
+
     public void dispose() {
         if (body != null) {
             world.destroyBody(body);
