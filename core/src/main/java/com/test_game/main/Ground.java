@@ -11,6 +11,9 @@ public class Ground extends Actor {
     private World world;
     private static final float PPM = 100f;
 
+    // Add a unique identifier for ground collision detection
+    public static final String GROUND_IDENTIFIER = "GROUND";
+
     public Ground(Texture texture, World world, float x, float y, float width, float height) {
         this.texture = texture;
         this.world = world;
@@ -44,7 +47,11 @@ public class Ground extends Actor {
         fixtureDef.friction = 0.5f;
         fixtureDef.restitution = 0.1f;
 
-        body.createFixture(fixtureDef);
+        Fixture fixture = body.createFixture(fixtureDef);
+
+        // Set a unique identifier for ground collision
+        fixture.setUserData(GROUND_IDENTIFIER);
+
         groundBox.dispose();
 
         body.setUserData(this);
@@ -62,5 +69,14 @@ public class Ground extends Actor {
 
     public Body getBody() {
         return body;
+    }
+
+    // Optional: Method to easily check if an object is ground
+    public static boolean isGround(Object obj) {
+        if (obj instanceof Fixture) {
+            Fixture fixture = (Fixture) obj;
+            return GROUND_IDENTIFIER.equals(fixture.getUserData());
+        }
+        return false;
     }
 }

@@ -6,6 +6,7 @@ import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.physics.box2d.Fixture;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
@@ -13,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Timer;
 import com.test_game.main.Catapult;
 import com.test_game.main.Core;
+import com.test_game.main.Ground;
 import com.test_game.main.Screens.LoseScreen;
 import com.test_game.main.Screens.PauseMenuScreen;
 import com.test_game.main.Screens.WinScreen;
@@ -127,6 +129,14 @@ public class LevelOne extends Level implements InputProcessor {
 
     // Modify the handleCollision method to track birds for destruction
     protected void handleCollision(Object objectA, Object objectB) {
+
+        if (objectA instanceof Fixture && Ground.isGround(objectA)) {
+            handleGroundCollision(objectB);
+        }
+        else if (objectB instanceof Fixture && Ground.isGround(objectB)) {
+            handleGroundCollision(objectA);
+        }
+
         // Existing Bird and Block collision handling
         if (objectA instanceof Bird && objectB instanceof Block) {
             handleBirdBlockCollision((Bird) objectA, (Block) objectB);
@@ -164,6 +174,28 @@ public class LevelOne extends Level implements InputProcessor {
             Bird bird = (Bird) objectB;
             if (!bird.isDestroyed() && !birdsToDestroy.contains(bird)) {
                 birdsToDestroy.add(bird);
+            }
+        }
+    }
+
+    private void handleGroundCollision(Object obj) {
+        if (obj instanceof Block) {
+            Block block = (Block) obj;
+            if (!block.isDestroyed()) {
+                block.setHealth(block.getHealth() - 10);
+
+                if (block.getHealth() <= 0 && !block.isDestroyed()) {
+                    blocksToDestroy.add(block);
+                }
+            }
+        } else if (obj instanceof Pig) {
+            Pig pig = (Pig) obj;
+            if (!pig.isDestroyed()) {
+                pig.setHealth(pig.getHealth() - 10);
+
+                if (pig.getHealth() <= 0 && !pig.isDestroyed()) {
+                    pigsToDestroy.add(pig);
+                }
             }
         }
     }
@@ -507,6 +539,22 @@ public class LevelOne extends Level implements InputProcessor {
     @Override
     public boolean keyTyped(char c) { return false; }
 
+    private void autoSelectNextBird() {
+        // Use LibGDX's Timer to delay bird selection
+        Timer.schedule(new Timer.Task() {
+            @Override
+            public void run() {
+                // Find the first non-launched bird and place it on the catapult
+                for (Bird bird : birds) {
+                    if (!bird.isLaunched()) {
+                        placeBirdOnCatapult(bird);
+                        break;
+                    }
+                }
+            }
+        }, 1.5f);  // 2 seconds delay
+    }
+
     @Override
     public boolean touchDown(int screenX, int screenY, int pointer, int button) {
         Vector2 worldPos = screenToWorld(screenX, screenY);
@@ -605,10 +653,11 @@ public class LevelOne extends Level implements InputProcessor {
             activeBird.getBody().setLinearDamping(0);
             activeBird.launch(launchForce.x, launchForce.y);
 
+            // Automatically select the next bird
+            autoSelectNextBird();
+
             isDragging = false;
             activeBird = null;
-            selectedBird = null;
-            isBirdPlacedOnCatapult = false;
 
             return true;
         }
