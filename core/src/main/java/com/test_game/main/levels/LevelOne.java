@@ -189,7 +189,7 @@ public class LevelOne extends Level implements InputProcessor {
 
     private void spawnMiddlePigs(float startX, float baseY) {
         // Add a medium pig in the middle layer
-        MediumPig mediumPig = new MediumPig(world, MediumPigTexture, startX, baseY -30);
+        MediumPig mediumPig = new MediumPig(world, MediumPigTexture, startX+60, baseY -30);
         configurePig(mediumPig, MEDIUM_PIG_VISUAL_SCALE, MEDIUM_PIG_HITBOX_SCALE);
         stabilizePig(mediumPig);  // Add this line
 
@@ -199,7 +199,7 @@ public class LevelOne extends Level implements InputProcessor {
 
     private void spawnTopPig(float startX, float baseY) {
         // Add a large pig on top
-        LargePig largePig = new LargePig(world, LargePigTexture, startX + 90, baseY -67);
+        LargePig largePig = new LargePig(world, LargePigTexture, startX + 125, baseY-125 );
         configurePig(largePig, LARGE_PIG_VISUAL_SCALE, LARGE_PIG_HITBOX_SCALE);
         stabilizePig(largePig);  // Add this line
         pigs.add(largePig);
@@ -279,15 +279,22 @@ public class LevelOne extends Level implements InputProcessor {
         // Calculate the total width of wood base (3 blocks)
         float woodBaseWidth = woodBlockWidth * 3;
 
-        // Calculate the offset needed to center the steel block
-        float centeringOffset = (woodBaseWidth - steelBlockWidth) / 2;
+        // Calculate the offset needed to center the steel blocks
+        float centeringOffset = (woodBaseWidth - (steelBlockWidth * 2)) / 2;
 
-        // Create one steel block on top
-        SteelBlock steelBlock = new SteelBlock(world, SteelBlockTexture,
-            startX + centeringOffset, startY);
-        configureBlock(steelBlock, STEEL_BLOCK_VISUAL_SCALE, STEEL_BLOCK_HITBOX_SCALE);
-        blocks.add(steelBlock);
-        stage.addActor(steelBlock);
+        // Create first steel block
+        SteelBlock steelBlock1 = new SteelBlock(world, SteelBlockTexture,
+            startX + centeringOffset - 50, startY);
+        configureBlock(steelBlock1, STEEL_BLOCK_VISUAL_SCALE, STEEL_BLOCK_HITBOX_SCALE);
+        blocks.add(steelBlock1);
+        stage.addActor(steelBlock1);
+
+        // Create second steel block adjacent to the first
+        SteelBlock steelBlock2 = new SteelBlock(world, SteelBlockTexture,
+            startX + centeringOffset + steelBlockWidth + 40, startY);
+        configureBlock(steelBlock2, STEEL_BLOCK_VISUAL_SCALE, STEEL_BLOCK_HITBOX_SCALE);
+        blocks.add(steelBlock2);
+        stage.addActor(steelBlock2);
     }
 
     private void configureBlock(Block block, float visualScale, float hitboxScale) {
@@ -327,7 +334,7 @@ public class LevelOne extends Level implements InputProcessor {
                     pig.getBody().setGravityScale(1);
                     pig.getBody().setActive(true);
                 }
-            }, 100000f);  // 0.1 second delay
+            }, 0f);  // 0.1 second delay
         }
     }
 
