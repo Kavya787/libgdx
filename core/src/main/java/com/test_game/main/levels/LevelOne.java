@@ -51,7 +51,7 @@ public class LevelOne extends Level implements InputProcessor {
     private Vector2 dragStart = new Vector2();
     private Vector2 dragCurrent = new Vector2();
     private final float MAX_DRAG_DISTANCE = 100f; // Maximum drag distance
-    private final float LAUNCH_FORCE_MULTIPLIER = 5f; // Adjust this to control launch speed
+    private final float LAUNCH_FORCE_MULTIPLIER = 3.2f; // Adjust this to control launch speed
     private Vector2 worldCoordinates = new Vector2();
     private static final float PPM = 100f; // Pixels per meter
     private static final float DRAG_DAMPING = 2.0f;
