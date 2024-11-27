@@ -44,6 +44,10 @@ public class Block extends Actor {
         createBody(x, y);
     }
 
+    public Block() {
+        
+    }
+
     protected void createBody(float x, float y) {
         BodyDef bodyDef = new BodyDef();
         bodyDef.type = BodyDef.BodyType.DynamicBody;
