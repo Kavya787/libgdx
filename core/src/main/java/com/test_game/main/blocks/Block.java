@@ -45,7 +45,7 @@ public class Block extends Actor {
     }
 
     public Block() {
-        
+
     }
 
     protected void createBody(float x, float y) {

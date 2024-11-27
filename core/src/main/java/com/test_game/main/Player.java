@@ -10,7 +10,7 @@ import com.test_game.main.levels.*;
 public class Player implements Serializable {
 
     private int score;
-    private LevelOne levelOne;
+    private com.test_game.main.Levels.LevelOne levelOne;
    // private LevelTwo levelTwo;
   //  private LevelThree levelThree;
 
