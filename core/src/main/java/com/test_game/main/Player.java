@@ -18,7 +18,12 @@ public class Player implements Serializable {
         this.score = 0;
 
         // Initialize each level
-        this.levelOne = new LevelOne();
+        this.levelOne = new LevelOne() {
+            @Override
+            protected void handleCollision(Object objectA, Object objectB) {
+                
+            }
+        };
        // this.levelTwo = new LevelTwo();
         //this.levelThree = new LevelThree();
     }
