@@ -13,4 +13,8 @@ public class SteelBlock extends Block {
         setHealth(40f);  // Reduced from default 100f to represent fragility
 
     }
+
+    public SteelBlock(int i, float groundHeight) {
+        super();
+    }
 }
