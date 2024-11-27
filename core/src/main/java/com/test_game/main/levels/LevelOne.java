@@ -15,12 +15,14 @@ import com.test_game.main.blocks.Block;
 import com.test_game.main.blocks.GlassBlock;
 import com.test_game.main.blocks.SteelBlock;
 import com.test_game.main.blocks.WoodBlock;
+import com.test_game.main.levels.Level;
 
 import java.util.ArrayList;
 
 public class LevelOne extends Level {
     private float bird2PushRadius = 5f;
     private float bird2PushForce = 500f;
+    private Level debugRenderer;
 
     public LevelOne(){
 
