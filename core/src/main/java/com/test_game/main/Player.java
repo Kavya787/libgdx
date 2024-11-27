@@ -51,6 +51,9 @@ public class Player implements Serializable {
     public static Player loadGame(String playerName) {
         return null;
     }
+
+    private abstract class LevelOne extends com.test_game.main.Levels.LevelOne {
+    }
 }
 
 
