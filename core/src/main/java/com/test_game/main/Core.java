@@ -4,29 +4,30 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.test_game.main.Birds.Bird;
+import com.test_game.main.Levels.*;
+import com.test_game.main.Pigs.Pig;
+import com.test_game.main.Screens.SelectLevelScreen;
 
 public class Core extends Game {
+//    Player player;
     public SpriteBatch batch;
     private Music bgMusic;
     private boolean isMusicOn;
-
     @Override
     public void create() {
         batch = new SpriteBatch();
-
         // Initialize background music
+//        player=new Player();
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("background_music.mp3"));
         bgMusic.setLooping(true); // Make the music loop
         isMusicOn = true; // Default state of music is ON
         playMusic(); // Start playing the music when the game starts
-
-        // Set the initial screen (e.g., HomeScreen)
-        setScreen(new HomeScreen());
+        setScreen(new SelectLevelScreen());
     }
 
     @Override
     public void render() {
-
         super.render();
         // Render the current screen
     }
@@ -40,13 +41,13 @@ public class Core extends Game {
     // Music control methods
     public void playMusic() {
         if (!bgMusic.isPlaying()) {
-            bgMusic.play(); // Play the music if it's not already playing
+            bgMusic.play();
         }
     }
 
     public void pauseMusic() {
         if (bgMusic.isPlaying()) {
-            bgMusic.pause(); // Pause the music if it's currently playing
+            bgMusic.pause();
         }
     }
 

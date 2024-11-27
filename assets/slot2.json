@@ -1,0 +1,105 @@
+{
+pigs: [
+	{
+		class: com.test_game.main.Pigs.smallPig
+		type: small
+		health: 5
+		status: true
+		radius: 0.2
+		posX: 10.082731
+		posY: 2.823101
+		velocityX: -0.13392182
+		velocityY: 9.834766E-5
+	}
+	{
+		class: com.test_game.main.Pigs.smallPig
+		type: small
+		health: 4
+		status: true
+		radius: 0.2
+		posX: 13.410435
+		posY: 3.9312575
+	}
+]
+buildings: [
+	{
+		class: com.test_game.main.blocks.GlassBlock
+		type: glass
+		health: 2
+		status: true
+		hx: 1
+		hy: 1
+		posX: 10.128435
+		posY: 1.6157324
+		velocityX: -6.222398E-7
+		velocityY: -1.4901074E-8
+	}
+	{
+		class: com.test_game.main.blocks.GlassBlock
+		type: glass
+		health: 3
+		status: true
+		hx: 1
+		hy: 1
+		posX: 13.025053
+		posY: 1.615105
+	}
+	{
+		class: com.test_game.main.blocks.GlassBlock
+		type: glass
+		health: 2
+		status: true
+		hx: 1
+		hy: 1
+		posX: 12.206555
+		posY: 3.6305447
+	}
+	{
+		class: com.test_game.main.blocks.GlassBlock
+		type: glass
+		health: 3
+		status: true
+		hx: 1
+		hy: 1
+		posX: 14.539139
+		posY: 3.5051963
+	}
+]
+initialize: true
+gamePaused: true
+birds: [
+	{
+		class: com.test_game.main.Birds.YellowBird
+		type: yellow
+		launched: true
+		radius: 0.25
+		angle: 45
+		posX: 10.686783
+		posY: 2.8960278
+		velocityX: 0.00721474
+		velocityY: -0.19409974
+		power: 10
+	}
+	{
+		class: com.test_game.main.Birds.BlackBird
+		type: black
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 3
+		posY: 2
+		power: 10
+	}
+	{
+		class: com.test_game.main.Birds.YellowBird
+		type: yellow
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 0.5
+		posY: 0.85499895
+		power: 10
+	}
+]
+currentBirdIndex: 1
+}
