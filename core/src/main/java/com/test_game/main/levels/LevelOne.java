@@ -42,6 +42,7 @@ public abstract class LevelOne extends Level {
     }
     @Override
     public void show() {
+        boolean gamePaused;
         if(!gamePaused){
             super.show();
             if(initialize){
