@@ -18,7 +18,7 @@ public class CollisionHandler implements ContactListener {
     ArrayList<Bird> birds;
     ArrayList<Body>bodiesToDestroy;
     int currentBirdIndex=0;
-    public CollisionHandler(ArrayList<> pigs,ArrayList<Block> build,ArrayList<Bird> birds){
+    public CollisionHandler(ArrayList<Bird> pigs,ArrayList<Block> build,ArrayList<Bird> birds){
         this.pigs=pigs;
         this.buildings=build;
         this.birds=birds;
