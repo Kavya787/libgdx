@@ -1,19 +1,12 @@
-package com.test_game.main.Birds;
+package com.test_game.main.birds;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.math.Vector2;
-import com.badlogic.gdx.physics.box2d.Body;
 import com.badlogic.gdx.physics.box2d.World;
 
 public class RedBird extends Bird {
-    public RedBird(){
-        super();
+    public RedBird(World world, Texture texture, float x, float y) {
+        super(world, texture, x, y);
+        setDamage(15);
     }
-    public RedBird(World world, float x, float y) {
-        super(world, x, y, 0.25f);
-        this.setType("red");
-        this.setDamage(5);
-        this.setTexture(new Texture("birdRed.png"));
-    }
-
 }

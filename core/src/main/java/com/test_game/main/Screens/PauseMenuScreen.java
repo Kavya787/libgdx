@@ -1,5 +1,4 @@
 package com.test_game.main.Screens;
-
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.graphics.GL20;
@@ -13,7 +12,7 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.test_game.main.Core;
-import com.test_game.main.Levels.*;
+import com.test_game.main.levels.*;
 
 public class PauseMenuScreen extends ScreenAdapter {
     private Stage stage;

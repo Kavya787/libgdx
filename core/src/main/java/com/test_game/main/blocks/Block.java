@@ -1,182 +1,223 @@
 package com.test_game.main.blocks;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
-public abstract class Block {
-    transient protected Body body;
-    protected String type;
+
+public class Block extends Actor {
+
+    private static final float PPM = 100f;
+
+    public Texture texture;
+    protected Body body;
+    protected World world;
+    protected boolean isDestroyed = false;
     protected float health;
-    transient protected Texture texture;
-    protected boolean status;
-    private float hx ,hy;
-    transient World world;
-    protected float posX, posY;
-    protected float velocityX;
-    protected float velocityY;
-    public Block(){
+    protected float density;
+    protected float friction;
+    protected float restitution;
+    protected float textureScaleX = 1.0f;
+    protected float textureScaleY = 1.0f;
+    protected float hitboxScaleX = 1.0f;
+    protected float hitboxScaleY = 1.0f;
+    protected float initialX, initialY;
 
+
+    public Block(World world, Texture texture, float x, float y) {
+        this.world = world;
+        this.texture = texture;
+        this.initialX = x;
+        this.initialY = y;
+        setSize(texture.getWidth(), texture.getHeight());
+
+        // Default physics properties
+        this.density = 1.0f;
+        this.friction = 0.4f;
+        this.restitution = 0.1f;
+        this.health = 100f;
+
+        setDefaultSize();
+        createBody(x, y);
     }
-    public Block(World world, float x, float y,float hx, float hy ) {
-        // Set up a simple rectangular block
-        this.world=world;
-        this.posX=x;
-        this.posY=y;
+
+    protected void createBody(float x, float y) {
         BodyDef bodyDef = new BodyDef();
-        status=true;
-        bodyDef.position.set(x, y);
         bodyDef.type = BodyDef.BodyType.DynamicBody;
-        this.hx=hx;
-        this.hy=hy;
-        PolygonShape shape = new PolygonShape();
-        shape.setAsBox(hx,hy); // Standard size
-        velocityX=0;
-        velocityY=0;
+        bodyDef.position.set(x / PPM, y / PPM);
+
+        body = world.createBody(bodyDef);
+
+        PolygonShape box = new PolygonShape();
+        box.setAsBox(
+            (getWidth() * hitboxScaleX / 2) / PPM,
+            (getHeight() * hitboxScaleY / 2) / PPM
+        );
+
         FixtureDef fixtureDef = new FixtureDef();
-        fixtureDef.shape = shape;
-        fixtureDef.density = 13f;
-        fixtureDef.friction= 1f;
-        fixtureDef.restitution = 0f;
-        this.body = world.createBody(bodyDef);
-        this.body.createFixture(fixtureDef);
-        shape.dispose();
+        fixtureDef.shape = box;
+        fixtureDef.density = density;
+        fixtureDef.friction = friction;
+        fixtureDef.restitution = restitution;
+
+        body.createFixture(fixtureDef);
+        body.setUserData(this);
+
+        box.dispose();
     }
 
-    public void setBody(Body body) {
-        this.body = body;
+    public void setVisualSize(float width, float height) {
+        setSize(width, height);
+        this.textureScaleX = width / texture.getWidth();
+        this.textureScaleY = height / texture.getHeight();
+        updatePhysicsBody();
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setHitboxScale(float scaleX, float scaleY) {
+        this.hitboxScaleX = scaleX;
+        this.hitboxScaleY = scaleY;
+        updatePhysicsBody();
+    }
+
+    public void setDefaultSize() {
+        setVisualSize(texture.getWidth() * 0.5f, texture.getHeight() * 0.5f);
+        setHitboxScale(0.8f, 0.8f);
+    }
+
+    private void updatePhysicsBody() {
+        if (body != null) {
+            Vector2 position = body.getPosition().cpy();
+            float angle = body.getAngle();
+
+            Array<Fixture> fixtures = body.getFixtureList();
+            while (fixtures.size > 0) {
+                body.destroyFixture(fixtures.get(0));
+            }
+
+            PolygonShape box = new PolygonShape();
+            box.setAsBox(
+                (getWidth() * hitboxScaleX / 2) / PPM,
+                (getHeight() * hitboxScaleY / 2) / PPM
+            );
+
+            FixtureDef fixtureDef = new FixtureDef();
+            fixtureDef.shape = box;
+            fixtureDef.density = density;
+            fixtureDef.friction = friction;
+            fixtureDef.restitution = restitution;
+
+            body.createFixture(fixtureDef);
+            box.dispose();
+
+            body.setTransform(position, angle);
+        }
+    }
+
+    public void setAbsolutePosition(float x, float y) {
+        this.initialX = x;
+        this.initialY = y;
+        setPosition(x, y);
+        if (body != null) {
+            body.setTransform(
+                (x + getWidth()/2) / PPM,
+                (y + getHeight()/2) / PPM,
+                body.getAngle()
+            );
+        }
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (body != null) {
+            // Update actor position to match physics body
+            Vector2 position = body.getPosition();
+            setPosition(
+                position.x * 100f - getWidth() / 2,  // Convert back from physics units
+                position.y * 100f - getHeight() / 2
+            );
+            setRotation((float) Math.toDegrees(body.getAngle()));
+        }
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        if (!isDestroyed) {
+            batch.draw(
+                texture,
+                getX(), getY(),
+                getWidth() / 2, getHeight() / 2,
+                getWidth(), getHeight(),
+                textureScaleX, textureScaleY,
+                getRotation(),
+                0, 0,
+                texture.getWidth(), texture.getHeight(),
+                false, false
+            );
+        }
+    }
+    public void takeDamage(int damage) {
+        if (!isDestroyed) {
+            health -= damage;
+            if (health <= 0) {
+                destroy();
+            }
+        }
+    }
+
+    public boolean canTakeDamage() {
+        return !isDestroyed;
+    }
+
+    public void destroy() {
+        isDestroyed = true;
+        if (body != null) {
+            world.destroyBody(body);
+            body = null;
+        }
+    }
+
+    public boolean isDestroyed() {
+        return isDestroyed;
+    }
+
+
+
+    public void dispose() {
+        if (body != null) {
+            world.destroyBody(body);
+            body = null;
+        }
+        if (texture != null) {
+            texture.dispose();
+        }
+    }
+
+    // Getters and setters for physics properties
+    public void setPhysicsProperties(float density, float friction, float restitution) {
+        this.density = density;
+        this.friction = friction;
+        this.restitution = restitution;
+
+        // Update fixture if body exists
+        if (body != null && body.getFixtureList().size > 0) {
+            Fixture fixture = body.getFixtureList().get(0);
+            fixture.setDensity(density);
+            fixture.setFriction(friction);
+            fixture.setRestitution(restitution);
+            body.resetMassData();
+        }
     }
 
     public void setHealth(float health) {
         this.health = health;
     }
 
-    public void setTexture(Texture texture) {
-        this.texture = texture;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public void setHx(float hx) {
-        this.hx = hx;
-    }
-
-    public void setHy(float hy) {
-        this.hy = hy;
-    }
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
-    public void setPosX(float posX) {
-        this.posX = posX;
-    }
-
-    public void setPosY(float posY) {
-        this.posY = posY;
-    }
-
-    public void setVelocityX(float velocityX) {
-        this.velocityX = velocityX;
-    }
-
-    public void setVelocityY(float velocityY) {
-        this.velocityY = velocityY;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public float getHx() {
-        return hx;
-    }
-
-    public float getHy() {
-        return hy;
-    }
-
-    public World getWorld() {
-        return world;
-    }
-
-    public float getPosX() {
-        return posX;
-    }
-
-    public float getPosY() {
-        return posY;
-    }
-
-    public float getVelocityX() {
-        return velocityX;
-    }
-
-    public float getVelocityY() {
-        return velocityY;
-    }
-
-    public boolean getStatus(){
-        return  status;
-    }
-    public void statusFalse(){
-        this.status=false;
-    }
-    public void render(SpriteBatch batch) {
-        if(status){
-
-            batch.draw(texture, body.getPosition().x - (hx), body.getPosition().y-(hy), 2*hx, 2*hy);
-        }
-
-    }
-
-    public void reduceHealth(float damage) {
-        this.health-=damage;
-        if(health<=0){
-            status=false;
-
-        }
-    }
     public float getHealth() {
         return health;
     }
 
-    public boolean isDestroyed() {
-        return health <= 0;
-    }
-
-    public Body getBody() {
-        return body;
-    }
-
-    public boolean isInvolvedInCollision(Contact contact) {
-        // Check if this block is part of the collision
-        return contact.getFixtureA().getBody() == body || contact.getFixtureB().getBody() == body;
-    }
-    public void saveState() {
-        if (body != null) {
-            Vector2 position = body.getPosition();
-            Vector2 velocity = body.getLinearVelocity();
-            this.posX = position.x;
-            this.posY = position.y;
-            this.velocityX = velocity.x;
-            this.velocityY = velocity.y;
-        }
-    }
 }
