@@ -7,42 +7,42 @@ import com.badlogic.gdx.physics.box2d.*;
 import com.test_game.main.Birds.*;
 import com.test_game.main.CollisionHandler;
 import com.test_game.main.Core;
-import com.test_game.main.Pigs.MediumPig;
-import com.test_game.main.Pigs.Pig;
-import com.test_game.main.Pigs.smallPig;
+import com.test_game.main.Pigs.*;
 import com.test_game.main.Screens.WinScreen;
 import com.test_game.main.blocks.Block;
-import com.test_game.main.blocks.GlassBlock;
-import com.test_game.main.blocks.SteelBlock;
+import com.test_game.main.blocks.*;
+import com.test_game.main.blocks.Log1;
 import com.test_game.main.blocks.WoodBlock;
-import com.test_game.main.levels.Level;
+//import com.test_game.main.blocks.SteelBlock;
+//import com.test_game.main.blocks.WoodBlock;
 
 import java.util.ArrayList;
 
-public abstract class LevelOne extends Level {
-    private float bird2PushRadius = 5f;
-    private float bird2PushForce = 500f;
-    private Level debugRenderer;
+public class LevelThree extends Level {
 
-    public LevelOne(){
+    public LevelThree(){
 
     }
-    public LevelOne(boolean flag){
+    public LevelThree(boolean flag){
         this.initialize=flag;
     }
-    public LevelOne(ArrayList<Bird>tempBirds,ArrayList<Pig>tempPigs,ArrayList<Block>tempBlocks,int idx){
+    public LevelThree(ArrayList<Bird>tempBirds,ArrayList<Pig>tempPigs,ArrayList<Block>tempBlocks,int idx){
         this.birds=tempBirds;
         this.pigs=tempPigs;
         this.buildings=tempBlocks;
         this.currentBirdIndex=idx;
         this.initialize=false;
     }
-    public LevelOne(ArrayList<Bird>tempBirds){
-        this.birds=tempBirds;
+//    public LevelThree(ArrayList<Bird>tempBirds){
+//        this.birds=tempBirds;
+//    }
+
+    public LevelThree(ArrayList<Pig> pigs) {
+        this.pigs=pigs;
     }
+
     @Override
     public void show() {
-        boolean gamePaused;
         if(!gamePaused){
             super.show();
             if(initialize){
@@ -58,22 +58,40 @@ public abstract class LevelOne extends Level {
     private void createBirds() {
         birds = new ArrayList<>();
         birds.add(new YellowBird(world, 3, 2));
-        birds.add(new RedBird(world, 1.5f, 1));
-        birds.add(new RedBird(world, 0.5f, 1));
+        birds.add(new BlackBird(world, 1.5f, 1));
+        birds.add(new YellowBird(world, 0.5f, 1));
     }
     private void createPigs(){
         pigs = new ArrayList<>();
-        pigs.add(new smallPig(world, 13f, 1.25f));
-        pigs.add(new smallPig(world, 14, 3.75f));
+        pigs.add(new MediumPig(world, 11, 1.5f));
+        pigs.add(new com.test_game.main.Pigs.AssPig(world, 13.25f, 1.5f));
+        // pigs.add(new smallPig(world, 11, 3.15f));
     }
 
     private void createBuildings() {
         buildings = new ArrayList<>();
-        buildings.add(new WoodBlock(world, 12f, 1.5f));
-        buildings.add(new WoodBlock(world, 14, 1.5f));
-        buildings.add(new GlassBlock(world, 12f, 2.5f));
-        buildings.add(new GlassBlock(world, 14, 2.5f));
-//        buildings.add(new SteelBlock(world, 12f, 3.25f));
+// buildings.add(new GlassBlock(world, 10, 2));
+//        buildings.add(new GlassBlock(world, 13, 2));
+        //buildings.add(new GlassBlock(world, 10.5f, 5.1f));
+        //buildings.add(new Log1(world, 10.51f, 2.9f));
+        // buildings.add(new Log1(world, 13.5f, 2.9f));
+        //buildings.add(new SteelBlock(world, 12, 3.15f));
+        buildings.add(new SteelBlock(world, 10f, 1.5f));
+        buildings.add(new WoodBlock(world, 10f, 2.5f));
+        // buildings.add(new SteelBlock(world, 10, 3.15f));
+//        buildings.add(new WoodBlock(world, 14, 2));
+        //buildings.add(new WoodBlock(world, 12f, 5.f));
+//        buildings.add(new SteelBlock(world, 16, 2));
+        buildings.add(new SteelBlock(world, 12.5f, 1.5f));
+        buildings.add(new WoodBlock(world, 12.5f, 2.5f));
+//        buildings.add(new SteelBlock(world, 15, 4));
+//        buildings.add(new WoodBlock(world, 15, 5));
+//        buildings.add(new GlassBlock(world, 15, 3));
+//        buildings.add(new SteelBlock(world, 11, 3));
+        buildings.add(new WoodBlock(world, 14.7f, 2.5f));
+//        buildings.add(new SteelBlock(world, 12, 3));
+//        buildings.add(new SteelBlock(world, 12, 4));
+        buildings.add(new SteelBlock(world, 14.7f, 1.5f));
     }
 
     @Override
