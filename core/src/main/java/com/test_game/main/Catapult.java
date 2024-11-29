@@ -30,7 +30,7 @@ public class Catapult extends Actor {
     }
     public void render(SpriteBatch batch) {
 //        if(status){
-            batch.draw(texture,2.25f, 0.5f, 2, 1.5f);
+        batch.draw(texture,2.25f, 0.5f, 2, 1.5f);
 //            spriteBatch.draw(catapultTexture, 2.5f, 0.5f, 1f, 1.5f); // Adjust position and size as needed
 //        }
 

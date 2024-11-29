@@ -17,11 +17,8 @@ public class CollisionHandler implements ContactListener {
     ArrayList<Block> buildings;
     ArrayList<Bird> birds;
     ArrayList<Body>bodiesToDestroy;
-    private final float bird2PushRadius = 5f; // Radius for the explosion effect
-    private final float bird2PushForce = 3000f; // Force applied by the explosion
-    private final float tntExplosionThreshold = 10f; //
     int currentBirdIndex=0;
-    public CollisionHandler(ArrayList<Pig> pigs,ArrayList<Block> build,ArrayList<Bird> birds){
+    public CollisionHandler(ArrayList<Bird> pigs,ArrayList<Block> build,ArrayList<Bird> birds){
         this.pigs=pigs;
         this.buildings=build;
         this.birds=birds;
@@ -70,15 +67,10 @@ public class CollisionHandler implements ContactListener {
                 int damage = 20; // Set the damage the bird causes on the building
                 buildings.get(i).reduceHealth(birds.get(currentBirdIndex).getDamage());
                 if(buildings.get(i).getHealth()<=0){
-                    for(Block blTemp:buildings){
-                        if(blTemp.getType().equals("tnt") && blTemp.getBody()==building){
-                            applyPushEffect(building);
-                            System.out.println("----------------------------------------------------------------------------------");
-                        }
-                    }
                     bodiesToDestroy.add(building);
                     buildings.get(i).statusFalse();
                 }
+
             }
             // Handling Building vs Building collision: Apply force to the other building if they touch
             if ((contact.getFixtureA().getBody() == building && contact.getFixtureA().getBody() != birdBody) ||
@@ -107,43 +99,6 @@ public class CollisionHandler implements ContactListener {
 //                Body block = contact.getFixtureA().getBody() == pig ? contact.getFixtureB().getBody() : contact.getFixtureA().getBody();
 //                applyDamageToPigByBlock(i, block,2);
 //            }
-        }
-
-    }
-    private void applyPushEffect(Body tntBody) {
-        // Loop through all the buildings and other entities (blocks, pigs, birds) to apply the push effect
-        for (Block block : buildings) {
-            Body building = block.getBody();
-
-            // Calculate the vector from the TNT body to the building
-            Vector2 directionToTNT = building.getPosition().sub(tntBody.getPosition());
-
-            // Calculate the distance between the TNT and the building
-            float distance = directionToTNT.len();
-
-            // Normalize the direction vector (unit vector)
-            Vector2 normalizedDirection = directionToTNT.nor();
-
-            // Check if the building is within the explosion radius
-            if (distance < bird2PushRadius) {
-                // Scale the force based on distance (weaken the force as the distance increases)
-                float forceMagnitude = bird2PushForce * (1 - (distance / bird2PushRadius));  // Distance-based scaling
-
-                // Apply the radial push force in both X and Y directions
-                building.applyForceToCenter(normalizedDirection.scl(forceMagnitude), true);
-
-                // If the building is above the TNT, apply an additional upward force
-                if (building.getPosition().y > tntBody.getPosition().y) {
-                    Vector2 upwardForce = new Vector2(0, 1).scl(bird2PushForce * 1.5f);  // Stronger upward force
-                    building.applyForceToCenter(upwardForce, true);
-                }
-
-                // Optionally, apply damage to the building
-                block.reduceHealth(1);
-                if (block.getHealth() <= 0) {
-                    bodiesToDestroy.add(building);
-                }
-            }
         }
 
     }

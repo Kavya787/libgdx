@@ -1,184 +1,211 @@
-package com.test_game.main.Pigs;
+package com.test_game.main.pigs;
 
 import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.graphics.g2d.Batch;
 import com.badlogic.gdx.physics.box2d.*;
+import com.badlogic.gdx.scenes.scene2d.Actor;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.utils.Array;
 
-public abstract class Pig {
-    protected String type;
-    protected transient Body body;
-    protected float health;
-    protected transient Texture texture;
-    protected boolean status;
-    protected float radius;
-    protected float posX, posY;
-    protected float velocityX;
-    protected float velocityY;
-    private transient World  world;
-    public Pig(float x ,float y){
-        posX=x;
-        posY=y;
-    }
-    public Pig(){
+public class Pig extends Actor {
+    private static final float PPM = 100f;
 
-    }
-    public Pig(World world, float x, float y,float radius) {
-        BodyDef pigDef = new BodyDef();
-        pigDef.position.set(x,y); // Pigs positioned between buildings
-        pigDef.type = BodyDef.BodyType.DynamicBody;
+    private Texture texture;
+    private float textureScaleX = 1.0f;
+    private float textureScaleY = 1.0f;
+    private float hitboxScaleX = 1.0f;
+    private float hitboxScaleY = 1.0f;
+    private Body body;
+    private World world;
+    private boolean isDestroyed = false;
+    float health;
+    private float initialX, initialY;
 
-        Body pig = world.createBody(pigDef);
-        CircleShape pigShape = new CircleShape();
-        pigShape.setRadius(radius); // Pig size
-        this.radius=radius;
-        FixtureDef pigFixture = new FixtureDef();
-        pigFixture.shape = pigShape;
-        pigFixture.density = 13f;
-        pigFixture.friction = 1f;
-        pigFixture.restitution = 0f; // Bounciness
-        velocityX=0;
-        velocityY=0;
-        pig.createFixture(pigFixture);
-        this.body=pig;
-        this.body.setLinearVelocity(new Vector2(0,0));
-        pigShape.dispose();
+    public Pig(World world, Texture texture, float x, float y) {
+        this.world = world;
+        this.texture = texture;
+        this.initialX = x;
+        this.initialY = y;
+        this.health = 100f;
+        setSize(texture.getWidth(), texture.getHeight());
 
-        // Set up a simple rectangular block
-        this.world=world;
-        status=true;
+        setDefaultSize();
+        createBody(x, y);
     }
 
-    public void setType(String type) {
-        this.type = type;
+    private void createBody(float x, float y) {
+        BodyDef bodyDef = new BodyDef();
+        bodyDef.type = BodyDef.BodyType.DynamicBody;
+        bodyDef.position.set(x / PPM, y / PPM);
+
+        body = world.createBody(bodyDef);
+
+        CircleShape circle = new CircleShape();
+        circle.setRadius((getWidth() * hitboxScaleX / 2) / PPM);
+
+        FixtureDef fixtureDef = new FixtureDef();
+        fixtureDef.shape = circle;
+        fixtureDef.density = 1.0f;
+        fixtureDef.friction = 0.3f;
+        fixtureDef.restitution = 0.2f;
+
+        body.createFixture(fixtureDef);
+        body.setUserData(this);
+
+        circle.dispose();
     }
 
-    public void setBody(Body body) {
-        this.body = body;
+    public void setVisualSize(float width, float height) {
+        setSize(width, height);
+        this.textureScaleX = width / texture.getWidth();
+        this.textureScaleY = height / texture.getHeight();
+        updatePhysicsBody();
     }
 
+    public void setHitboxScale(float scaleX, float scaleY) {
+        this.hitboxScaleX = scaleX;
+        this.hitboxScaleY = scaleY;
+        updatePhysicsBody();
+    }
+
+    public void setDefaultSize() {
+        setVisualSize(texture.getWidth() * 0.5f, texture.getHeight() * 0.5f);
+        setHitboxScale(0.8f, 0.8f);
+    }
+
+    private void updatePhysicsBody() {
+        if (body != null) {
+            Vector2 position = body.getPosition().cpy();
+            float angle = body.getAngle();
+
+            Array<Fixture> fixtures = body.getFixtureList();
+            while (fixtures.size > 0) {
+                body.destroyFixture(fixtures.get(0));
+            }
+
+            CircleShape circle = new CircleShape();
+            circle.setRadius((getWidth() * hitboxScaleX / 2) / PPM);
+
+            FixtureDef fixtureDef = new FixtureDef();
+            fixtureDef.shape = circle;
+            fixtureDef.density = 1.0f;
+            fixtureDef.friction = 0.3f;
+            fixtureDef.restitution = 0.2f;
+
+            body.createFixture(fixtureDef);
+            circle.dispose();
+
+            body.setTransform(position, angle);
+        }
+    }
+
+    public void setAbsolutePosition(float x, float y) {
+        this.initialX = x;
+        this.initialY = y;
+        setPosition(x, y);
+        if (body != null) {
+            body.setTransform(
+                (x + getWidth()/2) / PPM,
+                (y + getHeight()/2) / PPM,
+                body.getAngle()
+            );
+        }
+    }
+
+    @Override
+    public void act(float delta) {
+        super.act(delta);
+        if (body != null) {
+            // Update actor position to match physics body
+            Vector2 position = body.getPosition();
+            setPosition(
+                position.x * 100f - getWidth() / 2,  // Convert back from physics units
+                position.y * 100f - getHeight() / 2
+            );
+            setRotation((float) Math.toDegrees(body.getAngle()));
+        }
+    }
+
+    @Override
+    public void draw(Batch batch, float parentAlpha) {
+        if (!isDestroyed) {
+            batch.draw(
+                texture,
+                getX(), getY(),
+                getWidth() / 2, getHeight() / 2,  // Origin for rotation
+                getWidth(), getHeight(),
+                textureScaleX, textureScaleY,
+                getRotation(),
+                0, 0,
+                texture.getWidth(), texture.getHeight(),
+                false, false
+            );
+        }
+    }
+
+    public void resizeTexture(float scaleX, float scaleY) {
+        this.textureScaleX = scaleX;
+        this.textureScaleY = scaleY;
+        setSize(texture.getWidth() * textureScaleX, texture.getHeight() * textureScaleY);
+
+        // Update physics body size if it exists
+        if (body != null) {
+            // Remove old fixtures
+            while (body.getFixtureList().size > 0) {
+                body.destroyFixture(body.getFixtureList().get(0));
+            }
+
+            // Create new fixture with updated size
+            CircleShape circle = new CircleShape();
+            circle.setRadius((getWidth() / 2) / 100f);
+
+            FixtureDef fixtureDef = new FixtureDef();
+            fixtureDef.shape = circle;
+            fixtureDef.density = 1.0f;
+            fixtureDef.friction = 0.3f;
+            fixtureDef.restitution = 0.2f;
+
+            body.createFixture(fixtureDef);
+            circle.dispose();
+        }
+    }
+
+    public void takeDamage(float damage) {
+        health -= damage;
+        if (health <= 0 && !isDestroyed) {
+            destroy();
+        }
+    }
+
+    public void destroy() {
+        isDestroyed = true;
+        if (body != null) {
+            world.destroyBody(body);
+            body = null;
+        }
+    }
+
+    public boolean isDestroyed() {
+        return isDestroyed;
+    }
+
+    public void dispose() {
+        if (body != null) {
+            world.destroyBody(body);
+            body = null;
+        }
+        if (texture != null) {
+            texture.dispose();
+        }
+    }
     public void setHealth(float health) {
         this.health = health;
     }
 
-    public void setTexture(Texture texture) {
-        this.texture = texture;
-    }
-
-    public void setStatus(boolean status) {
-        this.status = status;
-    }
-
-    public void setRadius(float radius) {
-        this.radius = radius;
-    }
-
-    public void setPosX(float posX) {
-        this.posX = posX;
-    }
-
-    public void setPosY(float posY) {
-        this.posY = posY;
-    }
-
-    public void setVelocityX(float velocityX) {
-        this.velocityX = velocityX;
-    }
-
-    public void setVelocityY(float velocityY) {
-        this.velocityY = velocityY;
-    }
-
-    public void setWorld(World world) {
-        this.world = world;
-    }
-
-    public String getType() {
-        return type;
-    }
-
-    public Texture getTexture() {
-        return texture;
-    }
-
-    public boolean isStatus() {
-        return status;
-    }
-
-    public float getRadius() {
-        return radius;
-    }
-
-    public float getPosX() {
-        return posX;
-    }
-
-    public float getPosY() {
-        return posY;
-    }
-
-    public float getVelocityX() {
-        return velocityX;
-    }
-
-    public float getVelocityY() {
-        return velocityY;
-    }
-
-    public World getWorld() {
-        return world;
-    }
-
-    public boolean getStatus(){
-        return  status;
-    }
-    public void statusFalse(){
-        this.status=false;
-//        world.destroyBody(body);
-    }
-    public void render(SpriteBatch batch) {
-        if (texture != null) {
-            if(status){
-                Vector2 position = body.getPosition();
-                batch.draw(texture, position.x - radius, position.y - radius, radius * 4, radius * 4);
-            }
-
-//            batch.draw(texture, position.x - 0.25f, position.y - 0.25f, 0.7f, 0.7f);
-        }
-    }
-
-    public void reduceHealth(float damage) {
-        this.health-=damage;
-        if(health<=0){
-            status=false;
-
-        }
-    }
     public float getHealth() {
         return health;
     }
-
-    public boolean isDestroyed() {
-        return health <= 0;
-    }
-
     public Body getBody() {
         return body;
-    }
-
-    public boolean isInvolvedInCollision(Contact contact) {
-        // Check if this block is part of the collision
-        return contact.getFixtureA().getBody() == body || contact.getFixtureB().getBody() == body;
-    }
-
-    public void saveState() {
-        if (body != null) {
-            Vector2 position = body.getPosition();
-            Vector2 velocity = body.getLinearVelocity();
-            this.posX = position.x;
-            this.posY = position.y;
-            this.velocityX = velocity.x;
-            this.velocityY = velocity.y;
-        }
     }
 }

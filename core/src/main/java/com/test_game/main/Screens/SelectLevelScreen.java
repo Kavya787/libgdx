@@ -13,16 +13,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
-import com.test_game.main.Birds.Bird;
-import com.test_game.main.Birds.BlackBird;
-import com.test_game.main.Birds.YellowBird;
 import com.test_game.main.Core;
-import com.test_game.main.Levels.*;
-import com.test_game.main.Pigs.*;
-import com.test_game.main.blocks.*;
-
-import java.util.ArrayList;
-import java.util.PrimitiveIterator;
+import com.test_game.main.levels.*;
 
 public class SelectLevelScreen extends ScreenAdapter {
     private Stage stage;
@@ -63,34 +55,21 @@ public class SelectLevelScreen extends ScreenAdapter {
         level1Button.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {
-//                ArrayList <Bird>birds=new ArrayList<>();
-//                ArrayList<Pig>pigs= new ArrayList<>();
-//                ArrayList<Block>buildings= new ArrayList<>();
-//                World world = new World(new Vector2(0, -9.8f), true);
-//                birds.add(new YellowBird(world, 3, 2));
-//                birds.add(new BlackBird(world, 1.5f, 1));
-//                birds.add(new YellowBird(world, 0.5f, 1));
-//                buildings.add(new GlassBlock(world, 10, 2,1,1));
-//                buildings.add(new GlassBlock(world, 13, 2,1,1));
-//                buildings.add(new GlassBlock(world, 10, 3,1,1));
-//                buildings.add(new GlassBlock(world, 13, 3,1,1));
-//                pigs.add(new smallPig(world, 10, 4, 0.2f));
-//                pigs.add(new smallPig(world, 13, 4, 0.2f));
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelOne(true));
+                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelOne());
             }
         });
-        level2Button.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelTwo(true));
-            }
-        });
-        level3Button.addListener(new ClickListener() {
-            @Override
-            public void clicked(InputEvent event, float x, float y) {
-                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelThree(true));
-            }
-        });
+//        level2Button.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelTwo());
+//            }
+//        });
+//        level3Button.addListener(new ClickListener() {
+//            @Override
+//            public void clicked(InputEvent event, float x, float y) {
+//                ((Core) Gdx.app.getApplicationListener()).setScreen(new LevelThree());
+//            }
+//        });
         backButton.addListener(new ClickListener() {
             @Override
             public void clicked(InputEvent event, float x, float y) {

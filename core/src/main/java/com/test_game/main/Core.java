@@ -4,19 +4,18 @@ import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.test_game.main.Birds.Bird;
-import com.test_game.main.Levels.*;
-import com.test_game.main.Pigs.Pig;
-import com.test_game.main.Screens.SelectLevelScreen;
+import com.test_game.main.Screens.HomeScreen;
 
 public class Core extends Game {
 //    Player player;
     public SpriteBatch batch;
     private Music bgMusic;
     private boolean isMusicOn;
+    Player player ;
     @Override
     public void create() {
         batch = new SpriteBatch();
+        player=new Player();
         // Initialize background music
 //        player=new Player();
         bgMusic = Gdx.audio.newMusic(Gdx.files.internal("background_music.mp3"));
@@ -25,7 +24,9 @@ public class Core extends Game {
         playMusic(); // Start playing the music when the game starts
         setScreen(new SelectLevelScreen());
     }
-
+    public Player getPlayer(){
+        return player;
+    }
     @Override
     public void render() {
         super.render();

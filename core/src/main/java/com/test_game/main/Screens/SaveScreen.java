@@ -13,23 +13,13 @@ import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.test_game.main.Core;
-import com.test_game.main.LevelSerializer;
-import com.test_game.main.Levels.Level;
-
-import java.io.File;
-
+import com.test_game.main.levels.*;
 public class SaveScreen extends ScreenAdapter {
     private Stage stage;
     private Skin skin;
     private SpriteBatch batch;
     private Texture backgroundTexture;
     private Level gameplayScreen;
-    private LevelSerializer levelSerializer;
-    private TextButton slot1Button;
-    private TextButton slot2Button;
-    private TextButton deleteSlot1Button;
-    private TextButton deleteSlot2Button;
-
     public SaveScreen(Level gameplayScreen) {
         batch = new SpriteBatch();
         this.gameplayScreen = gameplayScreen;

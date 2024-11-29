@@ -3,41 +3,38 @@ pigs: [
 	{
 		class: com.test_game.main.Pigs.smallPig
 		type: small
-		health: 1
+		health: 6
 		status: true
 		radius: 0.25
-		posX: 11.306452
-		posY: 3.285012
+		posX: 11.219275
+		posY: 1.8713353
+		velocityX: 0.91503984
+		velocityY: -0.004462987
 	}
 	{
 		class: com.test_game.main.Pigs.smallPig
 		type: small
-		health: 3
+		health: 8
 		status: true
 		radius: 0.25
-		posX: 12.828504
-		posY: 3.2855117
-	}
-	{
-		class: com.test_game.main.Pigs.MediumPig
-		type: medium
-		health: 24
-		status: true
-		radius: 0.5
-		posX: 12.013734
-		posY: 2.5201352
+		posX: 13.309207
+		posY: 2.8850482
+		velocityX: 0.027860256
+		velocityY: -3.2120465E-6
 	}
 ]
 buildings: [
 	{
 		class: com.test_game.main.blocks.SteelBlock
 		type: steel
-		health: 13
+		health: 8
 		status: true
 		hx: 0.5
 		hy: 0.5
-		posX: 9.978739
-		posY: 1.515325
+		posX: 10.073357
+		posY: 1.1183474
+		velocityX: 3.869232E-9
+		velocityY: -5.045372E-8
 	}
 	{
 		class: com.test_game.main.blocks.WoodBlock
@@ -46,8 +43,10 @@ buildings: [
 		status: true
 		hx: 0.5
 		hy: 0.5
-		posX: 10.994103
-		posY: 1.5150042
+		posX: 11.169937
+		posY: 1.1174341
+		velocityX: 3.7895878E-9
+		velocityY: -1.7240691E-9
 	}
 	{
 		class: com.test_game.main.blocks.SteelBlock
@@ -56,8 +55,10 @@ buildings: [
 		status: true
 		hx: 0.5
 		hy: 0.5
-		posX: 13.024593
-		posY: 1.51545
+		posX: 13.001039
+		posY: 1.114999
+		velocityX: -2.767124E-9
+		velocityY: -4.8357485E-10
 	}
 	{
 		class: com.test_game.main.blocks.WoodBlock
@@ -66,8 +67,10 @@ buildings: [
 		status: true
 		hx: 0.5
 		hy: 0.5
-		posX: 14.040744
-		posY: 1.5169094
+		posX: 14.019375
+		posY: 1.1150761
+		velocityX: -1.4279009E-9
+		velocityY: 3.1158447E-9
 	}
 	{
 		class: com.test_game.main.blocks.WoodBlock
@@ -76,8 +79,10 @@ buildings: [
 		status: true
 		hx: 0.5
 		hy: 0.5
-		posX: 15.057453
-		posY: 1.5174068
+		posX: 15.036191
+		posY: 1.1170748
+		velocityX: -2.3814287E-10
+		velocityY: 3.8022545E-9
 	}
 	{
 		class: com.test_game.main.blocks.SteelBlock
@@ -86,10 +91,34 @@ buildings: [
 		status: true
 		hx: 0.5
 		hy: 0.5
-		posX: 23.832176
-		posY: -197.09042
-		velocityX: 1.1817156
-		velocityY: -62.942516
+		posX: 37.934505
+		posY: -982.8506
+		velocityX: 1.2880899
+		velocityY: -119.99308
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 8
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 10.077249
+		posY: 2.1350973
+		velocityX: 5.478337E-10
+		velocityY: -8.365673E-8
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 14.023214
+		posY: 2.1300735
+		velocityX: 3.768071E-9
+		velocityY: 6.694415E-9
 	}
 	{
 		class: com.test_game.main.blocks.SteelBlock
@@ -98,78 +127,10 @@ buildings: [
 		status: true
 		hx: 0.5
 		hy: 0.5
-		posX: 9.98675
-		posY: 2.5316715
-	}
-	{
-		class: com.test_game.main.blocks.WoodBlock
-		type: wood
-		health: 10
-		status: true
-		hx: 0.5
-		hy: 0.5
-		posX: 14.049448
-		posY: 2.5354877
-	}
-	{
-		class: com.test_game.main.blocks.SteelBlock
-		type: steel
-		health: 13
-		status: true
-		hx: 0.5
-		hy: 0.5
-		posX: 13.029144
-		posY: 2.5307176
-	}
-	{
-		class: com.test_game.main.blocks.GlassBlock
-		type: glass
-		health: 7
-		status: true
-		hx: 0.5
-		hy: 0.5
-		posX: 12.009098
-		posY: 1.5150064
-	}
-	{
-		class: com.test_game.main.blocks.GlassBlock
-		type: glass
-		health: 7
-		status: true
-		hx: 0.5
-		hy: 0.5
-		posX: 11.003693
-		posY: 2.5300062
-	}
-	{
-		class: com.test_game.main.blocks.WoodBlock
-		type: wood
-		health: 10
-		status: true
-		hx: 0.5
-		hy: 0.5
-		posX: 12.057707
-		posY: 3.531163
-	}
-	{
-		class: com.test_game.main.blocks.WoodBlock
-		type: wood
-		health: 10
-		status: true
-		hx: 0.5
-		hy: 0.5
-		posX: 9.991008
-		posY: 3.5468252
-	}
-	{
-		class: com.test_game.main.blocks.WoodBlock
-		type: wood
-		health: 10
-		status: true
-		hx: 0.5
-		hy: 0.5
-		posX: 14.05121
-		posY: 3.552277
+		posX: 13.004515
+		posY: 2.1300554
+		velocityX: 4.560057E-9
+		velocityY: 1.5974765E-8
 	}
 ]
 initialize: true
@@ -180,14 +141,12 @@ birds: [
 		type: red
 		launched: true
 		radius: 0.25
-		status: true
-		angle: 45
-		posX: 6.2880507
-		posY: 4.030605
-		velocityX: 6.3639607
+		angle: 24
+		posX: 7.656863
+		posY: 0.8581709
+		velocityX: 0.09381569
 		damage: 5
-		velocityY: 1.9044031
-		power: 10
+		power: 9.599998
 	}
 	{
 		class: com.test_game.main.Birds.BlackBird
@@ -195,8 +154,8 @@ birds: [
 		radius: 0.25
 		status: true
 		angle: 45
-		posX: 1.5
-		posY: 1.2549998
+		posX: 3
+		posY: 2
 		damage: 5
 		power: 10
 	}
@@ -207,9 +166,10 @@ birds: [
 		status: true
 		angle: 45
 		posX: 0.5
-		posY: 1.2549998
+		posY: 0.85499656
 		damage: 5
 		power: 10
 	}
 ]
+currentBirdIndex: 1
 }

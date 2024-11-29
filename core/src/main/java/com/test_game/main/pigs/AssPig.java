@@ -11,9 +11,8 @@ public class AssPig extends Pig{
 
     }
     public AssPig(World world, float x, float y) {
-        super(world, x, y, 0.6f);
+        super(world, x, y, 0.5f);
         this.type="Ass";
-        this.health = 50;
         try{
             this.texture = new Texture("AssPig.png");
             System.out.println("AssPig texture loaded successfully");
@@ -28,7 +27,7 @@ public class AssPig extends Pig{
             if(status){
                 Vector2 position = body.getPosition();
                 // Only change the size multiplier here
-                batch.draw(texture, position.x - radius-0.2f, position.y - radius-0.2f, radius * 3, radius * 3);
+                batch.draw(texture, position.x - radius, position.y - radius, radius * 5, radius * 5);
             }
         }
     }
