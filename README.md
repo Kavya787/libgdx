@@ -3,6 +3,11 @@
 A custom implementation of the classic **Angry Birds** game developed using the **libGDX** framework. This game combines creative gameplay mechanics with physics-based destruction, special powers, and dynamic interactions, delivering a fun and engaging experience.
 
 ---
+## **Gameplay Video**
+
+- [Watch the Gameplay Video Example](https://drive.google.com/file/d/1JTkgzLy5SauwuQTXZTq-MChJ1khxHrMK/view?usp=drivesdk)
+- [Watch the Gameplay Video Example(Short video with audio)](https://drive.google.com/file/d/1WmHcWx03e24QDhMpwrH7D-keJ6D2ZRfh/view?usp=drivesdk)
+---
 
 ## **Features**
 
