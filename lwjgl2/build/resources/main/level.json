@@ -1,0 +1,37 @@
+{
+  pigs: []
+  buildings: []
+  birds: [
+    {
+      class: com.test_game.main.Birds.YellowBird
+      launched: true
+      radius: 0.25,
+      status: false,
+      angle: 45
+      posX: 15.592177
+      posY: 0.8583146
+      velocityX: -3.6427676E-7
+      velocityY: -7.578365E-9
+      power: 10
+    }
+    {
+      class: com.test_game.main.Birds.BlackBird
+      radius: 0.25
+      status: true
+      angle: 45
+      posX: 3
+      posY: 2
+      power: 10
+    }
+    {
+      class: com.test_game.main.Birds.YellowBird
+      radius: 0.25
+      status: true
+      angle: 45
+      posX: 0.5
+      posY: 0.85499895
+      power: 10
+    }
+  ]
+  currentBirdIndex: 1
+}

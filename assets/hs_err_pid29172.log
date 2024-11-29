@@ -1,0 +1,2030 @@
+#
+# A fatal error has been detected by the Java Runtime Environment:
+#
+#  EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x0000000066b21dd0, pid=29172, tid=16364
+#
+# JRE version: OpenJDK Runtime Environment (22.0.2+9) (build 22.0.2+9-70)
+# Java VM: OpenJDK 64-Bit Server VM (22.0.2+9-70, mixed mode, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# Problematic frame:
+# C  [gdx-box2d64.dll+0x21dd0]
+#
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+# If you would like to submit a bug report, please visit:
+#   https://bugreport.java.com/bugreport/crash.jsp
+# The crash happened outside the Java Virtual Machine in native code.
+# See problematic frame for where to report the bug.
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -Dfile.encoding=UTF-8 -Duser.country=IN -Duser.language=en -Duser.variant com.test_game.main.lwjgl3.Lwjgl3Launcher
+
+Host: AMD Ryzen 7 5800HS with Radeon Graphics        , 16 cores, 15G,  Windows 11 , 64 bit Build 22621 (10.0.22621.4391)
+Time: Mon Nov 25 14:08:29 2024 India Standard Time elapsed time: 44.322231 seconds (0d 0h 0m 44s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x000002aa99ed04a0):  JavaThread "main"             [_thread_in_native, id=16364, stack(0x000000f9d2f00000,0x000000f9d3000000) (1024K)]
+
+Stack: [0x000000f9d2f00000,0x000000f9d3000000],  sp=0x000000f9d2ffed10,  free space=1019k
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+C  [gdx-box2d64.dll+0x21dd0]  (no source info available)
+C  [gdx-box2d64.dll+0x263d2]  (no source info available)
+C  0x000002aaab8085aa  (no source info available)
+
+The last pc belongs to native nmethod (printed below).
+Java frames: (J=compiled Java code, j=interpreted, Vv=VM code)
+J 1876  com.badlogic.gdx.physics.box2d.World.jniStep(JFII)V (0 bytes) @ 0x000002aaab808501 [0x000002aaab8084a0+0x0000000000000061]
+J 1875 c1 com.badlogic.gdx.physics.box2d.World.step(FII)V (12 bytes) @ 0x000002aaa3f07fd4 [0x000002aaa3f07f40+0x0000000000000094]
+J 1872 c1 com.test_game.main.levels.Level.render(F)V (149 bytes) @ 0x000002aaa3f0bf14 [0x000002aaa3f0bbc0+0x0000000000000354]
+J 1871 c1 com.test_game.main.levels.LevelOne.render(F)V (20 bytes) @ 0x000002aaa3f0734c [0x000002aaa3f072c0+0x000000000000008c]
+J 1685 c1 com.badlogic.gdx.backends.lwjgl3.Lwjgl3Window.update()Z (217 bytes) @ 0x000002aaa3ecc434 [0x000002aaa3ecb720+0x0000000000000d14]
+j  com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application.loop()V+111
+j  com.badlogic.gdx.backends.lwjgl3.Lwjgl3Application.<init>(Lcom/badlogic/gdx/ApplicationListener;Lcom/badlogic/gdx/backends/lwjgl3/Lwjgl3ApplicationConfiguration;)V+269
+j  com.test_game.main.lwjgl3.Lwjgl3Launcher.createApplication()Lcom/badlogic/gdx/backends/lwjgl3/Lwjgl3Application;+14
+j  com.test_game.main.lwjgl3.Lwjgl3Launcher.main([Ljava/lang/String;)V+7
+v  ~StubRoutines::call_stub 0x000002aaab00100d
+
+siginfo: EXCEPTION_ACCESS_VIOLATION (0xc0000005), reading address 0x000002aaffb093ef
+
+
+Registers:
+RAX=0x0000000000000001, RBX=0x000002aaffaf0090, RCX=0x0000000000000000, RDX=0x000001cf8513a425
+RSP=0x000000f9d2ffed10, RBP=0x000000f9d2ffeeb0, RSI=0x0000000000000002, RDI=0x0000000000000006
+R8 =0x000000007ffe9000, R9 =0x0000000000000083, R10=0x0000000000000001, R11=0x000000078bc2fa57
+R12=0x000000f9d2ffed30, R13=0x000000f9d2ffed38, R14=0x000002aaffb09330, R15=0x000002aa99ed04a0
+RIP=0x0000000066b21dd0, EFLAGS=0x0000000000010206
+
+
+Register to memory mapping:
+
+RAX=0x0000000000000001 is an unknown value
+RBX=0x000002aaffaf0090 points into unknown readable memory: 0x000002aaffb462f0 | f0 62 b4 ff aa 02 00 00
+RCX=0x0 is null
+RDX=0x000001cf8513a425 is an unknown value
+RSP=0x000000f9d2ffed10 is pointing into the stack for thread: 0x000002aa99ed04a0
+RBP=0x000000f9d2ffeeb0 is pointing into the stack for thread: 0x000002aa99ed04a0
+RSI=0x0000000000000002 is an unknown value
+RDI=0x0000000000000006 is an unknown value
+R8 =0x000000007ffe9000 points into unknown readable memory: 0x0000000000000001 | 01 00 00 00 00 00 00 00
+R9 =0x0000000000000083 is an unknown value
+R10=0x0000000000000001 is an unknown value
+R11=0x000000078bc2fa57 is an unallocated location in the heap
+R12=0x000000f9d2ffed30 is pointing into the stack for thread: 0x000002aa99ed04a0
+R13=0x000000f9d2ffed38 is pointing into the stack for thread: 0x000002aa99ed04a0
+R14=0x000002aaffb09330 is an unknown value
+R15=0x000002aa99ed04a0 is a thread
+
+Top of Stack: (sp=0x000000f9d2ffed10)
+0x000000f9d2ffed10:   0000000000000000 000000f9d2ffed10
+0x000000f9d2ffed20:   0000000000000008 000000006e701e38
+0x000000f9d2ffed30:   427d710d5326d000 427d710d53270000
+0x000000f9d2ffed40:   426fffff3c888889 000000063f800000
+0x000000f9d2ffed50:   0000000100000002 0000000000000000
+0x000000f9d2ffed60:   000000003c888889 0000000000000000
+0x000000f9d2ffed70:   0000000000000000 0000000000000000
+0x000000f9d2ffed80:   0000000000000003 000002aa80943608
+0x000000f9d2ffed90:   0000000000000002 0000000000000002
+0x000000f9d2ffeda0:   000002aaffaf0090 0000000000000000
+0x000000f9d2ffedb0:   000000f9d2ffee28 0000000066b263d2
+0x000000f9d2ffedc0:   000000071859f390 0000000000000003
+0x000000f9d2ffedd0:   0000000717457e50 00007ffb18bb1320
+0x000000f9d2ffede0:   0000000066b466a0 000002aa99ed0860
+0x000000f9d2ffedf0:   000000f9d2ffee70 000000071859f3a0
+0x000000f9d2ffee00:   0000000066b46700 000002aa99ed0860
+0x000000f9d2ffee10:   000000f9d2ffee70 0000000000000018
+0x000000f9d2ffee20:   0000000000000000 0000000000000000
+0x000000f9d2ffee30:   0000000000000000 000002aaab8085aa
+0x000000f9d2ffee40:   00000000e30b3ea4 000002aaab844338
+0x000000f9d2ffee50:   8000000000000000 0000000000000000
+0x000000f9d2ffee60:   0000000000000006 0000000000000002
+0x000000f9d2ffee70:   000000071859f7e8 000000071859f3e8
+0x000000f9d2ffee80:   000000071859f388 0000000000000000
+0x000000f9d2ffee90:   00000000e30b3e72 000002aaab87edb4
+0x000000f9d2ffeea0:   000002aabd0349d0 000002aa8c20b080
+0x000000f9d2ffeeb0:   000000f9d2fff148 000002aaa3f07fd4
+0x000000f9d2ffeec0:   000000071859f1d8 0000000000000001
+0x000000f9d2ffeed0:   0000000000000002 00007ffb18f07d2f
+0x000000f9d2ffeee0:   0000000000000002 00007ffb1c8a24dc
+0x000000f9d2ffeef0:   00000007174591c0 00007ffb8c48e10a
+0x000000f9d2ffef00:   000000f9d2fff148 000002aaa3f0bf14 
+
+Instructions: (pc=0x0000000066b21dd0)
+0x0000000066b21cd0:   0d 10 0b 02 00 ff 15 d9 46 03 00 8b 84 24 a8 00
+0x0000000066b21ce0:   00 00 e9 cb fb ff ff c7 86 ac 00 00 00 00 00 00
+0x0000000066b21cf0:   00 83 c8 03 66 89 46 04 e9 a1 fb ff ff 48 8b 4c
+0x0000000066b21d00:   24 58 49 89 c4 e8 76 d4 ff ff 4c 89 e1 e8 be 19
+0x0000000066b21d10:   01 00 90 90 66 66 2e 0f 1f 84 00 00 00 00 00 90
+0x0000000066b21d20:   41 56 41 55 41 54 57 56 53 48 83 ec 78 0f 11 74
+0x0000000066b21d30:   24 50 0f 11 7c 24 60 4c 8d 64 24 20 48 89 cb 0f
+0x0000000066b21d40:   10 f1 44 89 c7 4c 89 e1 44 89 ce 4c 8d b3 a0 92
+0x0000000066b21d50:   01 00 e8 89 9b fe ff 8b 83 98 92 01 00 a8 01 0f
+0x0000000066b21d60:   85 8b 01 00 00 66 0f ef ff 83 c8 02 89 7c 24 3c
+0x0000000066b21d70:   0f 2f f7 89 83 98 92 01 00 0f 10 c7 89 74 24 40
+0x0000000066b21d80:   f3 0f 11 74 24 30 76 0c f3 0f 10 05 d0 0c 02 00
+0x0000000066b21d90:   f3 0f 5e c6 f3 0f 59 b3 58 93 01 00 0f b6 83 5c
+0x0000000066b21da0:   93 01 00 4c 8d 6c 24 28 f3 0f 11 44 24 34 4c 89
+0x0000000066b21db0:   e9 88 44 24 44 f3 0f 11 74 24 38 e8 20 9b fe ff
+0x0000000066b21dc0:   4c 89 f1 e8 78 c5 ff ff 4c 89 e9 e8 d0 9b fe ff
+0x0000000066b21dd0:   80 bb 5f 93 01 00 00 f3 0f 11 83 64 93 01 00 f3
+0x0000000066b21de0:   0f 10 44 24 30 74 09 0f 2f c7 0f 87 d0 00 00 00
+0x0000000066b21df0:   80 bb 5d 93 01 00 00 0f 84 9e 00 00 00 0f 2f c7
+0x0000000066b21e00:   77 6e 8b 93 98 92 01 00 f6 c2 04 74 2b 48 8b 83
+0x0000000066b21e10:   20 93 01 00 48 85 c0 74 1f 0f 1f 80 00 00 00 00
+0x0000000066b21e20:   c7 40 4c 00 00 00 00 48 c7 40 50 00 00 00 00 48
+0x0000000066b21e30:   8b 40 68 48 85 c0 75 e8 83 e2 fd 4c 89 e1 89 93
+0x0000000066b21e40:   98 92 01 00 e8 57 9b fe ff 90 0f 10 74 24 50 0f
+0x0000000066b21e50:   10 7c 24 60 f3 0f 11 83 60 93 01 00 48 83 c4 78
+0x0000000066b21e60:   5b 5e 5f 41 5c 41 5d 41 5e c3 66 0f 1f 44 00 00
+0x0000000066b21e70:   4c 89 e9 e8 68 9a fe ff 48 8d 54 24 30 48 89 d9
+0x0000000066b21e80:   e8 7b ed ff ff 4c 89 e9 e8 13 9b fe ff f3 0f 11
+0x0000000066b21e90:   83 7c 93 01 00 f3 0f 10 44 24 30 0f 2f c7 0f 86
+0x0000000066b21ea0:   5e ff ff ff f3 0f 10 44 24 34 f3 0f 11 83 58 93
+0x0000000066b21eb0:   01 00 e9 4b ff ff ff 66 0f 1f 84 00 00 00 00 00
+0x0000000066b21ec0:   4c 89 e9 e8 18 9a fe ff 48 8d 54 24 30 48 89 d9 
+
+
+Stack slot to memory mapping:
+
+stack at sp + 0 slots: 0x0 is null
+stack at sp + 1 slots: 0x000000f9d2ffed10 is pointing into the stack for thread: 0x000002aa99ed04a0
+stack at sp + 2 slots: 0x0000000000000008 is an unknown value
+stack at sp + 3 slots: 0x000000006e701e38 gdx64.dll
+stack at sp + 4 slots: 0x427d710d5326d000 is an unknown value
+stack at sp + 5 slots: 0x427d710d53270000 is an unknown value
+stack at sp + 6 slots: 0x426fffff3c888889 is an unknown value
+stack at sp + 7 slots: 0x000000063f800000 is an unknown value
+
+
+Compiled method (n/a) 44425 1876     n 0       com.badlogic.gdx.physics.box2d.World::jniStep (native)
+ total in heap  [0x000002aaab808310,0x000002aaab8086d8] = 968
+ relocation     [0x000002aaab808468,0x000002aaab808498] = 48
+ main code      [0x000002aaab8084a0,0x000002aaab8086ce] = 558
+ stub code      [0x000002aaab8086ce,0x000002aaab8086d0] = 2
+ oops           [0x000002aaab8086d0,0x000002aaab8086d8] = 8
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x000002aa80760ed8} 'jniStep' '(JFII)V' in 'com/badlogic/gdx/physics/box2d/World'
+  # this:     rdx:rdx   = 'com/badlogic/gdx/physics/box2d/World'
+  # parm0:    r8:r8     = long
+  # parm1:    xmm0      = float
+  # parm2:    r9        = int
+  # parm3:    rdi       = int
+  #           [sp+0x80]  (sp of caller)
+  0x000002aaab8084a0: 448b 5208 | 49bb 0000 | 00bc aa02 | 0000 4d03 | d349 3bc2 | 0f84 0600 
+
+  0x000002aaab8084b8: ;   {runtime_call ic_miss_stub}
+  0x000002aaab8084b8: 0000 e9c1 | 6284 ff90 
+[Verified Entry Point]
+  0x000002aaab8084c0: 8984 2400 | 80ff ff55 | 488b ec48 | 83ec 7090 | 4181 7f20 | 0100 0000 
+
+  0x000002aaab8084d8: ;   {runtime_call StubRoutines (final stubs)}
+  0x000002aaab8084d8: 7405 e801 | c882 ff48 | 897c 2428 | 4c89 4c24 | 20c5 f928 | d848 8954 | 2430 4883 | fa00 488d 
+  0x000002aaab8084f8: 5424 3048 | 0f44 5424 | 30c5 f877 
+
+  0x000002aaab808504: ;   {internal_word}
+  0x000002aaab808504: 49ba 0185 | 80ab aa02 | 0000 4d89 | 97a8 0300 | 0049 89a7 | a003 0000 
+
+  0x000002aaab80851c: ;   {external_word}
+  0x000002aaab80851c: 49ba 6c40 | e80b fb7f | 0000 4180 | 3a00 0f84 | 5c00 0000 | 5241 5048 | 83ec 10c5 | fb11 1c24 
+  0x000002aaab80853c: ;   {metadata({method} {0x000002aa80760ed8} 'jniStep' '(JFII)V' in 'com/badlogic/gdx/physics/box2d/World')}
+  0x000002aaab80853c: 48ba d00e | 7680 aa02 | 0000 498b | cf48 83ec | 2040 f6c4 | 0f0f 8419 | 0000 0048 
+
+  0x000002aaab808558: ;   {runtime_call}
+  0x000002aaab808558: 83ec 0848 | b880 b998 | 0bfb 7f00 | 00ff d048 | 83c4 08e9 | 0c00 0000 
+
+  0x000002aaab808570: ;   {runtime_call}
+  0x000002aaab808570: 48b8 80b9 | 980b fb7f | 0000 ffd0 | 4883 c420 | c5fb 101c | 2448 83c4 | 1041 585a | 498d 8fc0 
+  0x000002aaab808590: 0300 0041 | c787 5404 | 0000 0400 
+
+  0x000002aaab80859c: ;   {runtime_call}
+  0x000002aaab80859c: 0000 48b8 | 6063 b266 | 0000 0000 | ffd0 c5f8 | 7741 c787 | 5404 0000 | 0500 0000 | f083 4424 
+  0x000002aaab8085bc: c000 493b | af58 0400 | 000f 870e | 0000 0041 | 83bf 5004 | 0000 000f | 8423 0000 | 00c5 f877 
+  0x000002aaab8085dc: 498b cf4c | 8be4 4883 | ec20 4883 
+
+  0x000002aaab8085e8: ;   {runtime_call}
+  0x000002aaab8085e8: e4f0 48b8 | 4023 630b | fb7f 0000 | ffd0 498b | e44d 33e4 | 41c7 8754 | 0400 0008 | 0000 0041 
+  0x000002aaab808608: 83bf d004 | 0000 020f | 8494 0000 
+
+  0x000002aaab808614: ;   {external_word}
+  0x000002aaab808614: 0049 ba6c | 40e8 0bfb | 7f00 0041 | 803a 000f | 8444 0000 
+
+  0x000002aaab808628: ;   {metadata({method} {0x000002aa80760ed8} 'jniStep' '(JFII)V' in 'com/badlogic/gdx/physics/box2d/World')}
+  0x000002aaab808628: 0048 bad0 | 0e76 80aa | 0200 0049 | 8bcf 4883 | ec20 40f6 | c40f 0f84 | 1900 0000 | 4883 ec08 
+  0x000002aaab808648: ;   {runtime_call}
+  0x000002aaab808648: 48b8 80b9 | 980b fb7f | 0000 ffd0 | 4883 c408 | e90c 0000 
+
+  0x000002aaab80865c: ;   {runtime_call}
+  0x000002aaab80865c: 0048 b880 | b998 0bfb | 7f00 00ff | d048 83c4 | 2049 c787 | a003 0000 | 0000 0000 | 49c7 87a8 
+  0x000002aaab80867c: 0300 0000 | 0000 00c5 | f877 498b | 8f30 0400 | 00c7 8100 | 0100 0000 | 0000 00c9 | 4983 7f08 
+  0x000002aaab80869c: 000f 8501 | 0000 00c3 
+
+  0x000002aaab8086a4: ;   {runtime_call StubRoutines (initial stubs)}
+  0x000002aaab8086a4: e957 887f | ffc5 f877 | 4c8b e448 | 83ec 2048 
+
+  0x000002aaab8086b4: ;   {runtime_call}
+  0x000002aaab8086b4: 83e4 f048 | b8d0 f198 | 0bfb 7f00 | 00ff d049 | 8be4 4d33 | e4e9 47ff | ffff f4f4 
+[/MachCode]
+
+
+Compiled method (c1) 44429 1875       3       com.badlogic.gdx.physics.box2d.World::step (12 bytes)
+ total in heap  [0x000002aaa3f07d90,0x000002aaa3f08110] = 896
+ relocation     [0x000002aaa3f07ee8,0x000002aaa3f07f28] = 64
+ main code      [0x000002aaa3f07f40,0x000002aaa3f08050] = 272
+ stub code      [0x000002aaa3f08050,0x000002aaa3f08090] = 64
+ oops           [0x000002aaa3f08090,0x000002aaa3f08098] = 8
+ metadata       [0x000002aaa3f08098,0x000002aaa3f080a0] = 8
+ scopes data    [0x000002aaa3f080a0,0x000002aaa3f080c8] = 40
+ scopes pcs     [0x000002aaa3f080c8,0x000002aaa3f08108] = 64
+ dependencies   [0x000002aaa3f08108,0x000002aaa3f08110] = 8
+
+[Constant Pool (empty)]
+
+[MachCode]
+[Entry Point]
+  # {method} {0x000002aa80760e48} 'step' '(FII)V' in 'com/badlogic/gdx/physics/box2d/World'
+  # this:     rdx:rdx   = 'com/badlogic/gdx/physics/box2d/World'
+  # parm0:    xmm0      = float
+  # parm1:    r8        = int
+  # parm2:    r9        = int
+  #           [sp+0x50]  (sp of caller)
+  0x000002aaa3f07f40: 448b 5208 | 49bb 0000 | 00bc aa02 | 0000 4d03 | d34c 3bd0 
+
+  0x000002aaa3f07f54: ;   {runtime_call ic_miss_stub}
+  0x000002aaa3f07f54: 0f85 2668 | 1407 660f | 1f44 0000 
+[Verified Entry Point]
+  0x000002aaa3f07f60: 8984 2400 | 80ff ff55 | 4883 ec40 | 4181 7f20 | 0100 0000 
+
+  0x000002aaa3f07f74: ;   {runtime_call StubRoutines (final stubs)}
+  0x000002aaa3f07f74: 7405 e865 | cd12 0749 | 8bf8 498b 
+
+  0x000002aaa3f07f80: ;   {metadata(method data for {method} {0x000002aa80760e48} 'step' '(FII)V' in 'com/badlogic/gdx/physics/box2d/World')}
+  0x000002aaa3f07f80: f149 b808 | 3694 80aa | 0200 0045 | 8b88 cc00 | 0000 4183 | c102 4589 | 88cc 0000 | 0041 81e1 
+  0x000002aaa3f07fa0: fe07 0000 | 4585 c90f | 8442 0000 | 004c 8b42 | 104c 8bca 
+
+  0x000002aaa3f07fb4: ;   {metadata(method data for {method} {0x000002aa80760e48} 'step' '(FII)V' in 'com/badlogic/gdx/physics/box2d/World')}
+  0x000002aaa3f07fb4: 48bb 0836 | 9480 aa02 | 0000 4883 | 8318 0100 | 0001 4c8b | cf48 8bfe 
+
+  0x000002aaa3f07fcc: ;   {optimized virtual_call}
+  0x000002aaa3f07fcc: 6666 90e8 
+
+  0x000002aaa3f07fd0: ; ImmutableOopMap {}
+                      ;*invokespecial jniStep {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.physics.box2d.World::step@8 (line 692)
+  0x000002aaa3f07fd0: ec04 9007 
+
+  0x000002aaa3f07fd4: ;   {other}
+  0x000002aaa3f07fd4: 0f1f 8400 | 4402 0000 | 4883 c440 
+
+  0x000002aaa3f07fe0: ;   {poll_return}
+  0x000002aaa3f07fe0: 5d49 3ba7 | 5804 0000 | 0f87 1f00 
+
+  0x000002aaa3f07fec: ;   {metadata({method} {0x000002aa80760e48} 'step' '(FII)V' in 'com/badlogic/gdx/physics/box2d/World')}
+  0x000002aaa3f07fec: 0000 c349 | ba40 0e76 | 80aa 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x000002aaa3f08004: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f08004: ffff e875 
+
+  0x000002aaa3f08008: ; ImmutableOopMap {rdx=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.physics.box2d.World::step@-1 (line 692)
+  0x000002aaa3f08008: 1821 07eb 
+
+  0x000002aaa3f0800c: ;   {internal_word}
+  0x000002aaa3f0800c: a049 bae1 | 7ff0 a3aa | 0200 004d | 8997 7004 
+
+  0x000002aaa3f0801c: ;   {runtime_call SafepointBlob}
+  0x000002aaa3f0801c: 0000 e9dd | d614 0749 | 8b87 0805 | 0000 49c7 | 8708 0500 | 0000 0000 | 0049 c787 | 1005 0000 
+  0x000002aaa3f0803c: 0000 0000 | 4883 c440 
+
+  0x000002aaa3f08044: ;   {runtime_call unwind_exception Runtime1 stub}
+  0x000002aaa3f08044: 5de9 3693 | 2007 f4f4 | f4f4 f4f4 
+[Stub Code]
+  0x000002aaa3f08050: ;   {no_reloc}
+  0x000002aaa3f08050: 48bb 0000 | 0000 0000 
+
+  0x000002aaa3f08058: ;   {runtime_call}
+  0x000002aaa3f08058: 0000 e9fb 
+
+  0x000002aaa3f0805c: ;   {runtime_call handle_exception_from_callee Runtime1 stub}
+  0x000002aaa3f0805c: ffff ffe8 | 9ccd 2007 
+
+  0x000002aaa3f08064: ;   {external_word}
+  0x000002aaa3f08064: 48b9 b028 | c00b fb7f | 0000 4883 
+
+  0x000002aaa3f08070: ;   {runtime_call}
+  0x000002aaa3f08070: e4f0 48b8 | 3099 870b | fb7f 0000 
+
+  0x000002aaa3f0807c: ;   {section_word}
+  0x000002aaa3f0807c: ffd0 f449 | ba7f 80f0 | a3aa 0200 
+
+  0x000002aaa3f08088: ;   {runtime_call DeoptimizationBlob}
+  0x000002aaa3f08088: 0041 52e9 | 10c9 1407 
+[/MachCode]
+
+
+Compiled method (c1) 44431 1872       3       com.test_game.main.levels.Level::render (149 bytes)
+ total in heap  [0x000002aaa3f0b810,0x000002aaa3f0d4e8] = 7384
+ relocation     [0x000002aaa3f0b968,0x000002aaa3f0bba0] = 568
+ constants      [0x000002aaa3f0bba0,0x000002aaa3f0bbc0] = 32
+ main code      [0x000002aaa3f0bbc0,0x000002aaa3f0cac0] = 3840
+ stub code      [0x000002aaa3f0cac0,0x000002aaa3f0cbf0] = 304
+ oops           [0x000002aaa3f0cbf0,0x000002aaa3f0cbf8] = 8
+ metadata       [0x000002aaa3f0cbf8,0x000002aaa3f0ccf0] = 248
+ scopes data    [0x000002aaa3f0ccf0,0x000002aaa3f0cfc8] = 728
+ scopes pcs     [0x000002aaa3f0cfc8,0x000002aaa3f0d3d8] = 1040
+ dependencies   [0x000002aaa3f0d3d8,0x000002aaa3f0d410] = 56
+ nul chk table  [0x000002aaa3f0d410,0x000002aaa3f0d4e8] = 216
+
+
+[Constant Pool]
+             Address          hex4                    hex8      
+  0x000002aaa3f0bba0:   0x3f800000      0x3c8888893f800000      
+  0x000002aaa3f0bba4:   0x3c888889                              
+  0x000002aaa3f0bba8:   0x3d088889      0x42c800003d088889      
+  0x000002aaa3f0bbac:   0x42c80000                              
+  0x000002aaa3f0bbb0:   0x42c80000      0x42c8000042c80000      
+  0x000002aaa3f0bbb4:   0x42c80000                              
+  0x000002aaa3f0bbb8:   0xf4f4f4f4      0xf4f4f4f4f4f4f4f4      
+  0x000002aaa3f0bbbc:   0xf4f4f4f4                              
+
+[MachCode]
+[Entry Point]
+  # {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level'
+  # this:     rdx:rdx   = 'com/test_game/main/levels/Level'
+  # parm0:    xmm0      = float
+  #           [sp+0xf0]  (sp of caller)
+  0x000002aaa3f0bbc0: ;   {no_reloc}
+  0x000002aaa3f0bbc0: 448b 5208 | 49bb 0000 | 00bc aa02 | 0000 4d03 | d34c 3bd0 
+
+  0x000002aaa3f0bbd4: ;   {runtime_call ic_miss_stub}
+  0x000002aaa3f0bbd4: 0f85 a62b | 1407 660f | 1f44 0000 
+[Verified Entry Point]
+  0x000002aaa3f0bbe0: 8984 2400 | 80ff ff55 | 4881 ece0 | 0000 0090 | 4181 7f20 | 0100 0000 
+
+  0x000002aaa3f0bbf8: ;   {runtime_call StubRoutines (final stubs)}
+  0x000002aaa3f0bbf8: 7405 e8e1 | 9012 0748 | 8994 2490 | 0000 00c5 | fa11 8424 | c800 0000 
+
+  0x000002aaa3f0bc10: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0bc10: 48be a82e | 9480 aa02 | 0000 8bbe | cc00 0000 | 83c7 0289 | becc 0000 | 0081 e7fe | 0700 0085 
+  0x000002aaa3f0bc30: ff0f 84ab 
+
+  0x000002aaa3f0bc34: ;   {oop(a 'java/lang/Class'{0x0000000717457e50} = 'com/badlogic/gdx/Gdx')}
+  0x000002aaa3f0bc34: 0b00 0048 | be50 7e45 | 1707 0000 | 008b be88 | 0000 0048 | c1e7 0348 | 85ff 0f84 | 2900 0000 
+  0x000002aaa3f0bc54: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bc54: 49b8 d049 | 03bd aa02 | 0000 8b4f | 0849 ba00 | 0000 bcaa | 0200 0049 | 03ca 4c3b | 4138 0f85 
+  0x000002aaa3f0bc74: 8b0b 0000 | e900 0000 | 0048 8bdf 
+
+  0x000002aaa3f0bc80: ; implicit exception: dispatches to 0x000002aaa3f0c808
+                      ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0bc80: 483b 0748 | bba8 2e94 | 80aa 0200 
+
+  0x000002aaa3f0bc8c: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bc8c: 0049 bad0 | 4903 bdaa | 0200 004c | 8993 2001 | 0000 4883 | 8328 0100 
+
+  0x000002aaa3f0bca4: ;   {metadata(method data for {method} {0x000002aa806857e8} 'glClearColor' '(FFFF)V' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bca4: 0001 48bf | 1033 9480 | aa02 0000 | 8b9f cc00 | 0000 83c3 | 0289 9fcc | 0000 0081 | e3fe ff1f 
+  0x000002aaa3f0bcc4: 0085 db0f | 8440 0b00 
+
+  0x000002aaa3f0bccc: ;   {metadata(method data for {method} {0x000002aa806857e8} 'glClearColor' '(FFFF)V' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bccc: 0048 bf10 | 3394 80aa | 0200 0048 | 8387 1801 
+
+  0x000002aaa3f0bcdc: ;   {metadata(method data for {method} {0x000002aa80622c30} 'glClearColor' '(FFFF)V' in 'org/lwjgl/opengl/GL11')}
+  0x000002aaa3f0bcdc: 0000 0148 | bf10 2a94 | 80aa 0200 | 008b 9fcc | 0000 0083 | c302 899f | cc00 0000 | 81e3 feff 
+  0x000002aaa3f0bcfc: 1f00 85db | 0f84 280b 
+
+  0x000002aaa3f0bd04: ;   {metadata(method data for {method} {0x000002aa80622c30} 'glClearColor' '(FFFF)V' in 'org/lwjgl/opengl/GL11')}
+  0x000002aaa3f0bd04: 0000 48bf | 102a 9480 | aa02 0000 | 4883 8718 | 0100 0001 | c5f8 57c0 | c5f0 57c9 | c5e8 57d2 
+  0x000002aaa3f0bd24: ;   {section_word}
+  0x000002aaa3f0bd24: c5fa 101d | 74fe ffff | 4889 b424 | 8800 0000 
+
+  0x000002aaa3f0bd34: ;   {static_call}
+  0x000002aaa3f0bd34: 6666 90e8 
+
+  0x000002aaa3f0bd38: ; ImmutableOopMap {[136]=Oop [144]=Oop }
+                      ;*invokestatic glClearColor {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glClearColor@4 (line 1022)
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3GL20::glClearColor@5 (line 154)
+                      ; - com.test_game.main.levels.Level::render@7 (line 120)
+  0x000002aaa3f0bd38: 84b6 8f07 
+
+  0x000002aaa3f0bd3c: ;   {other}
+  0x000002aaa3f0bd3c: 0f1f 8400 | 2c05 0000 | 488b b424 | 8800 0000 | 8b96 8800 | 0000 48c1 | e203 4885 | d20f 8429 
+  0x000002aaa3f0bd5c: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bd5c: 0000 0048 | b8d0 4903 | bdaa 0200 | 008b 5a08 | 49ba 0000 | 00bc aa02 | 0000 4903 | da48 3b43 
+  0x000002aaa3f0bd7c: 380f 85cc | 0a00 00e9 | 0000 0000 | 488b f248 
+
+  0x000002aaa3f0bd8c: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0bd8c: 3b02 48be | a82e 9480 | aa02 0000 
+
+  0x000002aaa3f0bd98: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bd98: 49ba d049 | 03bd aa02 | 0000 4c89 | 9650 0100 | 0048 8386 | 5801 0000 
+
+  0x000002aaa3f0bdb0: ;   {metadata(method data for {method} {0x000002aa80685708} 'glClear' '(I)V' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bdb0: 0148 ba98 | 3494 80aa | 0200 008b | b2cc 0000 | 0083 c602 | 89b2 cc00 | 0000 81e6 | feff 1f00 
+  0x000002aaa3f0bdd0: 85f6 0f84 | 810a 0000 
+
+  0x000002aaa3f0bdd8: ;   {metadata(method data for {method} {0x000002aa80685708} 'glClear' '(I)V' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0bdd8: 48ba 9834 | 9480 aa02 | 0000 4883 | 8218 0100 
+
+  0x000002aaa3f0bde8: ;   {metadata(method data for {method} {0x000002aa80622a60} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11')}
+  0x000002aaa3f0bde8: 0001 48ba | 902b 9480 | aa02 0000 | 8bb2 cc00 | 0000 83c6 | 0289 b2cc | 0000 0081 | e6fe ff1f 
+  0x000002aaa3f0be08: 0085 f60f | 8469 0a00 
+
+  0x000002aaa3f0be10: ;   {metadata(method data for {method} {0x000002aa80622a60} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11')}
+  0x000002aaa3f0be10: 0048 ba90 | 2b94 80aa | 0200 0048 | 8382 1801 | 0000 01ba | 0040 0000 | 0f1f 8000 
+
+  0x000002aaa3f0be2c: ;   {static_call}
+  0x000002aaa3f0be2c: 0000 00e8 
+
+  0x000002aaa3f0be30: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokestatic glClear {reexecute=0 rethrow=0 return_oop=0}
+                      ; - org.lwjgl.opengl.GL11::glClear@1 (line 992)
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3GL20::glClear@1 (line 150)
+                      ; - com.test_game.main.levels.Level::render@18 (line 121)
+  0x000002aaa3f0be30: 8cb9 8f07 
+
+  0x000002aaa3f0be34: ;   {other}
+  0x000002aaa3f0be34: 0f1f 8400 | 2406 0001 | 488b 9424 | 9000 0000 | 8b72 1c48 | c1e6 0348 | 3b06 4c8b 
+
+  0x000002aaa3f0be50: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0be50: c648 bfa8 | 2e94 80aa 
+
+  0x000002aaa3f0be58: ;   {metadata('com/badlogic/gdx/graphics/OrthographicCamera')}
+  0x000002aaa3f0be58: 0200 0049 | bad8 d303 | bdaa 0200 | 004c 8997 | 8001 0000 | 4883 8788 | 0100 0001 
+
+  0x000002aaa3f0be74: ;   {metadata(method data for {method} {0x000002aa80735cc8} 'update' '()V' in 'com/badlogic/gdx/graphics/OrthographicCamera')}
+  0x000002aaa3f0be74: 49b8 08e6 | 9180 aa02 | 0000 418b | b8cc 0000 | 0083 c702 | 4189 b8cc | 0000 0081 | e7fe ff1f 
+  0x000002aaa3f0be94: 0085 ff0f | 8403 0a00 | 004c 8bc6 
+
+  0x000002aaa3f0bea0: ;   {metadata(method data for {method} {0x000002aa80735cc8} 'update' '()V' in 'com/badlogic/gdx/graphics/OrthographicCamera')}
+  0x000002aaa3f0bea0: 48bf 08e6 | 9180 aa02 | 0000 4883 | 8728 0100 | 0001 41b8 | 0100 0000 | 488b d60f 
+
+  0x000002aaa3f0bebc: ;   {optimized virtual_call}
+  0x000002aaa3f0bebc: 1f40 00e8 
+
+  0x000002aaa3f0bec0: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.graphics.OrthographicCamera::update@2 (line 51)
+                      ; - com.test_game.main.levels.Level::render@27 (line 124)
+  0x000002aaa3f0bec0: fc27 9707 
+
+  0x000002aaa3f0bec4: ;   {other}
+  0x000002aaa3f0bec4: 0f1f 8400 | b406 0002 | 488b 9424 | 9000 0000 | 8b72 1448 | c1e6 0348 | 3b06 4c8b 
+
+  0x000002aaa3f0bee0: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0bee0: c649 b9a8 | 2e94 80aa | 0200 0049 | 8381 a801 
+
+  0x000002aaa3f0bef0: ;   {section_word}
+  0x000002aaa3f0bef0: 0000 01c5 | fa10 05a9 | fcff ff41 | b806 0000 | 0041 b902 | 0000 0048 | 8bd6 0f1f 
+
+  0x000002aaa3f0bf0c: ;   {optimized virtual_call}
+  0x000002aaa3f0bf0c: 4400 00e8 
+
+  0x000002aaa3f0bf10: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual step {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@39 (line 127)
+  0x000002aaa3f0bf10: 4cc0 ffff 
+
+  0x000002aaa3f0bf14: ;   {other}
+  0x000002aaa3f0bf14: 0f1f 8400 | 0407 0003 | 488b 9424 | 9000 0000 
+
+  0x000002aaa3f0bf24: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0bf24: 48be a82e | 9480 aa02 | 0000 8b52 | 0849 ba00 | 0000 bcaa | 0200 0049 | 03d2 483b | 96e0 0100 
+  0x000002aaa3f0bf44: 0075 0d48 | 8386 e801 | 0000 01e9 | 6000 0000 | 483b 96f0 | 0100 0075 | 0d48 8386 | f801 0000 
+  0x000002aaa3f0bf64: 01e9 4a00 | 0000 4883 | bee0 0100 | 0000 7517 | 4889 96e0 | 0100 0048 | c786 e801 | 0000 0100 
+  0x000002aaa3f0bf84: 0000 e929 | 0000 0048 | 83be f001 | 0000 0075 | 1748 8996 | f001 0000 | 48c7 86f8 | 0100 0001 
+  0x000002aaa3f0bfa4: 0000 00e9 | 0800 0000 | 4883 86d8 | 0100 0001 | 488b 9424 | 9000 0000 
+
+  0x000002aaa3f0bfbc: ;   {optimized virtual_call}
+  0x000002aaa3f0bfbc: 6666 90e8 
+
+  0x000002aaa3f0bfc0: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual handleKeyboardInput {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@43 (line 130)
+  0x000002aaa3f0bfc0: 5ccb ffff 
+
+  0x000002aaa3f0bfc4: ;   {other}
+  0x000002aaa3f0bfc4: 0f1f 8400 | b407 0004 | 488b 9424 | 9000 0000 | 8b72 1048 | c1e6 0348 | 3b06 488b 
+
+  0x000002aaa3f0bfe0: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0bfe0: fe48 bba8 | 2e94 80aa 
+
+  0x000002aaa3f0bfe8: ;   {metadata('com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0bfe8: 0200 0049 | ba20 6303 | bdaa 0200 | 004c 8993 | 1002 0000 | 4883 8318 | 0200 0001 
+
+  0x000002aaa3f0c004: ;   {optimized virtual_call}
+  0x000002aaa3f0c004: 488b d6e8 
+
+  0x000002aaa3f0c008: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual begin {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@50 (line 133)
+  0x000002aaa3f0c008: f4a8 9507 
+
+  0x000002aaa3f0c00c: ;   {other}
+  0x000002aaa3f0c00c: 0f1f 8400 | fc07 0005 | 488b 9424 | 9000 0000 | 8b72 1048 | c1e6 0348 | 89b4 2498 | 0000 008b 
+  0x000002aaa3f0c02c: 7a1c 48c1 | e703 8b7f | 3048 c1e7 | 0348 3b06 
+
+  0x000002aaa3f0c03c: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c03c: 488b de48 | b8a8 2e94 | 80aa 0200 
+
+  0x000002aaa3f0c048: ;   {metadata('com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c048: 0049 ba20 | 6303 bdaa | 0200 004c | 8990 4002 | 0000 4883 | 8048 0200 
+
+  0x000002aaa3f0c060: ;   {metadata(method data for {method} {0x000002aa80698ac0} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c060: 0001 48bb | a898 9280 | aa02 0000 | 8b83 cc00 | 0000 83c0 | 0289 83cc | 0000 0025 | feff 1f00 
+  0x000002aaa3f0c080: 85c0 0f84 | 4d08 0000 | 0fbe 5e38 
+
+  0x000002aaa3f0c08c: ;   {metadata(method data for {method} {0x000002aa80698ac0} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c08c: 85db 48bb | a898 9280 | aa02 0000 | 48c7 c018 | 0100 0074 | 0748 c7c0 | 2801 0000 | 488b 0c03 
+  0x000002aaa3f0c0ac: 488d 4901 | 4889 0c03 | 0f84 4200 | 0000 4889 | bc24 a000 | 0000 488b 
+
+  0x000002aaa3f0c0c4: ;   {metadata(method data for {method} {0x000002aa80698ac0} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c0c4: de48 b8a8 | 9892 80aa | 0200 0048 | 8380 4801 | 0000 0148 | 8bd6 0f1f 
+
+  0x000002aaa3f0c0dc: ;   {optimized virtual_call}
+  0x000002aaa3f0c0dc: 4400 00e8 
+
+  0x000002aaa3f0c0e0: ; ImmutableOopMap {[144]=Oop [152]=Oop [160]=Oop }
+                      ;*invokevirtual flush {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.graphics.g2d.SpriteBatch::setProjectionMatrix@8 (line 1043)
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+  0x000002aaa3f0c0e0: 5c59 8f07 
+
+  0x000002aaa3f0c0e4: ;   {other}
+  0x000002aaa3f0c0e4: 0f1f 8400 | d408 0006 | 488b bc24 | a000 0000 | 488b b424 | 9800 0000 | 8b56 4c48 | c1e2 0348 
+  0x000002aaa3f0c104: 3b02 4c8b 
+
+  0x000002aaa3f0c108: ;   {metadata(method data for {method} {0x000002aa80698ac0} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c108: c248 bba8 | 9892 80aa | 0200 0048 | 8383 7801 
+
+  0x000002aaa3f0c118: ;   {metadata(method data for {method} {0x000002aa8069c040} 'set' '(Lcom/badlogic/gdx/math/Matrix4;)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c118: 0000 0149 | b8e0 518f | 80aa 0200 | 0041 8b98 | cc00 0000 | 83c3 0241 | 8998 cc00 | 0000 81e3 
+  0x000002aaa3f0c138: feff 1f00 | 85db 0f84 | b707 0000 
+
+  0x000002aaa3f0c144: ; implicit exception: dispatches to 0x000002aaa3f0c91c
+  0x000002aaa3f0c144: 448b 470c | 49c1 e003 
+
+  0x000002aaa3f0c14c: ;   {metadata(method data for {method} {0x000002aa8069c040} 'set' '(Lcom/badlogic/gdx/math/Matrix4;)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c14c: 488b fa48 | bbe0 518f | 80aa 0200 | 0048 8383 | 2801 0000 | 0166 0f1f 
+
+  0x000002aaa3f0c164: ;   {optimized virtual_call}
+  0x000002aaa3f0c164: 4400 00e8 
+
+  0x000002aaa3f0c168: ; ImmutableOopMap {[144]=Oop [152]=Oop }
+                      ;*invokevirtual set {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.math.Matrix4::set@5 (line 129)
+                      ; - com.badlogic.gdx.graphics.g2d.SpriteBatch::setProjectionMatrix@16 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+  0x000002aaa3f0c168: d429 8f07 
+
+  0x000002aaa3f0c16c: ;   {other}
+  0x000002aaa3f0c16c: 0f1f 8400 | 5c09 0007 | 488b b424 | 9800 0000 | 0fbe 5638 
+
+  0x000002aaa3f0c180: ;   {metadata(method data for {method} {0x000002aa80698ac0} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c180: 85d2 48ba | a898 9280 | aa02 0000 | 48c7 c798 | 0100 0074 | 0748 c7c7 | a801 0000 | 488b 1c3a 
+  0x000002aaa3f0c1a0: 488d 5b01 | 4889 1c3a | 0f84 2600 | 0000 488b 
+
+  0x000002aaa3f0c1b0: ;   {metadata(method data for {method} {0x000002aa80698ac0} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c1b0: d648 bfa8 | 9892 80aa | 0200 0048 | 8387 c801 | 0000 0148 
+
+  0x000002aaa3f0c1c4: ;   {optimized virtual_call}
+  0x000002aaa3f0c1c4: 8bd6 90e8 
+
+  0x000002aaa3f0c1c8: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual setupMatrices {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.graphics.g2d.SpriteBatch::setProjectionMatrix@28 (line 1045)
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+  0x000002aaa3f0c1c8: d481 9207 
+
+  0x000002aaa3f0c1cc: ;   {other}
+  0x000002aaa3f0c1cc: 0f1f 8400 | bc09 0008 | 488b 9424 | 9000 0000 | 8b72 1048 | c1e6 0344 | 8b42 3049 
+
+  0x000002aaa3f0c1e8: ;   {oop(a 'java/lang/Class'{0x0000000717457e50} = 'com/badlogic/gdx/Gdx')}
+  0x000002aaa3f0c1e8: c1e0 0348 | bf50 7e45 | 1707 0000 | 008b 7f74 | 48c1 e703 | 4885 ff0f | 8429 0000 
+
+  0x000002aaa3f0c204: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c204: 0049 b968 | 3503 bdaa | 0200 008b | 4f08 49ba | 0000 00bc | aa02 0000 | 4903 ca4c | 3b49 400f 
+  0x000002aaa3f0c224: 85f8 0600 | 00e9 0000 | 0000 488b | df48 3b07 
+
+  0x000002aaa3f0c234: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c234: 488b df48 | b8a8 2e94 | 80aa 0200 
+
+  0x000002aaa3f0c240: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c240: 0049 ba68 | 3503 bdaa | 0200 004c | 8990 7002 | 0000 4883 | 8078 0200 
+
+  0x000002aaa3f0c258: ;   {metadata(method data for {method} {0x000002aa80679098} 'getWidth' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c258: 0001 48bb | 98dc 9180 | aa02 0000 | 8b83 cc00 | 0000 83c0 | 0289 83cc | 0000 0025 | feff 1f00 
+  0x000002aaa3f0c278: 85c0 0f84 | ab06 0000 | 8b5f 5448 | c1e3 0348 | 3b03 488b 
+
+  0x000002aaa3f0c28c: ;   {metadata(method data for {method} {0x000002aa80679098} 'getWidth' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c28c: c348 b998 | dc91 80aa | 0200 0048 | 8381 2801 | 0000 018b | 5b2c 48c1 | e303 8b9b | 9c00 0000 
+  0x000002aaa3f0c2ac: 48c1 e303 
+
+  0x000002aaa3f0c2b0: ;   {oop(a 'com/badlogic/gdx/graphics/glutils/HdpiMode'{0x0000000717432e70})}
+  0x000002aaa3f0c2b0: 48b8 702e | 4317 0700 | 0000 483b 
+
+  0x000002aaa3f0c2bc: ;   {metadata(method data for {method} {0x000002aa80679098} 'getWidth' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c2bc: d848 bb98 | dc91 80aa | 0200 0048 | c7c0 4801 | 0000 7507 | 48c7 c058 | 0100 0048 | 8b0c 0348 
+  0x000002aaa3f0c2dc: 8d49 0148 | 890c 030f | 8508 0000 | 008b 7f0c | e903 0000 | 008b 7f2c | c5ea 2ad7 
+
+  0x000002aaa3f0c2f8: ;   {oop(a 'java/lang/Class'{0x0000000717457e50} = 'com/badlogic/gdx/Gdx')}
+  0x000002aaa3f0c2f8: 48bf 507e | 4517 0700 | 0000 8b7f | 7448 c1e7 | 0348 85ff | 0f84 2900 
+
+  0x000002aaa3f0c310: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c310: 0000 49b9 | 6835 03bd | aa02 0000 | 8b4f 0849 | ba00 0000 | bcaa 0200 | 0049 03ca | 4c3b 4940 
+  0x000002aaa3f0c330: 0f85 2006 | 0000 e900 | 0000 0048 | 8bdf 483b | 0748 8bdf 
+
+  0x000002aaa3f0c344: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c344: 48b8 a82e | 9480 aa02 
+
+  0x000002aaa3f0c34c: ;   {metadata('com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c34c: 0000 49ba | 6835 03bd | aa02 0000 | 4c89 90a0 | 0200 0048 | 8380 a802 
+
+  0x000002aaa3f0c364: ;   {metadata(method data for {method} {0x000002aa80679168} 'getHeight' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c364: 0000 0148 | bb00 1f90 | 80aa 0200 | 008b 83cc | 0000 0083 | c002 8983 | cc00 0000 | 25fe ff1f 
+  0x000002aaa3f0c384: 0085 c00f | 84d3 0500 | 008b 5f54 | 48c1 e303 
+
+  0x000002aaa3f0c394: ; implicit exception: dispatches to 0x000002aaa3f0c981
+  0x000002aaa3f0c394: 483b 0348 
+
+  0x000002aaa3f0c398: ;   {metadata(method data for {method} {0x000002aa80679168} 'getHeight' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c398: 8bc3 48b9 | 001f 9080 | aa02 0000 | 4883 8128 | 0100 0001 | 8b5b 2c48 | c1e3 038b | 9b9c 0000 
+  0x000002aaa3f0c3b8: 0048 c1e3 
+
+  0x000002aaa3f0c3bc: ;   {oop(a 'com/badlogic/gdx/graphics/glutils/HdpiMode'{0x0000000717432e70})}
+  0x000002aaa3f0c3bc: 0348 b870 | 2e43 1707 | 0000 0048 
+
+  0x000002aaa3f0c3c8: ;   {metadata(method data for {method} {0x000002aa80679168} 'getHeight' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c3c8: 3bd8 48bb | 001f 9080 | aa02 0000 | 48c7 c048 | 0100 0075 | 0748 c7c0 | 5801 0000 | 488b 0c03 
+  0x000002aaa3f0c3e8: 488d 4901 | 4889 0c03 | 0f85 0800 | 0000 8b7f | 28e9 0300 | 0000 8b7f | 3048 3b06 
+
+  0x000002aaa3f0c404: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c404: 488b de48 | b8a8 2e94 | 80aa 0200 
+
+  0x000002aaa3f0c410: ;   {metadata('com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c410: 0049 ba20 | 6303 bdaa | 0200 004c | 8990 d002 | 0000 4883 | 80d8 0200 | 0001 c5e2 | 2adf c5f8 
+  0x000002aaa3f0c430: 57c0 c5f0 | 57c9 488b | d666 0f1f 
+
+  0x000002aaa3f0c43c: ;   {optimized virtual_call}
+  0x000002aaa3f0c43c: 4400 00e8 
+
+  0x000002aaa3f0c440: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual draw {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@95 (line 135)
+  0x000002aaa3f0c440: bc36 9707 
+
+  0x000002aaa3f0c444: ;   {other}
+  0x000002aaa3f0c444: 0f1f 8400 | 340c 0009 | 488b 9424 | 9000 0000 | 8b72 1048 | c1e6 0348 | 3b06 488b 
+
+  0x000002aaa3f0c460: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c460: fe48 bba8 | 2e94 80aa 
+
+  0x000002aaa3f0c468: ;   {metadata('com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c468: 0200 0049 | ba20 6303 | bdaa 0200 | 004c 8993 | 0003 0000 | 4883 8308 | 0300 0001 
+
+  0x000002aaa3f0c484: ;   {optimized virtual_call}
+  0x000002aaa3f0c484: 488b d6e8 
+
+  0x000002aaa3f0c488: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual end {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@102 (line 136)
+  0x000002aaa3f0c488: 54cb 9507 
+
+  0x000002aaa3f0c48c: ;   {other}
+  0x000002aaa3f0c48c: 0f1f 8400 | 7c0c 000a | 488b 9424 | 9000 0000 | 8b72 0c48 
+
+  0x000002aaa3f0c4a0: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c4a0: c1e6 0348 | bfa8 2e94 | 80aa 0200 | 0048 8387 | 2803 0000 | 01c5 fa10 | 8424 c800 
+
+  0x000002aaa3f0c4bc: ;   {section_word}
+  0x000002aaa3f0c4bc: 0000 c5fa | 100d e2f6 | ffff 4889 | b424 a800 
+
+  0x000002aaa3f0c4cc: ;   {static_call}
+  0x000002aaa3f0c4cc: 0000 90e8 
+
+  0x000002aaa3f0c4d0: ; ImmutableOopMap {[144]=Oop [168]=Oop }
+                      ;*invokestatic min {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@112 (line 139)
+  0x000002aaa3f0c4d0: 6c64 9707 
+
+  0x000002aaa3f0c4d4: ;   {other}
+  0x000002aaa3f0c4d4: 0f1f 8400 | c40c 000b | 488b b424 | a800 0000 
+
+  0x000002aaa3f0c4e4: ; implicit exception: dispatches to 0x000002aaa3f0c995
+  0x000002aaa3f0c4e4: 483b 0648 
+
+  0x000002aaa3f0c4e8: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c4e8: 8bd6 48bf | a82e 9480 | aa02 0000 
+
+  0x000002aaa3f0c4f4: ;   {metadata('com/badlogic/gdx/scenes/scene2d/Stage')}
+  0x000002aaa3f0c4f4: 49ba 98bb | 08bd aa02 | 0000 4c89 | 9740 0300 | 0048 8387 | 4803 0000 | 0148 8bd6 | 0f1f 8000 
+  0x000002aaa3f0c514: ;   {optimized virtual_call}
+  0x000002aaa3f0c514: 0000 00e8 
+
+  0x000002aaa3f0c518: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual act {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@115 (line 139)
+  0x000002aaa3f0c518: a43c 9107 
+
+  0x000002aaa3f0c51c: ;   {other}
+  0x000002aaa3f0c51c: 0f1f 8400 | 0c0d 000c | 488b 9424 | 9000 0000 | 8b72 0c48 | c1e6 0348 | 3b06 488b 
+
+  0x000002aaa3f0c538: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c538: fe48 bba8 | 2e94 80aa 
+
+  0x000002aaa3f0c540: ;   {metadata('com/badlogic/gdx/scenes/scene2d/Stage')}
+  0x000002aaa3f0c540: 0200 0049 | ba98 bb08 | bdaa 0200 | 004c 8993 | 7003 0000 | 4883 8378 | 0300 0001 
+
+  0x000002aaa3f0c55c: ;   {optimized virtual_call}
+  0x000002aaa3f0c55c: 488b d6e8 
+
+  0x000002aaa3f0c560: ; ImmutableOopMap {[144]=Oop }
+                      ;*invokevirtual draw {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@122 (line 140)
+  0x000002aaa3f0c560: 5c0d fcff 
+
+  0x000002aaa3f0c564: ;   {other}
+  0x000002aaa3f0c564: 0f1f 8400 | 540d 000d | 488b 9424 | 9000 0000 | 8b72 1848 | c1e6 038b | 7a14 48c1 | e703 448b 
+  0x000002aaa3f0c584: 421c 49c1 | e003 458b | 4030 49c1 | e003 493b | 0049 8bd0 
+
+  0x000002aaa3f0c598: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c598: 48bb a82e | 9480 aa02 
+
+  0x000002aaa3f0c5a0: ;   {metadata('com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c5a0: 0000 49ba | d86b 03bd | aa02 0000 | 4c89 93a0 | 0300 0048 | 8383 a803 
+
+  0x000002aaa3f0c5b8: ;   {metadata(method data for {method} {0x000002aa806a0d28} 'scl' '(F)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c5b8: 0000 0148 | ba68 4194 | 80aa 0200 | 008b 9acc | 0000 0083 | c302 899a | cc00 0000 | 81e3 feff 
+  0x000002aaa3f0c5d8: 1f00 85db | 0f84 c703 | 0000 418b | 500c 48c1 | e203 837a | 0c00 0f86 | e003 0000 | c5fa 1042 
+  0x000002aaa3f0c5f8: ;   {section_word}
+  0x000002aaa3f0c5f8: 10c5 fa59 | 05ab f5ff | ffc5 fa11 | 4210 837a | 0c05 0f86 | d603 0000 | c5fa 1042 
+
+  0x000002aaa3f0c614: ;   {section_word}
+  0x000002aaa3f0c614: 24c5 fa59 | 0593 f5ff | ffc5 fa11 | 4224 837a | 0c0a 0f86 | cc03 0000 | c5fa 1042 
+
+  0x000002aaa3f0c630: ;   {section_word}
+  0x000002aaa3f0c630: 38c5 fa59 | 057b f5ff | ffc5 fa11 | 4238 483b | 0648 8bde 
+
+  0x000002aaa3f0c644: ;   {metadata(method data for {method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c644: 48b8 a82e | 9480 aa02 
+
+  0x000002aaa3f0c64c: ;   {metadata('com/badlogic/gdx/physics/box2d/Box2DDebugRenderer')}
+  0x000002aaa3f0c64c: 0000 49ba | d0a7 08bd | aa02 0000 | 4c89 90d0 | 0300 0048 | 8380 d803 
+
+  0x000002aaa3f0c664: ;   {metadata(method data for {method} {0x000002aa80781be0} 'render' '(Lcom/badlogic/gdx/physics/box2d/World;Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/physics/box2d/Box2DDebugRenderer')}
+  0x000002aaa3f0c664: 0000 0148 | bb48 4594 | 80aa 0200 | 008b 83cc | 0000 0083 | c002 8983 | cc00 0000 | 25fe ff1f 
+  0x000002aaa3f0c684: 0085 c00f | 8482 0300 | 008b 5e14 | 48c1 e303 
+
+  0x000002aaa3f0c694: ; implicit exception: dispatches to 0x000002aaa3f0ca30
+  0x000002aaa3f0c694: 483b 0348 
+
+  0x000002aaa3f0c698: ;   {metadata(method data for {method} {0x000002aa80781be0} 'render' '(Lcom/badlogic/gdx/physics/box2d/World;Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/physics/box2d/Box2DDebugRenderer')}
+  0x000002aaa3f0c698: 8bc3 48b9 | 4845 9480 | aa02 0000 
+
+  0x000002aaa3f0c6a4: ;   {metadata('com/badlogic/gdx/graphics/glutils/ShapeRenderer')}
+  0x000002aaa3f0c6a4: 49ba 68aa | 08bd aa02 | 0000 4c89 | 9120 0100 | 0048 8381 | 2801 0000 
+
+  0x000002aaa3f0c6bc: ;   {metadata(method data for {method} {0x000002aa80786050} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/glutils/ShapeRenderer')}
+  0x000002aaa3f0c6bc: 0148 b8f0 | 4694 80aa | 0200 008b | 88cc 0000 | 0083 c102 | 8988 cc00 | 0000 81e1 | feff 1f00 
+  0x000002aaa3f0c6dc: 85c9 0f84 | 5103 0000 | 8b43 1848 | c1e0 0348 | 3b00 488b 
+
+  0x000002aaa3f0c6f0: ;   {metadata(method data for {method} {0x000002aa80786050} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/glutils/ShapeRenderer')}
+  0x000002aaa3f0c6f0: c849 b9f0 | 4694 80aa 
+
+  0x000002aaa3f0c6f8: ;   {metadata('com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c6f8: 0200 0049 | bad8 6b03 | bdaa 0200 | 004d 8991 | 2001 0000 | 4983 8128 | 0100 0001 
+
+  0x000002aaa3f0c714: ;   {metadata(method data for {method} {0x000002aa8069c040} 'set' '(Lcom/badlogic/gdx/math/Matrix4;)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c714: 48b9 e051 | 8f80 aa02 | 0000 448b | 89cc 0000 | 0041 83c1 | 0244 8989 | cc00 0000 | 4181 e1fe 
+  0x000002aaa3f0c734: ff1f 0045 | 85c9 0f84 | 1b03 0000 
+
+  0x000002aaa3f0c740: ;   {metadata(method data for {method} {0x000002aa8069c040} 'set' '(Lcom/badlogic/gdx/math/Matrix4;)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c740: 4c8b c048 | b9e0 518f | 80aa 0200 | 0048 8381 | 2801 0000 | 014c 8bc2 | 488b d048 | 89bc 24c0 
+  0x000002aaa3f0c760: 0000 0048 | 89b4 24b8 | 0000 0048 | 899c 24b0 | 0000 000f 
+
+  0x000002aaa3f0c774: ;   {optimized virtual_call}
+  0x000002aaa3f0c774: 1f40 00e8 
+
+  0x000002aaa3f0c778: ; ImmutableOopMap {[176]=Oop [184]=Oop [192]=Oop }
+                      ;*invokevirtual set {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.math.Matrix4::set@5 (line 129)
+                      ; - com.badlogic.gdx.graphics.glutils.ShapeRenderer::setProjectionMatrix@5 (line 145)
+                      ; - com.badlogic.gdx.physics.box2d.Box2DDebugRenderer::render@5 (line 77)
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+  0x000002aaa3f0c778: c423 8f07 
+
+  0x000002aaa3f0c77c: ;   {other}
+  0x000002aaa3f0c77c: 0f1f 8400 | 6c0f 000e | 488b 9c24 | b000 0000 | c643 1001 | 488b b424 | b800 0000 
+
+  0x000002aaa3f0c798: ;   {metadata(method data for {method} {0x000002aa80781be0} 'render' '(Lcom/badlogic/gdx/physics/box2d/World;Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/physics/box2d/Box2DDebugRenderer')}
+  0x000002aaa3f0c798: 49b8 4845 | 9480 aa02 | 0000 4983 | 8048 0100 | 0001 4c8b | 8424 c000 | 0000 488b | 9424 b800 
+  0x000002aaa3f0c7b8: 0000 0f1f 
+
+  0x000002aaa3f0c7bc: ;   {optimized virtual_call}
+  0x000002aaa3f0c7bc: 4400 00e8 
+
+  0x000002aaa3f0c7c0: ; ImmutableOopMap {}
+                      ;*invokespecial renderBodies {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.physics.box2d.Box2DDebugRenderer::render@10 (line 78)
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+  0x000002aaa3f0c7c0: 7c4b 9607 
+
+  0x000002aaa3f0c7c4: ;   {other}
+  0x000002aaa3f0c7c4: 0f1f 8400 | b40f 000f | 4881 c4e0 | 0000 005d 
+
+  0x000002aaa3f0c7d4: ;   {poll_return}
+  0x000002aaa3f0c7d4: 493b a758 | 0400 000f | 879b 0200 
+
+  0x000002aaa3f0c7e0: ;   {metadata({method} {0x000002aa80724f70} 'render' '(F)V' in 'com/test_game/main/levels/Level')}
+  0x000002aaa3f0c7e0: 00c3 49ba | 684f 7280 | aa02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x000002aaa3f0c7f8: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c7f8: ffe8 82d0 
+
+  0x000002aaa3f0c7fc: ; ImmutableOopMap {rdx=Oop [144]=Oop }
+                      ;*synchronization entry
+                      ; - com.test_game.main.levels.Level::render@-1 (line 120)
+  0x000002aaa3f0c7fc: 2007 e934 
+
+  0x000002aaa3f0c800: ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x000002aaa3f0c800: f4ff ffe8 
+
+  0x000002aaa3f0c804: ; ImmutableOopMap {rsi=Oop rdi=Oop [144]=Oop }
+                      ;*invokeinterface glClearColor {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@7 (line 120)
+  0x000002aaa3f0c804: 7893 2007 
+
+  0x000002aaa3f0c808: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c808: e873 5a20 
+
+  0x000002aaa3f0c80c: ; ImmutableOopMap {rsi=Oop rdi=Oop [144]=Oop }
+                      ;*invokeinterface glClearColor {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@7 (line 120)
+                      ;   {metadata({method} {0x000002aa806857e8} 'glClearColor' '(FFFF)V' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0c80c: 0749 bae0 | 5768 80aa | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x000002aaa3f0c824: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c824: e857 d020 
+
+  0x000002aaa3f0c828: ; ImmutableOopMap {rsi=Oop [144]=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3GL20::glClearColor@-1 (line 154)
+                      ; - com.test_game.main.levels.Level::render@7 (line 120)
+  0x000002aaa3f0c828: 07e9 9ff4 
+
+  0x000002aaa3f0c82c: ;   {metadata({method} {0x000002aa80622c30} 'glClearColor' '(FFFF)V' in 'org/lwjgl/opengl/GL11')}
+  0x000002aaa3f0c82c: ffff 49ba | 282c 6280 | aa02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x000002aaa3f0c844: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c844: ffe8 36d0 
+
+  0x000002aaa3f0c848: ; ImmutableOopMap {rsi=Oop [144]=Oop }
+                      ;*synchronization entry
+                      ; - org.lwjgl.opengl.GL11::glClearColor@-1 (line 1022)
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3GL20::glClearColor@5 (line 154)
+                      ; - com.test_game.main.levels.Level::render@7 (line 120)
+  0x000002aaa3f0c848: 2007 e9b7 
+
+  0x000002aaa3f0c84c: ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x000002aaa3f0c84c: f4ff ffe8 
+
+  0x000002aaa3f0c850: ; ImmutableOopMap {rdx=Oop [144]=Oop }
+                      ;*invokeinterface glClear {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@18 (line 121)
+  0x000002aaa3f0c850: 2c93 2007 
+
+  0x000002aaa3f0c854: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c854: e827 5a20 
+
+  0x000002aaa3f0c858: ; ImmutableOopMap {rdx=Oop [144]=Oop }
+                      ;*invokeinterface glClear {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@18 (line 121)
+                      ;   {metadata({method} {0x000002aa80685708} 'glClear' '(I)V' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3GL20')}
+  0x000002aaa3f0c858: 0749 ba00 | 5768 80aa | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x000002aaa3f0c870: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c870: e80b d020 
+
+  0x000002aaa3f0c874: ; ImmutableOopMap {[144]=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3GL20::glClear@-1 (line 150)
+                      ; - com.test_game.main.levels.Level::render@18 (line 121)
+  0x000002aaa3f0c874: 07e9 5ef5 
+
+  0x000002aaa3f0c878: ;   {metadata({method} {0x000002aa80622a60} 'glClear' '(I)V' in 'org/lwjgl/opengl/GL11')}
+  0x000002aaa3f0c878: ffff 49ba | 582a 6280 | aa02 0000 | 4c89 5424 | 0848 c704 | 24ff ffff 
+
+  0x000002aaa3f0c890: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c890: ffe8 eacf 
+
+  0x000002aaa3f0c894: ; ImmutableOopMap {[144]=Oop }
+                      ;*synchronization entry
+                      ; - org.lwjgl.opengl.GL11::glClear@-1 (line 992)
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3GL20::glClear@1 (line 150)
+                      ; - com.test_game.main.levels.Level::render@18 (line 121)
+  0x000002aaa3f0c894: 2007 e976 
+
+  0x000002aaa3f0c898: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c898: f5ff ffe8 
+
+  0x000002aaa3f0c89c: ; ImmutableOopMap {rdx=Oop rsi=Oop [144]=Oop }
+                      ;*invokevirtual update {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@27 (line 124)
+  0x000002aaa3f0c89c: e059 2007 
+
+  0x000002aaa3f0c8a0: ;   {metadata({method} {0x000002aa80735cc8} 'update' '()V' in 'com/badlogic/gdx/graphics/OrthographicCamera')}
+  0x000002aaa3f0c8a0: 49ba c05c | 7380 aa02 | 0000 4c89 | 5424 0848 | c704 24ff 
+
+  0x000002aaa3f0c8b4: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c8b4: ffff ffe8 
+
+  0x000002aaa3f0c8b8: ; ImmutableOopMap {rdx=Oop rsi=Oop [144]=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.graphics.OrthographicCamera::update@-1 (line 51)
+                      ; - com.test_game.main.levels.Level::render@27 (line 124)
+  0x000002aaa3f0c8b8: c4cf 2007 | e9dc f5ff 
+
+  0x000002aaa3f0c8c0: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c8c0: ffe8 ba59 
+
+  0x000002aaa3f0c8c4: ; ImmutableOopMap {rdx=Oop rsi=Oop [144]=Oop }
+                      ;*invokevirtual step {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@39 (line 127)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c8c4: 2007 e8b5 
+
+  0x000002aaa3f0c8c8: ; ImmutableOopMap {rdx=Oop rsi=Oop [144]=Oop }
+                      ;*invokevirtual begin {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@50 (line 133)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c8c8: 5920 07e8 
+
+  0x000002aaa3f0c8cc: ; ImmutableOopMap {rdx=Oop rsi=Oop [144]=Oop [152]=Oop }
+                      ;*getfield combined {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.test_game.main.levels.Level::render@61 (line 134)
+  0x000002aaa3f0c8cc: b059 2007 
+
+  0x000002aaa3f0c8d0: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c8d0: e8ab 5920 
+
+  0x000002aaa3f0c8d4: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop [144]=Oop [152]=Oop }
+                      ;*invokevirtual setProjectionMatrix {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+                      ;   {metadata({method} {0x000002aa80698ac0} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/g2d/SpriteBatch')}
+  0x000002aaa3f0c8d4: 0749 bab8 | 8a69 80aa | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x000002aaa3f0c8ec: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c8ec: e88f cf20 
+
+  0x000002aaa3f0c8f0: ; ImmutableOopMap {rdx=Oop rsi=Oop rdi=Oop [144]=Oop [152]=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.graphics.g2d.SpriteBatch::setProjectionMatrix@-1 (line 1043)
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+  0x000002aaa3f0c8f0: 07e9 92f7 
+
+  0x000002aaa3f0c8f4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c8f4: ffff e885 
+
+  0x000002aaa3f0c8f8: ; ImmutableOopMap {rsi=Oop rdi=Oop rdx=Oop [144]=Oop [152]=Oop }
+                      ;*invokevirtual set {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.graphics.g2d.SpriteBatch::setProjectionMatrix@16 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+                      ;   {metadata({method} {0x000002aa8069c040} 'set' '(Lcom/badlogic/gdx/math/Matrix4;)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c8f8: 5920 0749 | ba38 c069 | 80aa 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x000002aaa3f0c910: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c910: ffff e869 
+
+  0x000002aaa3f0c914: ; ImmutableOopMap {rsi=Oop rdi=Oop rdx=Oop [144]=Oop [152]=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.math.Matrix4::set@-1 (line 129)
+                      ; - com.badlogic.gdx.graphics.g2d.SpriteBatch::setProjectionMatrix@16 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+  0x000002aaa3f0c914: cf20 07e9 | 28f8 ffff 
+
+  0x000002aaa3f0c91c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c91c: e85f 5920 
+
+  0x000002aaa3f0c920: ; ImmutableOopMap {rsi=Oop rdx=Oop [144]=Oop [152]=Oop }
+                      ;*getfield val {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.badlogic.gdx.math.Matrix4::set@2 (line 129)
+                      ; - com.badlogic.gdx.graphics.g2d.SpriteBatch::setProjectionMatrix@16 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@64 (line 134)
+                      ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x000002aaa3f0c920: 07e8 5a92 
+
+  0x000002aaa3f0c924: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*invokeinterface getWidth {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@80 (line 135)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c924: 2007 e855 
+
+  0x000002aaa3f0c928: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*invokeinterface getWidth {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@80 (line 135)
+                      ;   {metadata({method} {0x000002aa80679098} 'getWidth' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c928: 5920 0749 | ba90 9067 | 80aa 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x000002aaa3f0c940: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c940: ffff e839 
+
+  0x000002aaa3f0c944: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics::getWidth@-1 (line 247)
+                      ; - com.test_game.main.levels.Level::render@80 (line 135)
+  0x000002aaa3f0c944: cf20 07e9 | 34f9 ffff 
+
+  0x000002aaa3f0c94c: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c94c: e82f 5920 
+
+  0x000002aaa3f0c950: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop rbx=Oop [144]=Oop }
+                      ;*invokevirtual getConfig {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics::getWidth@4 (line 247)
+                      ; - com.test_game.main.levels.Level::render@80 (line 135)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c950: 07e8 2a59 
+
+  0x000002aaa3f0c954: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*getfield hdpiMode {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics::getWidth@7 (line 247)
+                      ; - com.test_game.main.levels.Level::render@80 (line 135)
+                      ;   {runtime_call throw_incompatible_class_change_error Runtime1 stub}
+  0x000002aaa3f0c954: 2007 e825 
+
+  0x000002aaa3f0c958: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*invokeinterface getHeight {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@89 (line 135)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c958: 9220 07e8 
+
+  0x000002aaa3f0c95c: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*invokeinterface getHeight {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@89 (line 135)
+  0x000002aaa3f0c95c: 2059 2007 
+
+  0x000002aaa3f0c960: ;   {metadata({method} {0x000002aa80679168} 'getHeight' '()I' in 'com/badlogic/gdx/backends/lwjgl3/Lwjgl3Graphics')}
+  0x000002aaa3f0c960: 49ba 6091 | 6780 aa02 | 0000 4c89 | 5424 0848 | c704 24ff 
+
+  0x000002aaa3f0c974: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c974: ffff ffe8 
+
+  0x000002aaa3f0c978: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics::getHeight@-1 (line 256)
+                      ; - com.test_game.main.levels.Level::render@89 (line 135)
+  0x000002aaa3f0c978: 04cf 2007 | e90c faff 
+
+  0x000002aaa3f0c980: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c980: ffe8 fa58 
+
+  0x000002aaa3f0c984: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop rbx=Oop [144]=Oop }
+                      ;*invokevirtual getConfig {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics::getHeight@4 (line 256)
+                      ; - com.test_game.main.levels.Level::render@89 (line 135)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c984: 2007 e8f5 
+
+  0x000002aaa3f0c988: ; ImmutableOopMap {rdx=Oop rsi=Oop r8=Oop rdi=Oop [144]=Oop }
+                      ;*getfield hdpiMode {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.badlogic.gdx.backends.lwjgl3.Lwjgl3Graphics::getHeight@7 (line 256)
+                      ; - com.test_game.main.levels.Level::render@89 (line 135)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c988: 5820 07e8 
+
+  0x000002aaa3f0c98c: ; ImmutableOopMap {rsi=Oop r8=Oop [144]=Oop }
+                      ;*invokevirtual draw {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@95 (line 135)
+  0x000002aaa3f0c98c: f058 2007 
+
+  0x000002aaa3f0c990: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c990: e8eb 5820 
+
+  0x000002aaa3f0c994: ; ImmutableOopMap {rdx=Oop rsi=Oop [144]=Oop }
+                      ;*invokevirtual end {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@102 (line 136)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c994: 07e8 e658 
+
+  0x000002aaa3f0c998: ; ImmutableOopMap {rsi=Oop [144]=Oop }
+                      ;*invokevirtual act {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@115 (line 139)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c998: 2007 e8e1 
+
+  0x000002aaa3f0c99c: ; ImmutableOopMap {rdx=Oop rsi=Oop [144]=Oop }
+                      ;*invokevirtual draw {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@122 (line 140)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c99c: 5820 07e8 
+
+  0x000002aaa3f0c9a0: ; ImmutableOopMap {rsi=Oop rdi=Oop }
+                      ;*getfield combined {reexecute=1 rethrow=0 return_oop=0}
+                      ; - (reexecute) com.test_game.main.levels.Level::render@137 (line 143)
+  0x000002aaa3f0c9a0: dc58 2007 
+
+  0x000002aaa3f0c9a4: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c9a4: e8d7 5820 
+
+  0x000002aaa3f0c9a8: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop }
+                      ;*invokevirtual scl {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@142 (line 143)
+                      ;   {metadata({method} {0x000002aa806a0d28} 'scl' '(F)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0c9a8: 0749 ba20 | 0d6a 80aa | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x000002aaa3f0c9c0: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0c9c0: e8bb ce20 
+
+  0x000002aaa3f0c9c4: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.math.Matrix4::scl@-1 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@142 (line 143)
+  0x000002aaa3f0c9c4: 07e9 18fc 
+
+  0x000002aaa3f0c9c8: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c9c8: ffff e8b1 
+
+  0x000002aaa3f0c9cc: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop }
+                      ;*faload {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.math.Matrix4::scl@6 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@142 (line 143)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0c9cc: 5820 07e8 
+
+  0x000002aaa3f0c9d0: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop }
+                      ;*faload {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.math.Matrix4::scl@6 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@142 (line 143)
+  0x000002aaa3f0c9d0: ac58 2007 | 48c7 0424 | 0000 0000 | 4889 5424 
+
+  0x000002aaa3f0c9e0: ;   {runtime_call throw_range_check_failed Runtime1 stub}
+  0x000002aaa3f0c9e0: 08e8 9a4f 
+
+  0x000002aaa3f0c9e4: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop }
+                      ;*faload {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.math.Matrix4::scl@6 (line 1044)
+                      ; - com.test_game.main.levels.Level::render@142 (line 143)
+  0x000002aaa3f0c9e4: 2007 48c7 | 0424 0500 | 0000 4889 
+
+  0x000002aaa3f0c9f0: ;   {runtime_call throw_range_check_failed Runtime1 stub}
+  0x000002aaa3f0c9f0: 5424 08e8 
+
+  0x000002aaa3f0c9f4: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop }
+                      ;*faload {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.math.Matrix4::scl@16 (line 1045)
+                      ; - com.test_game.main.levels.Level::render@142 (line 143)
+  0x000002aaa3f0c9f4: 884f 2007 | 48c7 0424 | 0a00 0000 | 4889 5424 
+
+  0x000002aaa3f0ca04: ;   {runtime_call throw_range_check_failed Runtime1 stub}
+  0x000002aaa3f0ca04: 08e8 764f 
+
+  0x000002aaa3f0ca08: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop }
+                      ;*faload {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.math.Matrix4::scl@27 (line 1046)
+                      ; - com.test_game.main.levels.Level::render@142 (line 143)
+                      ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0ca08: 2007 e871 
+
+  0x000002aaa3f0ca0c: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop }
+                      ;*invokevirtual render {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+                      ;   {metadata({method} {0x000002aa80781be0} 'render' '(Lcom/badlogic/gdx/physics/box2d/World;Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/physics/box2d/Box2DDebugRenderer')}
+  0x000002aaa3f0ca0c: 5820 0749 | bad8 1b78 | 80aa 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x000002aaa3f0ca24: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0ca24: ffff e855 
+
+  0x000002aaa3f0ca28: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.physics.box2d.Box2DDebugRenderer::render@-1 (line 77)
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+  0x000002aaa3f0ca28: ce20 07e9 | 5dfc ffff 
+
+  0x000002aaa3f0ca30: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0ca30: e84b 5820 
+
+  0x000002aaa3f0ca34: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop rbx=Oop }
+                      ;*invokevirtual setProjectionMatrix {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.physics.box2d.Box2DDebugRenderer::render@5 (line 77)
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+                      ;   {metadata({method} {0x000002aa80786050} 'setProjectionMatrix' '(Lcom/badlogic/gdx/math/Matrix4;)V' in 'com/badlogic/gdx/graphics/glutils/ShapeRenderer')}
+  0x000002aaa3f0ca34: 0749 ba48 | 6078 80aa | 0200 004c | 8954 2408 | 48c7 0424 | ffff ffff 
+
+  0x000002aaa3f0ca4c: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0ca4c: e82f ce20 
+
+  0x000002aaa3f0ca50: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop rbx=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.graphics.glutils.ShapeRenderer::setProjectionMatrix@-1 (line 145)
+                      ; - com.badlogic.gdx.physics.box2d.Box2DDebugRenderer::render@5 (line 77)
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+  0x000002aaa3f0ca50: 07e9 8efc 
+
+  0x000002aaa3f0ca54: ;   {runtime_call throw_null_pointer_exception Runtime1 stub}
+  0x000002aaa3f0ca54: ffff e825 
+
+  0x000002aaa3f0ca58: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop rbx=Oop rax=Oop }
+                      ;*invokevirtual set {reexecute=0 rethrow=0 return_oop=0}
+                      ; - com.badlogic.gdx.graphics.glutils.ShapeRenderer::setProjectionMatrix@5 (line 145)
+                      ; - com.badlogic.gdx.physics.box2d.Box2DDebugRenderer::render@5 (line 77)
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+                      ;   {metadata({method} {0x000002aa8069c040} 'set' '(Lcom/badlogic/gdx/math/Matrix4;)Lcom/badlogic/gdx/math/Matrix4;' in 'com/badlogic/gdx/math/Matrix4')}
+  0x000002aaa3f0ca58: 5820 0749 | ba38 c069 | 80aa 0200 | 004c 8954 | 2408 48c7 | 0424 ffff 
+
+  0x000002aaa3f0ca70: ;   {runtime_call counter_overflow Runtime1 stub}
+  0x000002aaa3f0ca70: ffff e809 
+
+  0x000002aaa3f0ca74: ; ImmutableOopMap {rsi=Oop rdi=Oop r8=Oop rdx=Oop rbx=Oop rax=Oop }
+                      ;*synchronization entry
+                      ; - com.badlogic.gdx.math.Matrix4::set@-1 (line 129)
+                      ; - com.badlogic.gdx.graphics.glutils.ShapeRenderer::setProjectionMatrix@5 (line 145)
+                      ; - com.badlogic.gdx.physics.box2d.Box2DDebugRenderer::render@5 (line 77)
+                      ; - com.test_game.main.levels.Level::render@145 (line 143)
+  0x000002aaa3f0ca74: ce20 07e9 | c4fc ffff 
+
+  0x000002aaa3f0ca7c: ;   {internal_word}
+  0x000002aaa3f0ca7c: 49ba d4c7 | f0a3 aa02 | 0000 4d89 | 9770 0400 
+
+  0x000002aaa3f0ca8c: ;   {runtime_call SafepointBlob}
+  0x000002aaa3f0ca8c: 00e9 6e8c | 1407 498b | 8708 0500 | 0049 c787 | 0805 0000 | 0000 0000 | 49c7 8710 | 0500 0000 
+  0x000002aaa3f0caac: 0000 0048 | 81c4 e000 
+
+  0x000002aaa3f0cab4: ;   {runtime_call unwind_exception Runtime1 stub}
+  0x000002aaa3f0cab4: 0000 5de9 | c448 2007 | f4f4 f4f4 
+[Stub Code]
+  0x000002aaa3f0cac0: ;   {no_reloc}
+  0x000002aaa3f0cac0: 0f1f 4400 
+
+  0x000002aaa3f0cac4: ;   {static_stub}
+  0x000002aaa3f0cac4: 0048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cacc: ;   {runtime_call}
+  0x000002aaa3f0cacc: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cad4: ;   {static_stub}
+  0x000002aaa3f0cad4: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cadc: ;   {runtime_call}
+  0x000002aaa3f0cadc: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cae4: ;   {static_stub}
+  0x000002aaa3f0cae4: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0caec: ;   {runtime_call}
+  0x000002aaa3f0caec: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0caf4: ;   {static_stub}
+  0x000002aaa3f0caf4: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cafc: ;   {runtime_call}
+  0x000002aaa3f0cafc: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb04: ;   {static_stub}
+  0x000002aaa3f0cb04: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cb0c: ;   {runtime_call}
+  0x000002aaa3f0cb0c: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb14: ;   {static_stub}
+  0x000002aaa3f0cb14: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cb1c: ;   {runtime_call}
+  0x000002aaa3f0cb1c: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb24: ;   {static_stub}
+  0x000002aaa3f0cb24: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cb2c: ;   {runtime_call}
+  0x000002aaa3f0cb2c: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb34: ;   {static_stub}
+  0x000002aaa3f0cb34: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cb3c: ;   {runtime_call}
+  0x000002aaa3f0cb3c: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb44: ;   {static_stub}
+  0x000002aaa3f0cb44: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cb4c: ;   {runtime_call}
+  0x000002aaa3f0cb4c: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb54: ;   {static_stub}
+  0x000002aaa3f0cb54: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cb5c: ;   {runtime_call}
+  0x000002aaa3f0cb5c: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb64: ;   {static_stub}
+  0x000002aaa3f0cb64: 9048 bb00 | 0000 0000 
+
+  0x000002aaa3f0cb6c: ;   {runtime_call}
+  0x000002aaa3f0cb6c: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cb74: ;   {static_stub}
+  0x000002aaa3f0cb74: 48bb 0000 | 0000 0000 
+
+  0x000002aaa3f0cb7c: ;   {runtime_call}
+  0x000002aaa3f0cb7c: 0000 e9fb 
+
+  0x000002aaa3f0cb80: ;   {static_stub}
+  0x000002aaa3f0cb80: ffff ff48 | bb00 0000 | 0000 0000 
+
+  0x000002aaa3f0cb8c: ;   {runtime_call}
+  0x000002aaa3f0cb8c: 00e9 fbff 
+
+  0x000002aaa3f0cb90: ;   {static_stub}
+  0x000002aaa3f0cb90: ffff 48bb | 0000 0000 | 0000 0000 
+
+  0x000002aaa3f0cb9c: ;   {runtime_call}
+  0x000002aaa3f0cb9c: e9fb ffff 
+
+  0x000002aaa3f0cba0: ;   {static_stub}
+  0x000002aaa3f0cba0: ff48 bb00 | 0000 0000 
+
+  0x000002aaa3f0cba8: ;   {runtime_call}
+  0x000002aaa3f0cba8: 0000 00e9 | fbff ffff 
+
+  0x000002aaa3f0cbb0: ;   {static_stub}
+  0x000002aaa3f0cbb0: 48bb 981d | 7880 aa02 
+
+  0x000002aaa3f0cbb8: ;   {runtime_call I2C/C2I adapters}
+  0x000002aaa3f0cbb8: 0000 e928 
+
+  0x000002aaa3f0cbbc: ;   {runtime_call handle_exception_from_callee Runtime1 stub}
+  0x000002aaa3f0cbbc: 7614 07e8 | 3c82 2007 
+
+  0x000002aaa3f0cbc4: ;   {external_word}
+  0x000002aaa3f0cbc4: 48b9 b028 | c00b fb7f | 0000 4883 
+
+  0x000002aaa3f0cbd0: ;   {runtime_call}
+  0x000002aaa3f0cbd0: e4f0 48b8 | 3099 870b | fb7f 0000 
+
+  0x000002aaa3f0cbdc: ;   {section_word}
+  0x000002aaa3f0cbdc: ffd0 f449 | badf cbf0 | a3aa 0200 
+
+  0x000002aaa3f0cbe8: ;   {runtime_call DeoptimizationBlob}
+  0x000002aaa3f0cbe8: 0041 52e9 | b07d 1407 
+[/MachCode]
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x000002aafd415340, length=13, elements={
+0x000002aa99ed04a0, 0x000002aabb80f590, 0x000002aabb8102b0, 0x000002aabb8138c0,
+0x000002aabb8158f0, 0x000002aabb817f70, 0x000002aabb818710, 0x000002aabb819f20,
+0x000002aabba58090, 0x000002aabbc26ea0, 0x000002aabbc37510, 0x000002aa843858b0,
+0x000002aa97615aa0
+}
+
+Java Threads: ( => current thread )
+=>0x000002aa99ed04a0 JavaThread "main"                              [_thread_in_native, id=16364, stack(0x000000f9d2f00000,0x000000f9d3000000) (1024K)]
+  0x000002aabb80f590 JavaThread "Reference Handler"          daemon [_thread_blocked, id=21380, stack(0x000000f9d3700000,0x000000f9d3800000) (1024K)]
+  0x000002aabb8102b0 JavaThread "Finalizer"                  daemon [_thread_blocked, id=7328, stack(0x000000f9d3800000,0x000000f9d3900000) (1024K)]
+  0x000002aabb8138c0 JavaThread "Signal Dispatcher"          daemon [_thread_blocked, id=3620, stack(0x000000f9d3900000,0x000000f9d3a00000) (1024K)]
+  0x000002aabb8158f0 JavaThread "Attach Listener"            daemon [_thread_blocked, id=25024, stack(0x000000f9d3a00000,0x000000f9d3b00000) (1024K)]
+  0x000002aabb817f70 JavaThread "Service Thread"             daemon [_thread_blocked, id=10840, stack(0x000000f9d3b00000,0x000000f9d3c00000) (1024K)]
+  0x000002aabb818710 JavaThread "Monitor Deflation Thread"   daemon [_thread_blocked, id=2296, stack(0x000000f9d3c00000,0x000000f9d3d00000) (1024K)]
+  0x000002aabb819f20 JavaThread "C2 CompilerThread0"         daemon [_thread_blocked, id=22440, stack(0x000000f9d3d00000,0x000000f9d3e00000) (1024K)]
+  0x000002aabba58090 JavaThread "C1 CompilerThread0"         daemon [_thread_blocked, id=12688, stack(0x000000f9d3e00000,0x000000f9d3f00000) (1024K)]
+  0x000002aabbc26ea0 JavaThread "Notification Thread"        daemon [_thread_blocked, id=9696, stack(0x000000f9d4000000,0x000000f9d4100000) (1024K)]
+  0x000002aabbc37510 JavaThread "Common-Cleaner"             daemon [_thread_blocked, id=6104, stack(0x000000f9d4100000,0x000000f9d4200000) (1024K)]
+  0x000002aa843858b0 JavaThread "Thread-0"                   daemon [_thread_blocked, id=24996, stack(0x000000f9d4200000,0x000000f9d4300000) (1024K)]
+  0x000002aa97615aa0 JavaThread "LWJGL3 Timer"               daemon [_thread_blocked, id=28260, stack(0x000000f9d5e00000,0x000000f9d5f00000) (1024K)]
+Total: 13
+
+Other Threads:
+  0x000002aabb7f3a00 VMThread "VM Thread"                           [id=1960, stack(0x000000f9d3600000,0x000000f9d3700000) (1024K)]
+  0x000002aabb7dadc0 WatcherThread "VM Periodic Task Thread"        [id=25016, stack(0x000000f9d3500000,0x000000f9d3600000) (1024K)]
+  0x000002aa9a114d20 WorkerThread "GC Thread#0"                     [id=21348, stack(0x000000f9d3000000,0x000000f9d3100000) (1024K)]
+  0x000002aafd162660 WorkerThread "GC Thread#1"                     [id=24168, stack(0x000000f9d5500000,0x000000f9d5600000) (1024K)]
+  0x000002aa970d6320 WorkerThread "GC Thread#2"                     [id=11408, stack(0x000000f9d5600000,0x000000f9d5700000) (1024K)]
+  0x000002aa970d66d0 WorkerThread "GC Thread#3"                     [id=10396, stack(0x000000f9d5700000,0x000000f9d5800000) (1024K)]
+  0x000002aa974a2040 WorkerThread "GC Thread#4"                     [id=23028, stack(0x000000f9d5800000,0x000000f9d5900000) (1024K)]
+  0x000002aa97518f00 WorkerThread "GC Thread#5"                     [id=28212, stack(0x000000f9d5900000,0x000000f9d5a00000) (1024K)]
+  0x000002aa97519ac0 WorkerThread "GC Thread#6"                     [id=14060, stack(0x000000f9d5a00000,0x000000f9d5b00000) (1024K)]
+  0x000002aa97529eb0 WorkerThread "GC Thread#7"                     [id=1252, stack(0x000000f9d5b00000,0x000000f9d5c00000) (1024K)]
+  0x000002aa9a125540 ConcurrentGCThread "G1 Main Marker"            [id=27700, stack(0x000000f9d3100000,0x000000f9d3200000) (1024K)]
+  0x000002aa9a126050 WorkerThread "G1 Conc#0"                       [id=26544, stack(0x000000f9d3200000,0x000000f9d3300000) (1024K)]
+  0x000002aabb6acdb0 ConcurrentGCThread "G1 Refine#0"               [id=27652, stack(0x000000f9d3300000,0x000000f9d3400000) (1024K)]
+  0x000002aabb6ad930 ConcurrentGCThread "G1 Service"                [id=10704, stack(0x000000f9d3400000,0x000000f9d3500000) (1024K)]
+Total: 14
+
+Threads with active compile tasks:
+Total: 0
+
+VM state: not at safepoint (normal execution)
+
+VM Mutex/Monitor currently owned by a thread: None
+
+Heap address: 0x0000000709800000, size: 3944 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x000002aabc000000-0x000002aabcc60000-0x000002aabcc60000), size 12976128, SharedBaseAddress: 0x000002aabc000000, ArchiveRelocationMode: 1.
+Compressed class space mapped at: 0x000002aabd000000-0x000002aafd000000, reserved size: 1073741824
+Narrow klass base: 0x000002aabc000000, Narrow klass shift: 0, Narrow klass range: 0x41000000
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 16 size 48 Howl #buckets 8 coarsen threshold 3686 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 4096
+ CPUs: 16 total, 16 available
+ Memory: 15773M
+ Large Page Support: Disabled
+ NUMA Support: Disabled
+ Compressed Oops: Enabled (Zero based)
+ Heap Region Size: 2M
+ Heap Min Capacity: 8M
+ Heap Initial Capacity: 248M
+ Heap Max Capacity: 3944M
+ Pre-touch: Disabled
+ Parallel Workers: 13
+ Concurrent Workers: 3
+ Concurrent Refinement Workers: 13
+ Periodic GC: Disabled
+
+Heap:
+ garbage-first heap   total reserved 4038656K, committed 253952K, used 15748K [0x0000000709800000, 0x0000000800000000)
+  region size 2048K, 10 young (20480K), 2 survivors (4096K)
+ Metaspace       used 8617K, committed 8832K, reserved 1114112K
+  class space    used 669K, committed 768K, reserved 1048576K
+
+Heap Regions: E=young(eden), S=young(survivor), O=old, HS=humongous(starts), HC=humongous(continues), CS=collection set, F=free, TAMS=top-at-mark-start, PB=parsable bottom
+|   0|0x0000000709800000, 0x0000000709800000, 0x0000000709a00000|  0%| F|  |TAMS 0x0000000709800000| PB 0x0000000709800000| Untracked |  0
+|   1|0x0000000709a00000, 0x0000000709a00000, 0x0000000709c00000|  0%| F|  |TAMS 0x0000000709a00000| PB 0x0000000709a00000| Untracked |  0
+|   2|0x0000000709c00000, 0x0000000709c00000, 0x0000000709e00000|  0%| F|  |TAMS 0x0000000709c00000| PB 0x0000000709c00000| Untracked |  0
+|   3|0x0000000709e00000, 0x0000000709e00000, 0x000000070a000000|  0%| F|  |TAMS 0x0000000709e00000| PB 0x0000000709e00000| Untracked |  0
+|   4|0x000000070a000000, 0x000000070a000000, 0x000000070a200000|  0%| F|  |TAMS 0x000000070a000000| PB 0x000000070a000000| Untracked |  0
+|   5|0x000000070a200000, 0x000000070a200000, 0x000000070a400000|  0%| F|  |TAMS 0x000000070a200000| PB 0x000000070a200000| Untracked |  0
+|   6|0x000000070a400000, 0x000000070a400000, 0x000000070a600000|  0%| F|  |TAMS 0x000000070a400000| PB 0x000000070a400000| Untracked |  0
+|   7|0x000000070a600000, 0x000000070a600000, 0x000000070a800000|  0%| F|  |TAMS 0x000000070a600000| PB 0x000000070a600000| Untracked |  0
+|   8|0x000000070a800000, 0x000000070a800000, 0x000000070aa00000|  0%| F|  |TAMS 0x000000070a800000| PB 0x000000070a800000| Untracked |  0
+|   9|0x000000070aa00000, 0x000000070aa00000, 0x000000070ac00000|  0%| F|  |TAMS 0x000000070aa00000| PB 0x000000070aa00000| Untracked |  0
+|  10|0x000000070ac00000, 0x000000070ac00000, 0x000000070ae00000|  0%| F|  |TAMS 0x000000070ac00000| PB 0x000000070ac00000| Untracked |  0
+|  11|0x000000070ae00000, 0x000000070ae00000, 0x000000070b000000|  0%| F|  |TAMS 0x000000070ae00000| PB 0x000000070ae00000| Untracked |  0
+|  12|0x000000070b000000, 0x000000070b000000, 0x000000070b200000|  0%| F|  |TAMS 0x000000070b000000| PB 0x000000070b000000| Untracked |  0
+|  13|0x000000070b200000, 0x000000070b200000, 0x000000070b400000|  0%| F|  |TAMS 0x000000070b200000| PB 0x000000070b200000| Untracked |  0
+|  14|0x000000070b400000, 0x000000070b400000, 0x000000070b600000|  0%| F|  |TAMS 0x000000070b400000| PB 0x000000070b400000| Untracked |  0
+|  15|0x000000070b600000, 0x000000070b600000, 0x000000070b800000|  0%| F|  |TAMS 0x000000070b600000| PB 0x000000070b600000| Untracked |  0
+|  16|0x000000070b800000, 0x000000070b800000, 0x000000070ba00000|  0%| F|  |TAMS 0x000000070b800000| PB 0x000000070b800000| Untracked |  0
+|  17|0x000000070ba00000, 0x000000070ba00000, 0x000000070bc00000|  0%| F|  |TAMS 0x000000070ba00000| PB 0x000000070ba00000| Untracked |  0
+|  18|0x000000070bc00000, 0x000000070bc00000, 0x000000070be00000|  0%| F|  |TAMS 0x000000070bc00000| PB 0x000000070bc00000| Untracked |  0
+|  19|0x000000070be00000, 0x000000070be00000, 0x000000070c000000|  0%| F|  |TAMS 0x000000070be00000| PB 0x000000070be00000| Untracked |  0
+|  20|0x000000070c000000, 0x000000070c000000, 0x000000070c200000|  0%| F|  |TAMS 0x000000070c000000| PB 0x000000070c000000| Untracked |  0
+|  21|0x000000070c200000, 0x000000070c200000, 0x000000070c400000|  0%| F|  |TAMS 0x000000070c200000| PB 0x000000070c200000| Untracked |  0
+|  22|0x000000070c400000, 0x000000070c400000, 0x000000070c600000|  0%| F|  |TAMS 0x000000070c400000| PB 0x000000070c400000| Untracked |  0
+|  23|0x000000070c600000, 0x000000070c600000, 0x000000070c800000|  0%| F|  |TAMS 0x000000070c600000| PB 0x000000070c600000| Untracked |  0
+|  24|0x000000070c800000, 0x000000070c800000, 0x000000070ca00000|  0%| F|  |TAMS 0x000000070c800000| PB 0x000000070c800000| Untracked |  0
+|  25|0x000000070ca00000, 0x000000070ca00000, 0x000000070cc00000|  0%| F|  |TAMS 0x000000070ca00000| PB 0x000000070ca00000| Untracked |  0
+|  26|0x000000070cc00000, 0x000000070cc00000, 0x000000070ce00000|  0%| F|  |TAMS 0x000000070cc00000| PB 0x000000070cc00000| Untracked |  0
+|  27|0x000000070ce00000, 0x000000070ce00000, 0x000000070d000000|  0%| F|  |TAMS 0x000000070ce00000| PB 0x000000070ce00000| Untracked |  0
+|  28|0x000000070d000000, 0x000000070d000000, 0x000000070d200000|  0%| F|  |TAMS 0x000000070d000000| PB 0x000000070d000000| Untracked |  0
+|  29|0x000000070d200000, 0x000000070d200000, 0x000000070d400000|  0%| F|  |TAMS 0x000000070d200000| PB 0x000000070d200000| Untracked |  0
+|  30|0x000000070d400000, 0x000000070d400000, 0x000000070d600000|  0%| F|  |TAMS 0x000000070d400000| PB 0x000000070d400000| Untracked |  0
+|  31|0x000000070d600000, 0x000000070d600000, 0x000000070d800000|  0%| F|  |TAMS 0x000000070d600000| PB 0x000000070d600000| Untracked |  0
+|  32|0x000000070d800000, 0x000000070d800000, 0x000000070da00000|  0%| F|  |TAMS 0x000000070d800000| PB 0x000000070d800000| Untracked |  0
+|  33|0x000000070da00000, 0x000000070da00000, 0x000000070dc00000|  0%| F|  |TAMS 0x000000070da00000| PB 0x000000070da00000| Untracked |  0
+|  34|0x000000070dc00000, 0x000000070dc00000, 0x000000070de00000|  0%| F|  |TAMS 0x000000070dc00000| PB 0x000000070dc00000| Untracked |  0
+|  35|0x000000070de00000, 0x000000070de00000, 0x000000070e000000|  0%| F|  |TAMS 0x000000070de00000| PB 0x000000070de00000| Untracked |  0
+|  36|0x000000070e000000, 0x000000070e000000, 0x000000070e200000|  0%| F|  |TAMS 0x000000070e000000| PB 0x000000070e000000| Untracked |  0
+|  37|0x000000070e200000, 0x000000070e200000, 0x000000070e400000|  0%| F|  |TAMS 0x000000070e200000| PB 0x000000070e200000| Untracked |  0
+|  38|0x000000070e400000, 0x000000070e400000, 0x000000070e600000|  0%| F|  |TAMS 0x000000070e400000| PB 0x000000070e400000| Untracked |  0
+|  39|0x000000070e600000, 0x000000070e600000, 0x000000070e800000|  0%| F|  |TAMS 0x000000070e600000| PB 0x000000070e600000| Untracked |  0
+|  40|0x000000070e800000, 0x000000070e800000, 0x000000070ea00000|  0%| F|  |TAMS 0x000000070e800000| PB 0x000000070e800000| Untracked |  0
+|  41|0x000000070ea00000, 0x000000070ea00000, 0x000000070ec00000|  0%| F|  |TAMS 0x000000070ea00000| PB 0x000000070ea00000| Untracked |  0
+|  42|0x000000070ec00000, 0x000000070ec00000, 0x000000070ee00000|  0%| F|  |TAMS 0x000000070ec00000| PB 0x000000070ec00000| Untracked |  0
+|  43|0x000000070ee00000, 0x000000070ee00000, 0x000000070f000000|  0%| F|  |TAMS 0x000000070ee00000| PB 0x000000070ee00000| Untracked |  0
+|  44|0x000000070f000000, 0x000000070f000000, 0x000000070f200000|  0%| F|  |TAMS 0x000000070f000000| PB 0x000000070f000000| Untracked |  0
+|  45|0x000000070f200000, 0x000000070f200000, 0x000000070f400000|  0%| F|  |TAMS 0x000000070f200000| PB 0x000000070f200000| Untracked |  0
+|  46|0x000000070f400000, 0x000000070f400000, 0x000000070f600000|  0%| F|  |TAMS 0x000000070f400000| PB 0x000000070f400000| Untracked |  0
+|  47|0x000000070f600000, 0x000000070f600000, 0x000000070f800000|  0%| F|  |TAMS 0x000000070f600000| PB 0x000000070f600000| Untracked |  0
+|  48|0x000000070f800000, 0x000000070f800000, 0x000000070fa00000|  0%| F|  |TAMS 0x000000070f800000| PB 0x000000070f800000| Untracked |  0
+|  49|0x000000070fa00000, 0x000000070fa00000, 0x000000070fc00000|  0%| F|  |TAMS 0x000000070fa00000| PB 0x000000070fa00000| Untracked |  0
+|  50|0x000000070fc00000, 0x000000070fc00000, 0x000000070fe00000|  0%| F|  |TAMS 0x000000070fc00000| PB 0x000000070fc00000| Untracked |  0
+|  51|0x000000070fe00000, 0x000000070fe00000, 0x0000000710000000|  0%| F|  |TAMS 0x000000070fe00000| PB 0x000000070fe00000| Untracked |  0
+|  52|0x0000000710000000, 0x0000000710000000, 0x0000000710200000|  0%| F|  |TAMS 0x0000000710000000| PB 0x0000000710000000| Untracked |  0
+|  53|0x0000000710200000, 0x0000000710200000, 0x0000000710400000|  0%| F|  |TAMS 0x0000000710200000| PB 0x0000000710200000| Untracked |  0
+|  54|0x0000000710400000, 0x0000000710400000, 0x0000000710600000|  0%| F|  |TAMS 0x0000000710400000| PB 0x0000000710400000| Untracked |  0
+|  55|0x0000000710600000, 0x0000000710600000, 0x0000000710800000|  0%| F|  |TAMS 0x0000000710600000| PB 0x0000000710600000| Untracked |  0
+|  56|0x0000000710800000, 0x0000000710800000, 0x0000000710a00000|  0%| F|  |TAMS 0x0000000710800000| PB 0x0000000710800000| Untracked |  0
+|  57|0x0000000710a00000, 0x0000000710a00000, 0x0000000710c00000|  0%| F|  |TAMS 0x0000000710a00000| PB 0x0000000710a00000| Untracked |  0
+|  58|0x0000000710c00000, 0x0000000710c00000, 0x0000000710e00000|  0%| F|  |TAMS 0x0000000710c00000| PB 0x0000000710c00000| Untracked |  0
+|  59|0x0000000710e00000, 0x0000000710e00000, 0x0000000711000000|  0%| F|  |TAMS 0x0000000710e00000| PB 0x0000000710e00000| Untracked |  0
+|  60|0x0000000711000000, 0x0000000711000000, 0x0000000711200000|  0%| F|  |TAMS 0x0000000711000000| PB 0x0000000711000000| Untracked |  0
+|  61|0x0000000711200000, 0x0000000711200000, 0x0000000711400000|  0%| F|  |TAMS 0x0000000711200000| PB 0x0000000711200000| Untracked |  0
+|  62|0x0000000711400000, 0x0000000711400000, 0x0000000711600000|  0%| F|  |TAMS 0x0000000711400000| PB 0x0000000711400000| Untracked |  0
+|  63|0x0000000711600000, 0x0000000711600000, 0x0000000711800000|  0%| F|  |TAMS 0x0000000711600000| PB 0x0000000711600000| Untracked |  0
+|  64|0x0000000711800000, 0x0000000711800000, 0x0000000711a00000|  0%| F|  |TAMS 0x0000000711800000| PB 0x0000000711800000| Untracked |  0
+|  65|0x0000000711a00000, 0x0000000711a00000, 0x0000000711c00000|  0%| F|  |TAMS 0x0000000711a00000| PB 0x0000000711a00000| Untracked |  0
+|  66|0x0000000711c00000, 0x0000000711c00000, 0x0000000711e00000|  0%| F|  |TAMS 0x0000000711c00000| PB 0x0000000711c00000| Untracked |  0
+|  67|0x0000000711e00000, 0x0000000711e00000, 0x0000000712000000|  0%| F|  |TAMS 0x0000000711e00000| PB 0x0000000711e00000| Untracked |  0
+|  68|0x0000000712000000, 0x0000000712000000, 0x0000000712200000|  0%| F|  |TAMS 0x0000000712000000| PB 0x0000000712000000| Untracked |  0
+|  69|0x0000000712200000, 0x0000000712200000, 0x0000000712400000|  0%| F|  |TAMS 0x0000000712200000| PB 0x0000000712200000| Untracked |  0
+|  70|0x0000000712400000, 0x0000000712400000, 0x0000000712600000|  0%| F|  |TAMS 0x0000000712400000| PB 0x0000000712400000| Untracked |  0
+|  71|0x0000000712600000, 0x0000000712600000, 0x0000000712800000|  0%| F|  |TAMS 0x0000000712600000| PB 0x0000000712600000| Untracked |  0
+|  72|0x0000000712800000, 0x0000000712800000, 0x0000000712a00000|  0%| F|  |TAMS 0x0000000712800000| PB 0x0000000712800000| Untracked |  0
+|  73|0x0000000712a00000, 0x0000000712a00000, 0x0000000712c00000|  0%| F|  |TAMS 0x0000000712a00000| PB 0x0000000712a00000| Untracked |  0
+|  74|0x0000000712c00000, 0x0000000712c00000, 0x0000000712e00000|  0%| F|  |TAMS 0x0000000712c00000| PB 0x0000000712c00000| Untracked |  0
+|  75|0x0000000712e00000, 0x0000000712e00000, 0x0000000713000000|  0%| F|  |TAMS 0x0000000712e00000| PB 0x0000000712e00000| Untracked |  0
+|  76|0x0000000713000000, 0x0000000713000000, 0x0000000713200000|  0%| F|  |TAMS 0x0000000713000000| PB 0x0000000713000000| Untracked |  0
+|  77|0x0000000713200000, 0x0000000713200000, 0x0000000713400000|  0%| F|  |TAMS 0x0000000713200000| PB 0x0000000713200000| Untracked |  0
+|  78|0x0000000713400000, 0x0000000713400000, 0x0000000713600000|  0%| F|  |TAMS 0x0000000713400000| PB 0x0000000713400000| Untracked |  0
+|  79|0x0000000713600000, 0x0000000713600000, 0x0000000713800000|  0%| F|  |TAMS 0x0000000713600000| PB 0x0000000713600000| Untracked |  0
+|  80|0x0000000713800000, 0x0000000713800000, 0x0000000713a00000|  0%| F|  |TAMS 0x0000000713800000| PB 0x0000000713800000| Untracked |  0
+|  81|0x0000000713a00000, 0x0000000713a00000, 0x0000000713c00000|  0%| F|  |TAMS 0x0000000713a00000| PB 0x0000000713a00000| Untracked |  0
+|  82|0x0000000713c00000, 0x0000000713c00000, 0x0000000713e00000|  0%| F|  |TAMS 0x0000000713c00000| PB 0x0000000713c00000| Untracked |  0
+|  83|0x0000000713e00000, 0x0000000713e00000, 0x0000000714000000|  0%| F|  |TAMS 0x0000000713e00000| PB 0x0000000713e00000| Untracked |  0
+|  84|0x0000000714000000, 0x0000000714000000, 0x0000000714200000|  0%| F|  |TAMS 0x0000000714000000| PB 0x0000000714000000| Untracked |  0
+|  85|0x0000000714200000, 0x0000000714200000, 0x0000000714400000|  0%| F|  |TAMS 0x0000000714200000| PB 0x0000000714200000| Untracked |  0
+|  86|0x0000000714400000, 0x0000000714400000, 0x0000000714600000|  0%| F|  |TAMS 0x0000000714400000| PB 0x0000000714400000| Untracked |  0
+|  87|0x0000000714600000, 0x0000000714600000, 0x0000000714800000|  0%| F|  |TAMS 0x0000000714600000| PB 0x0000000714600000| Untracked |  0
+|  88|0x0000000714800000, 0x0000000714800000, 0x0000000714a00000|  0%| F|  |TAMS 0x0000000714800000| PB 0x0000000714800000| Untracked |  0
+|  89|0x0000000714a00000, 0x0000000714a00000, 0x0000000714c00000|  0%| F|  |TAMS 0x0000000714a00000| PB 0x0000000714a00000| Untracked |  0
+|  90|0x0000000714c00000, 0x0000000714c00000, 0x0000000714e00000|  0%| F|  |TAMS 0x0000000714c00000| PB 0x0000000714c00000| Untracked |  0
+|  91|0x0000000714e00000, 0x0000000714e00000, 0x0000000715000000|  0%| F|  |TAMS 0x0000000714e00000| PB 0x0000000714e00000| Untracked |  0
+|  92|0x0000000715000000, 0x0000000715000000, 0x0000000715200000|  0%| F|  |TAMS 0x0000000715000000| PB 0x0000000715000000| Untracked |  0
+|  93|0x0000000715200000, 0x0000000715200000, 0x0000000715400000|  0%| F|  |TAMS 0x0000000715200000| PB 0x0000000715200000| Untracked |  0
+|  94|0x0000000715400000, 0x0000000715400000, 0x0000000715600000|  0%| F|  |TAMS 0x0000000715400000| PB 0x0000000715400000| Untracked |  0
+|  95|0x0000000715600000, 0x0000000715600000, 0x0000000715800000|  0%| F|  |TAMS 0x0000000715600000| PB 0x0000000715600000| Untracked |  0
+|  96|0x0000000715800000, 0x0000000715800000, 0x0000000715a00000|  0%| F|  |TAMS 0x0000000715800000| PB 0x0000000715800000| Untracked |  0
+|  97|0x0000000715a00000, 0x0000000715a00000, 0x0000000715c00000|  0%| F|  |TAMS 0x0000000715a00000| PB 0x0000000715a00000| Untracked |  0
+|  98|0x0000000715c00000, 0x0000000715c00000, 0x0000000715e00000|  0%| F|  |TAMS 0x0000000715c00000| PB 0x0000000715c00000| Untracked |  0
+|  99|0x0000000715e00000, 0x0000000715e00000, 0x0000000716000000|  0%| F|  |TAMS 0x0000000715e00000| PB 0x0000000715e00000| Untracked |  0
+| 100|0x0000000716000000, 0x0000000716000000, 0x0000000716200000|  0%| F|  |TAMS 0x0000000716000000| PB 0x0000000716000000| Untracked |  0
+| 101|0x0000000716200000, 0x0000000716200000, 0x0000000716400000|  0%| F|  |TAMS 0x0000000716200000| PB 0x0000000716200000| Untracked |  0
+| 102|0x0000000716400000, 0x0000000716400000, 0x0000000716600000|  0%| F|  |TAMS 0x0000000716400000| PB 0x0000000716400000| Untracked |  0
+| 103|0x0000000716600000, 0x0000000716600000, 0x0000000716800000|  0%| F|  |TAMS 0x0000000716600000| PB 0x0000000716600000| Untracked |  0
+| 104|0x0000000716800000, 0x0000000716800000, 0x0000000716a00000|  0%| F|  |TAMS 0x0000000716800000| PB 0x0000000716800000| Untracked |  0
+| 105|0x0000000716a00000, 0x0000000716a00000, 0x0000000716c00000|  0%| F|  |TAMS 0x0000000716a00000| PB 0x0000000716a00000| Untracked |  0
+| 106|0x0000000716c00000, 0x0000000716c00000, 0x0000000716e00000|  0%| F|  |TAMS 0x0000000716c00000| PB 0x0000000716c00000| Untracked |  0
+| 107|0x0000000716e00000, 0x0000000716e00000, 0x0000000717000000|  0%| F|  |TAMS 0x0000000716e00000| PB 0x0000000716e00000| Untracked |  0
+| 108|0x0000000717000000, 0x0000000717000000, 0x0000000717200000|  0%| F|  |TAMS 0x0000000717000000| PB 0x0000000717000000| Untracked |  0
+| 109|0x0000000717200000, 0x0000000717200000, 0x0000000717400000|  0%| F|  |TAMS 0x0000000717200000| PB 0x0000000717200000| Untracked |  0
+| 110|0x0000000717400000, 0x0000000717561398, 0x0000000717600000| 68%| S|CS|TAMS 0x0000000717400000| PB 0x0000000717400000| Complete |  0
+| 111|0x0000000717600000, 0x0000000717800000, 0x0000000717800000|100%| S|CS|TAMS 0x0000000717600000| PB 0x0000000717600000| Complete |  0
+| 112|0x0000000717800000, 0x0000000717800000, 0x0000000717a00000|  0%| F|  |TAMS 0x0000000717800000| PB 0x0000000717800000| Untracked |  0
+| 113|0x0000000717a00000, 0x0000000717a00000, 0x0000000717c00000|  0%| F|  |TAMS 0x0000000717a00000| PB 0x0000000717a00000| Untracked |  0
+| 114|0x0000000717c00000, 0x0000000717c00000, 0x0000000717e00000|  0%| F|  |TAMS 0x0000000717c00000| PB 0x0000000717c00000| Untracked |  0
+| 115|0x0000000717e00000, 0x0000000717e00000, 0x0000000718000000|  0%| F|  |TAMS 0x0000000717e00000| PB 0x0000000717e00000| Untracked |  0
+| 116|0x0000000718000000, 0x00000007180629a8, 0x0000000718200000| 19%| E|  |TAMS 0x0000000718000000| PB 0x0000000718000000| Complete |  0
+| 117|0x0000000718200000, 0x0000000718400000, 0x0000000718400000|100%| E|CS|TAMS 0x0000000718200000| PB 0x0000000718200000| Complete |  0
+| 118|0x0000000718400000, 0x0000000718600000, 0x0000000718600000|100%| E|  |TAMS 0x0000000718400000| PB 0x0000000718400000| Complete |  0
+| 119|0x0000000718600000, 0x0000000718800000, 0x0000000718800000|100%| E|CS|TAMS 0x0000000718600000| PB 0x0000000718600000| Complete |  0
+| 120|0x0000000718800000, 0x0000000718a00000, 0x0000000718a00000|100%| E|CS|TAMS 0x0000000718800000| PB 0x0000000718800000| Complete |  0
+| 121|0x0000000718a00000, 0x0000000718c00000, 0x0000000718c00000|100%| E|CS|TAMS 0x0000000718a00000| PB 0x0000000718a00000| Complete |  0
+| 122|0x0000000718c00000, 0x0000000718e00000, 0x0000000718e00000|100%| E|CS|TAMS 0x0000000718c00000| PB 0x0000000718c00000| Complete |  0
+| 123|0x0000000718e00000, 0x0000000719000000, 0x0000000719000000|100%| E|CS|TAMS 0x0000000718e00000| PB 0x0000000718e00000| Complete |  0
+
+Card table byte_map: [0x000002aab4350000,0x000002aab4b10000] _byte_map_base: 0x000002aab0b04000
+
+Marking Bits: (CMBitMap*) 0x000002aa9a115430
+ Bits: [0x000002aab4b10000, 0x000002aab88b0000)
+
+Polling page: 0x000002aa9a160000
+
+Metaspace:
+
+Usage:
+  Non-class:      7.76 MB used.
+      Class:    669.70 KB used.
+       Both:      8.42 MB used.
+
+Virtual space:
+  Non-class space:       64.00 MB reserved,       7.88 MB ( 12%) committed,  1 nodes.
+      Class space:        1.00 GB reserved,     768.00 KB ( <1%) committed,  1 nodes.
+             Both:        1.06 GB reserved,       8.62 MB ( <1%) committed. 
+
+Chunk freelists:
+   Non-Class:  6.59 MB
+       Class:  15.26 MB
+        Both:  21.85 MB
+
+MaxMetaspaceSize: unlimited
+CompressedClassSpaceSize: 1.00 GB
+Initial GC threshold: 21.00 MB
+Current GC threshold: 21.00 MB
+CDS: on
+ - commit_granule_bytes: 65536.
+ - commit_granule_words: 8192.
+ - virtual_space_node_default_size: 8388608.
+ - enlarge_chunks_in_place: 1.
+ - use_allocation_guard: 0.
+
+
+Internal statistics:
+
+num_allocs_failed_limit: 0.
+num_arena_births: 110.
+num_arena_deaths: 0.
+num_vsnodes_births: 2.
+num_vsnodes_deaths: 0.
+num_space_committed: 137.
+num_space_uncommitted: 0.
+num_chunks_returned_to_freelist: 0.
+num_chunks_taken_from_freelist: 363.
+num_chunk_merges: 0.
+num_chunk_splits: 259.
+num_chunks_enlarged: 200.
+num_inconsistent_stats: 0.
+
+CodeHeap 'non-profiled nmethods': size=119168Kb used=1371Kb max_used=1371Kb free=117796Kb
+ bounds [0x000002aaab750000, 0x000002aaab9c0000, 0x000002aab2bb0000]
+CodeHeap 'profiled nmethods': size=119104Kb used=4222Kb max_used=4222Kb free=114881Kb
+ bounds [0x000002aaa3bb0000, 0x000002aaa3fd0000, 0x000002aaab000000]
+CodeHeap 'non-nmethods': size=7488Kb used=2204Kb max_used=3914Kb free=5284Kb
+ bounds [0x000002aaab000000, 0x000002aaab440000, 0x000002aaab750000]
+ total_blobs=3404 nmethods=2252 adapters=1056
+ compilation: enabled
+              stopped_count=0, restarted_count=0
+ full_count=0
+
+Compilation events (20 events):
+Event: 43.727 Thread 0x000002aabba58090 2242   !   3       com.badlogic.gdx.InputMultiplexer::touchDragged (90 bytes)
+Event: 43.727 Thread 0x000002aabba58090 nmethod 2242 0x000002aaa3fc8a90 code [0x000002aaa3fc8cc0, 0x000002aaa3fc93b0]
+Event: 43.727 Thread 0x000002aabba58090 2243       3       com.test_game.main.levels.LevelOne::touchDragged (228 bytes)
+Event: 43.728 Thread 0x000002aabba58090 nmethod 2243 0x000002aaa3fc9790 code [0x000002aaa3fc9aa0, 0x000002aaa3fcaf00]
+Event: 43.983 Thread 0x000002aabba58090 2245       3       java.lang.invoke.DirectMethodHandle$Holder::newInvokeSpecial (24 bytes)
+Event: 43.983 Thread 0x000002aabba58090 nmethod 2245 0x000002aaa3fcb610 code [0x000002aaa3fcb800, 0x000002aaa3fcbf58]
+Event: 43.983 Thread 0x000002aabba58090 2246       3       java.lang.invoke.Invokers$Holder::linkToTargetMethod (10 bytes)
+Event: 43.984 Thread 0x000002aabba58090 nmethod 2246 0x000002aaa3fcc110 code [0x000002aaa3fcc2c0, 0x000002aaa3fcc6e8]
+Event: 44.304 Thread 0x000002aabba58090 2247       3       com.badlogic.gdx.utils.ObjectIntMap::put (67 bytes)
+Event: 44.304 Thread 0x000002aabba58090 nmethod 2247 0x000002aaa3fcc810 code [0x000002aaa3fcc9e0, 0x000002aaa3fcce28]
+Event: 44.304 Thread 0x000002aabba58090 2248       3       com.badlogic.gdx.utils.Array::removeValue (99 bytes)
+Event: 44.304 Thread 0x000002aabba58090 nmethod 2248 0x000002aaa3fcd010 code [0x000002aaa3fcd220, 0x000002aaa3fcd890]
+Event: 44.306 Thread 0x000002aabba58090 2249       3       com.badlogic.gdx.utils.JsonValue::<init> (11 bytes)
+Event: 44.306 Thread 0x000002aabba58090 nmethod 2249 0x000002aaa3fcda90 code [0x000002aaa3fcdc40, 0x000002aaa3fcdf00]
+Event: 44.306 Thread 0x000002aabba58090 2250       3       com.badlogic.gdx.utils.JsonValue::set (24 bytes)
+Event: 44.306 Thread 0x000002aabba58090 nmethod 2250 0x000002aaa3fce010 code [0x000002aaa3fce1a0, 0x000002aaa3fce390]
+Event: 44.307 Thread 0x000002aabba58090 2251       3       com.badlogic.gdx.utils.Json::getClass (12 bytes)
+Event: 44.307 Thread 0x000002aabba58090 nmethod 2251 0x000002aaa3fce410 code [0x000002aaa3fce5c0, 0x000002aaa3fce9d0]
+Event: 44.307 Thread 0x000002aabba58090 2252   !   3       com.badlogic.gdx.utils.reflect.ClassReflection::forName (34 bytes)
+Event: 44.307 Thread 0x000002aabba58090 nmethod 2252 0x000002aaa3fceb90 code [0x000002aaa3fcede0, 0x000002aaa3fcf518]
+
+GC Heap History (2 events):
+Event: 1.660 GC heap before
+{Heap before GC invocations=0 (full 0):
+ garbage-first heap   total reserved 4038656K, committed 253952K, used 22528K [0x0000000709800000, 0x0000000800000000)
+  region size 2048K, 12 young (24576K), 0 survivors (0K)
+ Metaspace       used 7373K, committed 7616K, reserved 1114112K
+  class space    used 588K, committed 704K, reserved 1048576K
+}
+Event: 1.663 GC heap after
+{Heap after GC invocations=1 (full 0):
+ garbage-first heap   total reserved 4038656K, committed 253952K, used 3460K [0x0000000709800000, 0x0000000800000000)
+  region size 2048K, 2 young (4096K), 2 survivors (4096K)
+ Metaspace       used 7373K, committed 7616K, reserved 1114112K
+  class space    used 588K, committed 704K, reserved 1048576K
+}
+
+Dll operation events (10 events):
+Event: 0.008 Loaded shared library C:\Users\malik\.jdks\openjdk-22.0.2\bin\java.dll
+Event: 0.033 Loaded shared library C:\Users\malik\.jdks\openjdk-22.0.2\bin\jsvml.dll
+Event: 0.076 Loaded shared library C:\Users\malik\.jdks\openjdk-22.0.2\bin\net.dll
+Event: 0.077 Loaded shared library C:\Users\malik\.jdks\openjdk-22.0.2\bin\nio.dll
+Event: 0.079 Loaded shared library C:\Users\malik\.jdks\openjdk-22.0.2\bin\zip.dll
+Event: 0.137 Loaded shared library C:\Users\malik\.jdks\openjdk-22.0.2\bin\jimage.dll
+Event: 0.142 Loaded shared library C:\ProgramData\libGDX-temp\libgdxmalik\2a9d7f76\gdx64.dll
+Event: 0.190 Loaded shared library C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64\lwjgl.dll
+Event: 1.166 Loaded shared library C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64\lwjgl_opengl.dll
+Event: 1.535 Loaded shared library C:\ProgramData\libGDX-temp\libgdxmalik\5e84b8da\gdx-box2d64.dll
+
+Deoptimization events (20 events):
+Event: 15.900 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaab8148c4 sp=0x000000f9d2ffede0
+Event: 15.900 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab0546a2 sp=0x000000f9d2ffecc8 mode 2
+Event: 41.969 Thread 0x000002aa99ed04a0 Uncommon trap: trap_request=0xffffff45 fr.pc=0x000002aaab87d7cc relative=0x000000000000022c
+Event: 41.969 Thread 0x000002aa99ed04a0 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000002aaab87d7cc method=com.test_game.main.birds.Bird.act(F)V @ 97 c2
+Event: 41.969 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaab87d7cc sp=0x000000f9d2ffee50
+Event: 41.969 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab0546a2 sp=0x000000f9d2ffede0 mode 2
+Event: 42.476 Thread 0x000002aa99ed04a0 Uncommon trap: trap_request=0xffffff45 fr.pc=0x000002aaab7d2aec relative=0x00000000000022cc
+Event: 42.476 Thread 0x000002aa99ed04a0 Uncommon trap: reason=unstable_if action=reinterpret pc=0x000002aaab7d2aec method=javazoom.jl.decoder.OutputBuffer.clip(F)S @ 17 c2
+Event: 42.476 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaab7d2aec sp=0x000000f9d2ffee10
+Event: 42.476 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab0546a2 sp=0x000000f9d2ffebe8 mode 2
+Event: 42.893 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaa3fc4d77 sp=0x000000f9d2ffee00
+Event: 42.893 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab054e42 sp=0x000000f9d2ffe2a0 mode 0
+Event: 42.894 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaa3fc4de9 sp=0x000000f9d2ffee00
+Event: 42.894 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab054e42 sp=0x000000f9d2ffe2a0 mode 0
+Event: 43.095 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaa3fc4de9 sp=0x000000f9d2ffee00
+Event: 43.095 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab054e42 sp=0x000000f9d2ffe2a0 mode 0
+Event: 43.095 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaa3e0b3e5 sp=0x000000f9d2ffedb0
+Event: 43.095 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab054e42 sp=0x000000f9d2ffe210 mode 0
+Event: 43.096 Thread 0x000002aa99ed04a0 DEOPT PACKING pc=0x000002aaa3fc4de9 sp=0x000000f9d2ffee00
+Event: 43.096 Thread 0x000002aa99ed04a0 DEOPT UNPACKING pc=0x000002aaab054e42 sp=0x000000f9d2ffe2a0 mode 0
+
+Classes loaded (20 events):
+Event: 1.680 Loading class java/io/ObjectStreamClass$2
+Event: 1.680 Loading class java/io/ObjectStreamClass$2 done
+Event: 1.680 Loading class java/io/ClassCache$CacheRef
+Event: 1.680 Loading class java/io/ClassCache$CacheRef done
+Event: 1.680 Loading class java/io/ObjectStreamClass$FieldReflectorKey
+Event: 1.680 Loading class java/io/ObjectStreamClass$FieldReflectorKey done
+Event: 1.680 Loading class java/io/ObjectStreamClass$FieldReflector
+Event: 1.680 Loading class java/io/ObjectStreamClass$FieldReflector done
+Event: 1.680 Loading class java/io/ObjectStreamClass$ExceptionInfo
+Event: 1.680 Loading class java/io/ObjectStreamClass$ExceptionInfo done
+Event: 3.504 Loading class java/util/stream/MatchOps$MatchKind
+Event: 3.504 Loading class java/util/stream/MatchOps$MatchKind done
+Event: 3.504 Loading class java/util/stream/MatchOps
+Event: 3.504 Loading class java/util/stream/MatchOps done
+Event: 3.504 Loading class java/util/stream/MatchOps$MatchOp
+Event: 3.504 Loading class java/util/stream/MatchOps$MatchOp done
+Event: 3.504 Loading class java/util/stream/MatchOps$BooleanTerminalSink
+Event: 3.505 Loading class java/util/stream/MatchOps$BooleanTerminalSink done
+Event: 3.505 Loading class java/util/stream/MatchOps$1MatchSink
+Event: 3.505 Loading class java/util/stream/MatchOps$1MatchSink done
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (20 events):
+Event: 0.250 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x0000000718640a48}> (0x0000000718640a48) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.270 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007186ec4f0}> (0x00000007186ec4f0) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.270 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007186ec820}> (0x00000007186ec820) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.273 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007186f38e8}: 'int java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object)'> (0x00000007186f38e8) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 0.307 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007187b8fd0}> (0x00000007187b8fd0) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.307 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007187b9320}> (0x00000007187b9320) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 0.894 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007187f7b58}: 'java.lang.Object java.lang.invoke.DirectMethodHandle$Holder.newInvokeSpecial(java.lang.Object, long)'> (0x00000007187f7b58) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 1.155 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007182a6890}: 'void java.lang.invoke.DirectMethodHandle$Holder.invokeStatic(java.lang.Object, long)'> (0x00000007182a6890) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 1.162 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007182c4b38}: 'void java.lang.System.load(java.lang.String, java.lang.Class)'> (0x00000007182c4b38) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 1.162 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007182c7588}: 'void java.lang.System.loadLibrary(java.lang.String, java.lang.Class)'> (0x00000007182c7588) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 1.165 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007182d6c88}> (0x00000007182d6c88) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.165 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007182d7000}> (0x00000007182d7000) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.168 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007182e06f0}> (0x00000007182e06f0) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.168 Thread 0x000002aa99ed04a0 Exception <a 'sun/nio/fs/WindowsException'{0x00000007182e09a0}> (0x00000007182e09a0) 
+thrown [s\open\src\hotspot\share\prims\jni.cpp, line 520]
+Event: 1.635 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000717889700}: 'void java.lang.invoke.Invokers$Holder.invokeExact_MT(java.lang.Object, java.lang.Object, java.lang.Object, java.lang.Object)'> (0x0000000717889700) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 1.645 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007178cadc0}: 'float java.lang.invoke.DelegatingMethodHandle$Holder.reinvoke_L(java.lang.Object, java.lang.Object)'> (0x00000007178cadc0) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 1.646 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x00000007178d4eb8}: 'void java.lang.invoke.DelegatingMethodHandle$Holder.reinvoke_L(java.lang.Object, java.lang.Object, float)'> (0x00000007178d4eb8) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 3.504 Thread 0x000002aa99ed04a0 Exception <a 'java/lang/NoSuchMethodError'{0x0000000718b6ff58}: 'int java.lang.invoke.DirectMethodHandle$Holder.invokeVirtual(java.lang.Object, java.lang.Object)'> (0x0000000718b6ff58) 
+thrown [s\open\src\hotspot\share\interpreter\linkResolver.cpp, line 774]
+Event: 15.900 Thread 0x000002aa99ed04a0 Implicit null exception at 0x000002aaab8232e5 to 0x000002aaab82af58
+Event: 15.900 Thread 0x000002aa99ed04a0 Implicit null exception at 0x000002aaab812d41 to 0x000002aaab8148a8
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (20 events):
+Event: 13.668 Executing VM operation: Cleanup
+Event: 13.668 Executing VM operation: Cleanup done
+Event: 14.668 Executing VM operation: Cleanup
+Event: 14.668 Executing VM operation: Cleanup done
+Event: 16.669 Executing VM operation: Cleanup
+Event: 16.669 Executing VM operation: Cleanup done
+Event: 17.670 Executing VM operation: Cleanup
+Event: 17.670 Executing VM operation: Cleanup done
+Event: 18.671 Executing VM operation: Cleanup
+Event: 18.671 Executing VM operation: Cleanup done
+Event: 19.671 Executing VM operation: Cleanup
+Event: 19.671 Executing VM operation: Cleanup done
+Event: 20.672 Executing VM operation: Cleanup
+Event: 20.672 Executing VM operation: Cleanup done
+Event: 21.672 Executing VM operation: Cleanup
+Event: 21.672 Executing VM operation: Cleanup done
+Event: 30.676 Executing VM operation: Cleanup
+Event: 30.676 Executing VM operation: Cleanup done
+Event: 43.683 Executing VM operation: Cleanup
+Event: 43.683 Executing VM operation: Cleanup done
+
+Memory protections (0 events):
+No events
+
+Nmethod flushes (0 events):
+No events
+
+Events (20 events):
+Event: 2.775 Thread 0x000002aa9747f180 Thread exited: 0x000002aa9747f180
+Event: 2.802 Thread 0x000002aa9702e6b0 Thread added: 0x000002aa97482800
+Event: 2.914 Thread 0x000002aa97482800 Thread exited: 0x000002aa97482800
+Event: 5.696 Thread 0x000002aabb819f20 Thread added: 0x000002aa9773f210
+Event: 5.696 Thread 0x000002aabb819f20 Thread added: 0x000002aa9773dda0
+Event: 6.039 Thread 0x000002aa9773dda0 Thread exited: 0x000002aa9773dda0
+Event: 6.039 Thread 0x000002aa9702e6b0 Thread exited: 0x000002aa9702e6b0
+Event: 6.039 Thread 0x000002aa97053250 Thread exited: 0x000002aa97053250
+Event: 6.261 Thread 0x000002aabbb1dad0 Thread exited: 0x000002aabbb1dad0
+Event: 6.435 Thread 0x000002aa9773f210 Thread exited: 0x000002aa9773f210
+Event: 7.167 Thread 0x000002aabb819f20 Thread added: 0x000002aa9773f210
+Event: 7.167 Thread 0x000002aabb819f20 Thread added: 0x000002aa977421c0
+Event: 7.167 Thread 0x000002aabb819f20 Thread added: 0x000002aa97742f60
+Event: 7.712 Thread 0x000002aa97742f60 Thread exited: 0x000002aa97742f60
+Event: 7.838 Thread 0x000002aa9773f210 Thread exited: 0x000002aa9773f210
+Event: 7.838 Thread 0x000002aa977421c0 Thread exited: 0x000002aa977421c0
+Event: 15.900 Thread 0x000002aabba58090 Thread added: 0x000002aa9702e6b0
+Event: 17.407 Thread 0x000002aa9702e6b0 Thread exited: 0x000002aa9702e6b0
+Event: 20.497 Thread 0x000002aabba58090 Thread added: 0x000002aa97aee4b0
+Event: 22.629 Thread 0x000002aa97aee4b0 Thread exited: 0x000002aa97aee4b0
+
+
+Dynamic libraries:
+0x00007ff672c50000 - 0x00007ff672c5e000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\java.exe
+0x00007ffbb56f0000 - 0x00007ffbb5907000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffbb3550000 - 0x00007ffbb3614000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffbb2be0000 - 0x00007ffbb2f9a000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffbb29d0000 - 0x00007ffbb2ae1000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffba52a0000 - 0x00007ffba52b7000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\jli.dll
+0x00007ffbafda0000 - 0x00007ffbafdbb000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\VCRUNTIME140.dll
+0x00007ffbb3bc0000 - 0x00007ffbb3d6e000 	C:\Windows\System32\USER32.dll
+0x00007ffb9bf20000 - 0x00007ffb9c1b2000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.4541_none_2710d1c57384c085\COMCTL32.dll
+0x00007ffbb2af0000 - 0x00007ffbb2b16000 	C:\Windows\System32\win32u.dll
+0x00007ffbb3620000 - 0x00007ffbb36c7000 	C:\Windows\System32\msvcrt.dll
+0x00007ffbb3da0000 - 0x00007ffbb3dc9000 	C:\Windows\System32\GDI32.dll
+0x00007ffbb32e0000 - 0x00007ffbb33fb000 	C:\Windows\System32\gdi32full.dll
+0x00007ffbb3240000 - 0x00007ffbb32da000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffbb42a0000 - 0x00007ffbb42d1000 	C:\Windows\System32\IMM32.DLL
+0x00007ffbafd70000 - 0x00007ffbafd7c000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\vcruntime140_1.dll
+0x00007ffb9df30000 - 0x00007ffb9dfbe000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\msvcp140.dll
+0x00007ffb0b240000 - 0x00007ffb0bf89000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\server\jvm.dll
+0x00007ffbb54a0000 - 0x00007ffbb5552000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffbb4fe0000 - 0x00007ffbb5087000 	C:\Windows\System32\sechost.dll
+0x00007ffbb3110000 - 0x00007ffbb3138000 	C:\Windows\System32\bcrypt.dll
+0x00007ffbb3430000 - 0x00007ffbb3544000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffbb3f10000 - 0x00007ffbb3f81000 	C:\Windows\System32\WS2_32.dll
+0x00007ffbb1820000 - 0x00007ffbb186d000 	C:\Windows\SYSTEM32\POWRPROF.dll
+0x00007ffbaaa40000 - 0x00007ffbaaa74000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffbaacd0000 - 0x00007ffbaacda000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffbb1800000 - 0x00007ffbb1813000 	C:\Windows\SYSTEM32\UMPDC.dll
+0x00007ffbb1a60000 - 0x00007ffbb1a78000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffbaf6d0000 - 0x00007ffbaf6da000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\jimage.dll
+0x00007ffbafe10000 - 0x00007ffbb0042000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffbb37d0000 - 0x00007ffbb3b5f000 	C:\Windows\System32\combase.dll
+0x00007ffbb5560000 - 0x00007ffbb5637000 	C:\Windows\System32\OLEAUT32.dll
+0x00007ffba4d00000 - 0x00007ffba4d32000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffbb3140000 - 0x00007ffbb31bb000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ffba4970000 - 0x00007ffba498e000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\java.dll
+0x00007ffbb42e0000 - 0x00007ffbb4b58000 	C:\Windows\System32\SHELL32.dll
+0x00007ffbb50f0000 - 0x00007ffbb5295000 	C:\Windows\System32\ole32.dll
+0x00007ffbb08d0000 - 0x00007ffbb11d8000 	C:\Windows\SYSTEM32\windows.storage.dll
+0x00007ffbb0790000 - 0x00007ffbb08cf000 	C:\Windows\SYSTEM32\wintypes.dll
+0x00007ffbb36d0000 - 0x00007ffbb37ca000 	C:\Windows\System32\SHCORE.dll
+0x00007ffbb5650000 - 0x00007ffbb56ae000 	C:\Windows\System32\shlwapi.dll
+0x00007ffbb2900000 - 0x00007ffbb292b000 	C:\Windows\SYSTEM32\profapi.dll
+0x00007ffb9aef0000 - 0x00007ffb9afc7000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\jsvml.dll
+0x00007ffba4960000 - 0x00007ffba4970000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\net.dll
+0x00007ffbb1f30000 - 0x00007ffbb1f99000 	C:\Windows\system32\mswsock.dll
+0x00007ffba3db0000 - 0x00007ffba3dc6000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\nio.dll
+0x00007ffba47c0000 - 0x00007ffba47d7000 	C:\Users\malik\.jdks\openjdk-22.0.2\bin\zip.dll
+0x000000006e700000 - 0x000000006e72d000 	C:\ProgramData\libGDX-temp\libgdxmalik\2a9d7f76\gdx64.dll
+0x00007ffb91270000 - 0x00007ffb912eb000 	C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64\lwjgl.dll
+0x00007ffb74e50000 - 0x00007ffb750c0000 	C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64\jemalloc.dll
+0x00007ffb90df0000 - 0x00007ffb90e72000 	C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64\glfw.dll
+0x00007ffb982b0000 - 0x00007ffb982f6000 	C:\Windows\SYSTEM32\dinput8.dll
+0x00007ffbaaaa0000 - 0x00007ffbaaab1000 	C:\Windows\SYSTEM32\xinput1_4.dll
+0x00007ffbb26e0000 - 0x00007ffbb272e000 	C:\Windows\SYSTEM32\cfgmgr32.dll
+0x00007ffbb2690000 - 0x00007ffbb26bc000 	C:\Windows\SYSTEM32\DEVOBJ.dll
+0x00007ffbafc80000 - 0x00007ffbafcab000 	C:\Windows\SYSTEM32\dwmapi.dll
+0x00007ffb98300000 - 0x00007ffb98514000 	C:\Windows\SYSTEM32\inputhost.dll
+0x00007ffbac870000 - 0x00007ffbac9a3000 	C:\Windows\SYSTEM32\CoreMessaging.dll
+0x00007ffbaf9f0000 - 0x00007ffbafaa1000 	C:\Windows\system32\uxtheme.dll
+0x00007ffbb2130000 - 0x00007ffbb213c000 	C:\Windows\SYSTEM32\CRYPTBASE.DLL
+0x00007ffbb52a0000 - 0x00007ffbb5401000 	C:\Windows\System32\MSCTF.dll
+0x00007ffb7e680000 - 0x00007ffb7e847000 	C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64\OpenAL.dll
+0x00007ffbb3dd0000 - 0x00007ffbb3e80000 	C:\Windows\System32\clbcatq.dll
+0x00007ffba4a70000 - 0x00007ffba4b0e000 	C:\Windows\System32\MMDevApi.dll
+0x00007ffb9eef0000 - 0x00007ffb9f0de000 	C:\Windows\SYSTEM32\AUDIOSES.DLL
+0x00007ffbb0360000 - 0x00007ffbb0375000 	C:\Windows\SYSTEM32\resourcepolicyclient.dll
+0x00007ffb8c470000 - 0x00007ffb8c570000 	C:\Windows\SYSTEM32\opengl32.dll
+0x00007ffb4d250000 - 0x00007ffb4d27d000 	C:\Windows\SYSTEM32\GLU32.dll
+0x00007ffbafcf0000 - 0x00007ffbafd27000 	C:\Windows\SYSTEM32\dxcore.dll
+0x00007ffba4550000 - 0x00007ffba4599000 	C:\Windows\SYSTEM32\directxdatabasehelper.dll
+0x00007ffbad160000 - 0x00007ffbad2a4000 	C:\Windows\System32\AppXDeploymentClient.dll
+0x00007ffba4380000 - 0x00007ffba43ae000 	C:\Windows\System32\DriverStore\FileRepository\u0405562.inf_amd64_833d6fa62fbc9b88\B405308\atig6pxx.dll
+0x00007ffb18670000 - 0x00007ffb1cb4d000 	C:\Windows\System32\DriverStore\FileRepository\u0405562.inf_amd64_833d6fa62fbc9b88\B405308\atio6axx.dll
+0x00007ffbb4b60000 - 0x00007ffbb4fd4000 	C:\Windows\System32\SETUPAPI.dll
+0x00007ffb9fb50000 - 0x00007ffb9fb85000 	C:\Windows\SYSTEM32\amdihk64.dll
+0x00007ffbb31c0000 - 0x00007ffbb3232000 	C:\Windows\System32\WINTRUST.dll
+0x00007ffbb2fa0000 - 0x00007ffbb3106000 	C:\Windows\System32\CRYPT32.dll
+0x00007ffbb2220000 - 0x00007ffbb2232000 	C:\Windows\SYSTEM32\MSASN1.dll
+0x00007ffbafb70000 - 0x00007ffbafc67000 	C:\Windows\system32\dxgi.dll
+0x00007ffb6ee60000 - 0x00007ffb6ee86000 	C:\Windows\system32\d3d12.dll
+0x00007ffb0fc10000 - 0x00007ffb141eb000 	C:\Windows\System32\DriverStore\FileRepository\u0405562.inf_amd64_833d6fa62fbc9b88\B405308\amdxc64.dll
+0x00007ffb74c40000 - 0x00007ffb74e42000 	C:\Windows\system32\D3D12Core.dll
+0x00007ffba4420000 - 0x00007ffba444f000 	C:\Windows\SYSTEM32\D3DSCache.dll
+0x00007ffbb1fd0000 - 0x00007ffbb1ff8000 	C:\Windows\SYSTEM32\USERENV.dll
+0x00007ffba2430000 - 0x00007ffba26d4000 	C:\Windows\SYSTEM32\twinapi.appcore.dll
+0x00007ffbac1a0000 - 0x00007ffbac3f5000 	C:\Windows\SYSTEM32\dcomp.dll
+0x00007ffb8a880000 - 0x00007ffb8a93c000 	C:\Windows\SYSTEM32\mscms.dll
+0x00007ffb98030000 - 0x00007ffb98079000 	C:\Windows\SYSTEM32\icm32.dll
+0x00007ffb923b0000 - 0x00007ffb9240e000 	C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64\lwjgl_opengl.dll
+0x00007ffb97c80000 - 0x00007ffb97dc5000 	C:\Windows\SYSTEM32\textinputframework.dll
+0x00007ffba3170000 - 0x00007ffba34dd000 	C:\Windows\SYSTEM32\CoreUIComponents.dll
+0x0000000066b00000 - 0x0000000066b5a000 	C:\ProgramData\libGDX-temp\libgdxmalik\5e84b8da\gdx-box2d64.dll
+0x00007ffb7fd70000 - 0x00007ffb801b9000 	C:\Windows\SYSTEM32\uiautomationcore.dll
+0x00007ffb93270000 - 0x00007ffb932d9000 	C:\Windows\SYSTEM32\OLEACC.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\malik\.jdks\openjdk-22.0.2\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.22621.4541_none_2710d1c57384c085;C:\Users\malik\.jdks\openjdk-22.0.2\bin\server;C:\ProgramData\libGDX-temp\libgdxmalik\2a9d7f76;C:\ProgramData\libGDX-temp\lwjgl_malik\3.3.3+5\x64;C:\Windows\System32\DriverStore\FileRepository\u0405562.inf_amd64_833d6fa62fbc9b88\B405308;C:\ProgramData\libGDX-temp\libgdxmalik\5e84b8da
+
+VM Arguments:
+jvm_args: -Dfile.encoding=UTF-8 -Duser.country=IN -Duser.language=en -Duser.variant 
+java_command: com.test_game.main.lwjgl3.Lwjgl3Launcher
+java_class_path (initial): C:\Users\malik\IdeaProjects\libgdx\lwjgl3\build\classes\java\main;C:\Users\malik\IdeaProjects\libgdx\lwjgl3\build\resources\main;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx-controllers\gdx-controllers-desktop\2.2.3\f496535b094461487a71b3f23a17cd7d524de0f5\gdx-controllers-desktop-2.2.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-lwjgl3\1.12.1\12a144cacb34f0392cd8354f798d99e4836a51a8\gdx-backend-lwjgl3-1.12.1.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-box2d-platform\1.12.1\4e82228fcdd2e8a7673fe7952588acfdb33d7820\gdx-box2d-platform-1.12.1-natives-desktop.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-bullet-platform\1.12.1\9803f4ec26f496a2ecfa09e800f4bfdaea599b0\gdx-bullet-platform-1.12.1-natives-desktop.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-freetype-platform\1.12.1\a32f9ecca13ae01370d9649e48a30201080d4c18\gdx-freetype-platform-1.12.1-natives-desktop.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-platform\1.12.1\5737be5ce3a4e8f9f77c2d9ab95ab479f9c3705f\gdx-platform-1.12.1-natives-desktop.jar;C:\Users\malik\IdeaProjects\libgdx\core\build\libs\core-$projectVersion.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-tools\1.12.1\c0670e43a98e4602e2cda9188ce7b41b4605a215\gdx-tools-1.12.1.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx-controllers\gdx-controllers-core\2.2.3\82b77d6cb6394420cdd480fc2ab373f7ba5e0e45\gdx-controllers-core-2.2.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.jamepad\jamepad\2.0.20.0\55eb0007fd55c9914d106dac3387b9d444572cab\jamepad-2.0.20.0.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.ashley\ashley\1.7.4\21a3a8932919099c4e5006a7d8378dcbe76ef8a5\ashley-1.7.4.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-ai\1.8.2\ab75d2ce80ab1b1ce6828a15dc0f417abac4c674\gdx-ai-1.8.2.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.box2dlights\box2dlights\1.5\6902dbcd250c95a27973aa24a147a95b3828d348\box2dlights-1.5.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.github.tommyettinger\libgdx-utils-box2d\0.13.7\8880b2a4f7e60c5e3919b3c139c9f29a49f93924\libgdx-utils-box2d-0.13.7.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-box2d\1.12.1\6c37ed04f97d062f1bdc4afe1f583182e539a269\gdx-box2d-1.12.1.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-bullet\1.12.1\2455169dcc8cea63a63ee94e8260f644dce63732\gdx-bullet-1.12.1.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-freetype\1.12.1\d5826997b0cfa595a72889610fadb18405056c1c\gdx-freetype-1.12.1.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.github.lyze237\gdx-UnBox2D\da1ce30edb\5c9800e035664374981b49345ac2a2e4c57c6e08\gdx-UnBox2D-da1ce30edb.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.github.tommyettinger\libgdx-utils\0.13.7\bf423b2da7c82c092e6a55edf6ff195d080dd689\libgdx-utils-0.13.7.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\space.earlygrey\shapedrawer\2.6.0\a37c5a0e481af62679c3270936b1a43119588f85\shapedrawer-2.6.0.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-backend-headless\1.12.1\22b5d8ed8ad1358c63ed4ce223634d166003c70e\gdx-backend-headless-1.12.1.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.aya-prover.gdx-box2d\box2d\1.3.0\7a812504cbb530056589f6714b0c3357a260b018\box2d-1.3.0.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx\1.12.1\a2d066c09329c457045c284c42d6f37122840aa\gdx-1.12.1.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\efa1eb78c5ccd840e9f329717109b5e892d72f8e\lwjgl-glfw-3.3.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\a03684c5e4b1b1dbbe0d29dbbdc27b985b6840f2\lwjgl-glfw-3.3.3-natives-linux.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\d9af485c32545b37dd5359b163161d42d7534dcf\lwjgl-glfw-3.3.3-natives-linux-arm32.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\492a0f11f85b85899a6568f07511160c1b87cd38\lwjgl-glfw-3.3.3-natives-linux-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\a1bf400f6bc64e6195596cb1430dafda46090751\lwjgl-glfw-3.3.3-natives-macos.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\ee8cc78d0a4a5b3b4600fade6d927c9fc320c858\lwjgl-glfw-3.3.3-natives-macos-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\e449e28b4891fc423c54c85fbc5bb0b9efece67a\lwjgl-glfw-3.3.3-natives-windows.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-glfw\3.3.3\32334f3fd5270a59bad9939a93115acb6de36dcf\lwjgl-glfw-3.3.3-natives-windows-x86.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\b543467b7ff3c6920539a88ee602d34098628be5\lwjgl-jemalloc-3.3.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\4f86728bf449b1dd61251c4e0ac01df1389cb51e\lwjgl-jemalloc-3.3.3-natives-linux.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\109b6931880d02d4e65ced38928a16e41d19873e\lwjgl-jemalloc-3.3.3-natives-linux-arm32.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\eff8b86798191192fe2cba2dc2776109f30c239d\lwjgl-jemalloc-3.3.3-natives-linux-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\2906637657a57579847238c9c72d2c4bde7083f8\lwjgl-jemalloc-3.3.3-natives-macos.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\e9412c3ff8cb3a3bad1d3f52909ad74d8a5bdad1\lwjgl-jemalloc-3.3.3-natives-macos-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\426222fc027602a5f21b9c0fe79cde6a4c7a011f\lwjgl-jemalloc-3.3.3-natives-windows.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-jemalloc\3.3.3\f6063b6e0f23be483c5c88d84ce51b39dc69126c\lwjgl-jemalloc-3.3.3-natives-windows-x86.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\daada81ceb5fc0c291fbfdd4433cb8d9423577f2\lwjgl-openal-3.3.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\3037360cc4595079bea240af250b6d1a527e0905\lwjgl-openal-3.3.3-natives-linux.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\e1702aa09d20359d6cf5cb2999fa7685a785eca7\lwjgl-openal-3.3.3-natives-linux-arm32.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\ad8f302118a65bb8d615f8a2a680db58fb8f835e\lwjgl-openal-3.3.3-natives-linux-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\8df8338bfa77f2ebabef4e58964bd04d24805cbf\lwjgl-openal-3.3.3-natives-macos.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\c78b078de2fb52f45aa55d04db889a560f3544f\lwjgl-openal-3.3.3-natives-macos-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\cf83862ae95d98496b26915024c7e666d8ab1c8f\lwjgl-openal-3.3.3-natives-windows.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-openal\3.3.3\87b8d5050e3adb46bb58fe1cb2669a4a48fce10d\lwjgl-openal-3.3.3-natives-windows-x86.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\2f6b0147078396a58979125a4c947664e98293a\lwjgl-opengl-3.3.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\62c70a4b00ca5391882b0f4b787c1588d24f1c86\lwjgl-opengl-3.3.3-natives-linux.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\dbba17fc5ac0985d14a57c11f9537617d67b9952\lwjgl-opengl-3.3.3-natives-linux-arm32.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\2096f6b94b2d68745d858fbfe53aacf5f0c8074c\lwjgl-opengl-3.3.3-natives-linux-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\1bd45997551ae8a28469f3a2b678f4b7289e12c0\lwjgl-opengl-3.3.3-natives-macos.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\d213ddef27637b1af87961ffa94d6b27036becc8\lwjgl-opengl-3.3.3-natives-macos-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\e6c1eec8be8a71951b830a4d69efc01c6531900c\lwjgl-opengl-3.3.3-natives-windows.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-opengl\3.3.3\d32d833dcaa2f355a886eaf21f0408b5f03241d\lwjgl-opengl-3.3.3-natives-windows-x86.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\25dd6161988d7e65f71d5065c99902402ee32746\lwjgl-stb-3.3.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\fd1271ccd9d85eff2fa31f3fd543e02ccfaf5041\lwjgl-stb-3.3.3-natives-linux.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\1ae28ff044699ff29b0e980ffabd73fba8a664b3\lwjgl-stb-3.3.3-natives-linux-arm32.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\ddc177afc2be1ee8d93684b11363b80589a13fe1\lwjgl-stb-3.3.3-natives-linux-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\472792c98fb2c1557c060cb9da5fca6a9773621f\lwjgl-stb-3.3.3-natives-macos.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\51c6955571fbcdb7bb538c6aa589b953b584c6af\lwjgl-stb-3.3.3-natives-macos-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\1d9facdf6541de114b0f963be33505b7679c78cb\lwjgl-stb-3.3.3-natives-windows.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl-stb\3.3.3\b5c874687b9aac1a936501d4ed2c49567fd1b575\lwjgl-stb-3.3.3-natives-windows-x86.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\29589b5f87ed335a6c7e7ee6a5775f81f97ecb84\lwjgl-3.3.3.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\1713758e3660ba66e1e954396fd18126038b33c0\lwjgl-3.3.3-natives-linux.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\2075c51a80f0ef0f22ba616ba54007ac2b0debd4\lwjgl-3.3.3-natives-linux-arm32.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\f35d8b6ffe1ac1e3a5eb1d4e33de80f044ad5fd8\lwjgl-3.3.3-natives-linux-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\33a6efa288390490ce6eb6c3df47ac21ecf648cf\lwjgl-3.3.3-natives-macos.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\226246e75f6bd8d4e1895bdce8638ef87808d114\lwjgl-3.3.3-natives-macos-arm64.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\a5ed18a2b82fc91b81f40d717cb1f64c9dcb0540\lwjgl-3.3.3-natives-windows.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.lwjgl\lwjgl\3.3.3\9e670718e050aeaeea0c2d5b907cffb142f2e58f\lwjgl-3.3.3-natives-windows-x86.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.jlayer\jlayer\1.0.1-gdx\7cca83cec5c1b2f011362f4d85aabd71a73b049d\jlayer-1.0.1-gdx.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\org.jcraft\jorbis\0.0.17\8872d22b293e8f5d7d56ff92be966e6dc28ebdc6\jorbis-0.0.17.jar;C:\Users\malik\.gradle\caches\modules-2\files-2.1\com.badlogicgames.gdx\gdx-jnigen-loader\2.3.1\2d472f69243631fbcb3d4c3f93dd2e137a6cb084\gdx-jnigen-loader-2.3.1.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 12                                        {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 13                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 2097152                                   {product} {ergonomic}
+   size_t InitialHeapSize                          = 260046848                                 {product} {ergonomic}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4135583744                                {product} {ergonomic}
+   size_t MaxNewSize                               = 2480930816                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 2097152                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 7602480                                {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 122027880                              {pd product} {ergonomic}
+    uintx ProfiledCodeHeapSize                     = 122027880                              {pd product} {ergonomic}
+    uintx ReservedCodeCacheSize                    = 251658240                              {pd product} {ergonomic}
+     bool SegmentedCodeCache                       = true                                      {product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 4135583744                             {manageable} {ergonomic}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+PATH=C:\Program Files\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\Common Files\Oracle\Java\javapath;C:\Program Files (x86)\VMware\VMware Player\bin\;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Windows\System32\OpenSSH\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Users\malik\OneDrive\Desktop\mingw\mingw64\bin;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;C:\Program Files\swipl\bin;C:\Program Files\Cloudflare\Cloudflare WARP\;C:\Program Files\Git\cmd;C:\Users\malik\AppData\Local\Programs\Python\Python311\Scripts\;C:\Users\malik\AppData\Local\Programs\Python\Python311\;C:\Users\malik\AppData\Local\Microsoft\WindowsApps;C:\Users\malik\AppData\Local\Programs\Microsoft VS Code\bin;C:\Program Files\JetBrains\CLion 2023.3.2\bin;C:\Users\malik\AppData\Local\JetBrains\Toolbox\scripts;;C:\Program Files\JetBrains\CLion 2023.3.2\bin;;C:\Program Files\JetBrains\IntelliJ IDEA Community Edition 2024.2.1\bin;;C:\Program Files\JetBrains\IntelliJ IDEA 2024.2.2\bin;
+USERNAME=malik
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 80 Stepping 0, AuthenticAMD
+TMP=C:\Users\malik\AppData\Local\Temp
+TEMP=C:\Users\malik\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 11 , 64 bit Build 22621 (10.0.22621.4391)
+OS uptime: 2 days 8:11 hours
+Hyper-V role detected
+
+CPU: total 16 (initial active 16) (16 cores per cpu, 2 threads per core) family 25 model 80 stepping 0 microcode 0x0, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4a, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, hv, rdtscp, rdpid, fsrm, f16c, cet_ss
+Processor Information for processor 0
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 1
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 2
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 3
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 4
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 5
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 6
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 7
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 8
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 9
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 10
+  Max Mhz: 3201, Current Mhz: 3201, Mhz Limit: 3201
+Processor Information for processor 11
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 12
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 13
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 14
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+Processor Information for processor 15
+  Max Mhz: 3201, Current Mhz: 2555, Mhz Limit: 3201
+
+Memory: 4k page, system-wide physical 15773M (975M free)
+TotalPageFile size 27581M (AvailPageFile size 5936M)
+current process WorkingSet (physical memory assigned to process): 253M, peak: 267M
+current process commit charge ("private bytes"): 574M, peak: 589M
+
+vm_info: OpenJDK 64-Bit Server VM (22.0.2+9-70) for windows-amd64 JRE (22.0.2+9-70), built on 2024-06-04T16:52:23Z by "mach5one" with MS VC++ 17.6 (VS2022)
+
+END.
