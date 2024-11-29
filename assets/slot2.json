@@ -1,0 +1,221 @@
+{
+pigs: [
+	{
+		class: com.test_game.main.Pigs.smallPig
+		type: small
+		health: -3
+		hx: 0.5
+		hy: 0.5
+		posX: 10.996142
+		posY: 3.5399096
+		velocityX: -0.24387799
+		velocityY: 0.40430668
+	}
+	{
+		class: com.test_game.main.Pigs.smallPig
+		type: small
+		health: -1
+		hx: 0.5
+		hy: 0.5
+		posX: 13.025814
+		posY: 3.531401
+		velocityX: 0.103507385
+		velocityY: 0.2902585
+	}
+	{
+		class: com.test_game.main.Pigs.MediumPig
+		type: medium
+		health: 32
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 12.015278
+		posY: 2.5310206
+	}
+]
+buildings: [
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 9.973874
+		posY: 1.517913
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 10.9904785
+		posY: 1.5165094
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 13.021914
+		posY: 1.5158756
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 14.036887
+		posY: 1.5160782
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 15.051985
+		posY: 1.5159323
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 20.317198
+		posY: -53.57175
+		velocityX: 1.1849709
+		velocityY: -33.11104
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 9.969791
+		posY: 2.532758
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 14.057684
+		posY: 2.5319662
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 13.037305
+		posY: 2.5315166
+	}
+	{
+		class: com.test_game.main.blocks.GlassBlock
+		type: glass
+		health: 7
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 12.006812
+		posY: 1.5155152
+	}
+	{
+		class: com.test_game.main.blocks.GlassBlock
+		type: glass
+		health: 7
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 10.986987
+		posY: 2.5314515
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 12.003401
+		posY: 3.5484843
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 9.962846
+		posY: 3.548064
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 10
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 14.051975
+		posY: 3.5474143
+	}
+]
+initialize: true
+gamePaused: true
+lvl: two
+birds: [
+	{
+		class: com.test_game.main.Birds.RedBird
+		type: red
+		launched: true
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 7.772978
+		posY: 4.1832986
+		velocityX: 6.3639607
+		damage: 5
+		velocityY: -0.42893016
+		power: 10
+	}
+	{
+		class: com.test_game.main.Birds.BlackBird
+		type: black
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 1.5
+		posY: 1.2549998
+		damage: 5
+		power: 10
+	}
+	{
+		class: com.test_game.main.Birds.RedBird
+		type: red
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 0.5
+		posY: 1.2549998
+		damage: 5
+		power: 10
+	}
+]
+}

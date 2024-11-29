@@ -1,0 +1,187 @@
+{
+pigs: [
+	{
+		class: com.test_game.main.Pigs.MediumPig
+		type: medium
+		health: 40
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 11.001437
+		posY: 2.5254638
+	}
+	{
+		class: com.test_game.main.Pigs.AssPig
+		type: Ass
+		health: 50
+		status: true
+		hx: 0.75
+		hy: 0.75
+		posX: 13.463839
+		posY: 1.7665974
+	}
+	{
+		class: com.test_game.main.Pigs.KingPig
+		type: king
+		health: 70
+		status: true
+		hx: 0.75
+		hy: 0.75
+		posX: 12.00012
+		posY: 5.308683
+	}
+]
+buildings: [
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 9.982677
+		posY: 1.5144993
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 10.998533
+		posY: 1.5138144
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 12.013538
+		posY: 1.5115288
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 14.729634
+		posY: 1.513783
+	}
+	{
+		class: com.test_game.main.blocks.tnt
+		type: tnt
+		health: 4
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 9.9858
+		posY: 2.5285184
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 5
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 12.017892
+		posY: 2.5190034
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 5
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 14.728752
+		posY: 2.5262904
+	}
+	{
+		class: com.test_game.main.blocks.Log1
+		type: log
+		health: 5
+		status: true
+		hx: 1.5
+		hy: 0.25
+		posX: 10.701129
+		posY: 3.290078
+	}
+	{
+		class: com.test_game.main.blocks.Log1
+		type: log
+		health: 5
+		status: true
+		hx: 1.5
+		hy: 0.25
+		posX: 13.750868
+		posY: 3.2853105
+	}
+	{
+		class: com.test_game.main.blocks.WoodBlock
+		type: wood
+		health: 5
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 11.800885
+		posY: 4.045855
+	}
+	{
+		class: com.test_game.main.blocks.SteelBlock
+		type: steel
+		health: 13
+		status: true
+		hx: 0.5
+		hy: 0.5
+		posX: 13.000109
+		posY: 4.0444865
+	}
+]
+initialize: true
+gamePaused: true
+lvl: three
+birds: [
+	{
+		class: com.test_game.main.Birds.YellowBird
+		type: yellow
+		launched: true
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 6.6274624
+		posY: 4.493842
+		velocityX: 7.2549186
+		damage: 4
+		velocityY: 3.0610242
+		power: 11.400005
+	}
+	{
+		class: com.test_game.main.Birds.BlackBird
+		type: black
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 1.5
+		posY: 1.2549998
+		damage: 5
+		power: 10
+	}
+	{
+		class: com.test_game.main.Birds.YellowBird
+		type: yellow
+		radius: 0.25
+		status: true
+		angle: 45
+		posX: 0.5
+		posY: 1.2549998
+		damage: 4
+		power: 10
+	}
+]
+}
